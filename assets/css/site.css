@@ -271,6 +271,13 @@ textarea {
   gap: 0.82rem;
 }
 
+.hero-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.82rem;
+  margin: 1.1rem 0 0;
+}
+
 [data-resume-button],
 [data-linkedin-button] {
   display: contents;
@@ -834,6 +841,26 @@ textarea {
 .demo-copy {
   display: grid;
   gap: 0.85rem;
+}
+
+.demo-proof-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.demo-proof-card {
+  padding: 0.82rem 0.88rem;
+  border: 1px solid rgba(126, 198, 255, 0.14);
+  background: linear-gradient(135deg, rgba(126, 198, 255, 0.1), rgba(255, 255, 255, 0.03));
+}
+
+.demo-proof-card strong {
+  display: block;
+  margin-top: 0.32rem;
+  color: var(--muted-strong);
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
 }
 
 .demo-actions {
@@ -1401,6 +1428,23 @@ textarea {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.service-card {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.service-note {
+  margin: 0;
+  color: var(--muted-strong);
+  font-size: 0.88rem;
+}
+
 .thinking-stage,
 .profile-stage {
   padding: 1.1rem 1.15rem;
@@ -1513,6 +1557,38 @@ textarea {
   padding: 1rem;
 }
 
+.booking-cta-panel h3 {
+  margin: 0.2rem 0 0.55rem;
+  line-height: 1.14;
+  text-transform: uppercase;
+}
+
+.booking-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(280px, 0.88fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.booking-side {
+  padding: 0.92rem 0.98rem;
+  border: 1px solid rgba(126, 198, 255, 0.16);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.booking-checklist {
+  margin-top: 0;
+}
+
+.booking-support-copy {
+  margin: 0.8rem 0 1rem;
+}
+
+.appointment-embed iframe {
+  min-height: 600px;
+  background: #ffffff;
+}
+
 .calendar-embed {
   position: relative;
   z-index: 1;
@@ -1542,6 +1618,15 @@ textarea {
   font-weight: 800;
   letter-spacing: 0.13em;
   text-transform: uppercase;
+}
+
+.risk-banner {
+  margin: 1rem 0 0;
+  padding: 0.9rem 0.95rem;
+  border: 1px solid rgba(126, 198, 255, 0.16);
+  background: linear-gradient(135deg, rgba(126, 198, 255, 0.12), rgba(255, 255, 255, 0.03));
+  color: var(--muted-strong);
+  font-size: 0.92rem;
 }
 
 .redirect-card {
@@ -1632,7 +1717,9 @@ textarea {
   .demo-grid,
   .angle-grid,
   .resume-grid,
+  .service-grid,
   .demo-list,
+  .demo-proof-grid,
   .hero-metrics,
   .stage-stack {
     grid-template-columns: 1fr;
@@ -1642,7 +1729,8 @@ textarea {
     grid-template-columns: 1fr;
   }
 
-  .digest-visual {
+  .digest-visual,
+  .booking-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -1703,6 +1791,10 @@ textarea {
 
   .calendar-embed iframe {
     height: 520px;
+  }
+
+  .appointment-embed iframe {
+    min-height: 520px;
   }
 
   .section-callout {

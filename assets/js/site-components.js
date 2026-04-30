@@ -113,11 +113,11 @@ function renderFooter() {
     <footer class="site-footer">
       <div class="container footer-inner">
         <div class="footer-panel reveal">
-          <div class="footer-grid">
-            <div>
+        <div class="footer-grid">
+          <div>
               <p class="footer-brand">${siteConfig.ownerName}</p>
               <p class="footer-small">${escapeHtml(siteConfig.roleTagline)}</p>
-              <p class="footer-small">Demos and products by Kairui Bi.</p>
+              <p class="footer-small">Workflow demos, low-risk services, and products by Kairui Bi.</p>
               <p class="footer-small">${escapeHtml(siteConfig.hiringStatus)}</p>
             </div>
             <div>
@@ -128,10 +128,11 @@ function renderFooter() {
             <div>
               <p class="footer-brand">Links</p>
               <div class="footer-links">
-                <a href="${resolveSitePath(`${siteConfig.routes.home}#intro`)}">Demos</a>
+                <a href="${resolveSitePath(`${siteConfig.routes.home}#services`)}">Services</a>
+                <a href="${resolveSitePath(`${siteConfig.routes.home}#demos`)}">Demos</a>
                 <a href="${resolveSitePath(siteConfig.routes.publications)}">Publication</a>
                 <a href="${resolveSitePath(`${siteConfig.routes.home}#xulan`)}">XuLan</a>
-                <a href="${resolveSitePath(siteConfig.routes.booking)}">Booking</a>
+                <a href="${resolveSitePath(siteConfig.routes.booking)}">Free Audit</a>
                 <a href="${escapeHtml(siteConfig.linkedInUrl)}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                 <a href="${resolveSitePath(siteConfig.routes.genpromptly)}">GenPromptly</a>
                 <a href="${resolveSitePath(siteConfig.routes.privacy)}">Privacy</a>
@@ -363,22 +364,38 @@ function renderDemoCards() {
                 .map((tag) => `<span class="demo-chip">${escapeHtml(tag)}</span>`)
                 .join("")}
             </div>
+            ${
+              demo.proof?.length
+                ? `<div class="demo-proof-grid">
+                    ${demo.proof
+                      .map(
+                        (item) => `
+                          <article class="demo-proof-card">
+                            <span class="detail-label">${escapeHtml(item.label)}</span>
+                            <strong>${escapeHtml(item.value)}</strong>
+                          </article>
+                        `
+                      )
+                      .join("")}
+                  </div>`
+                : ""
+            }
             <div class="demo-list">
               <div class="demo-detail">
                 <span class="detail-label">Problem</span>
                 <p>${escapeHtml(demo.problem)}</p>
               </div>
               <div class="demo-detail">
-                <span class="detail-label">Flow</span>
-                <p>${escapeHtml(demo.flow)}</p>
-              </div>
-              <div class="demo-detail">
-                <span class="detail-label">Stack</span>
-                <p>${escapeHtml(demo.stack)}</p>
+                <span class="detail-label">Workflow</span>
+                <p>${escapeHtml(demo.workflow || demo.flow || "")}</p>
               </div>
               <div class="demo-detail is-output">
-                <span class="detail-label">Outcome</span>
+                <span class="detail-label">Output</span>
                 <p>${escapeHtml(demo.output)}</p>
+              </div>
+              <div class="demo-detail">
+                <span class="detail-label">Best for</span>
+                <p>${escapeHtml(demo.bestFor || demo.stack || "")}</p>
               </div>
             </div>
             ${
@@ -399,6 +416,11 @@ function renderDemoCards() {
 }
 
 function applySiteTokens() {
+  const bookingUrl = siteConfig.booking?.publicUrl || resolveSitePath(siteConfig.routes.booking);
+  const bookingLabel = siteConfig.booking?.ctaLabel || "Book time";
+  const bookingEmbedUrl = siteConfig.booking?.embedUrl || bookingUrl;
+  const bookingSupportCopy = siteConfig.booking?.supportCopy || "";
+
   document.querySelectorAll("[data-contact-link]").forEach((element) => {
     if (element instanceof HTMLAnchorElement) {
       element.href = `mailto:${siteConfig.contactEmail}`;
@@ -449,6 +471,29 @@ function applySiteTokens() {
       variant: element.getAttribute("data-variant") || "",
       external: true
     });
+  });
+
+  document.querySelectorAll("[data-booking-link]").forEach((element) => {
+    if (element instanceof HTMLAnchorElement) {
+      element.href = bookingUrl;
+      element.textContent = element.dataset.label || bookingLabel;
+      element.target = "_blank";
+      element.rel = "noopener noreferrer";
+    }
+  });
+
+  document.querySelectorAll("[data-booking-label]").forEach((element) => {
+    element.textContent = bookingLabel;
+  });
+
+  document.querySelectorAll("[data-booking-support]").forEach((element) => {
+    element.textContent = bookingSupportCopy;
+  });
+
+  document.querySelectorAll("[data-booking-embed]").forEach((element) => {
+    if (element instanceof HTMLIFrameElement) {
+      element.src = bookingEmbedUrl;
+    }
   });
 
   document.querySelectorAll("[data-hiring-status]").forEach((element) => {
