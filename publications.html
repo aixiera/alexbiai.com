@@ -13,20 +13,20 @@
     <script defer src="assets/js/site-config.js"></script>
     <script defer src="assets/js/site-components.js"></script>
   </head>
-  <body>
+  <body data-page="publication" data-i18n-title="publication.title" data-i18n-description="publication.description">
     <site-navbar current="publication"></site-navbar>
 
     <main class="page-main">
       <div class="container page-stack">
         <section class="hero-shell reveal" id="publication" data-section>
           <div class="hero-content">
-            <span class="eyebrow">Publication / Research</span>
-            <p class="hero-kicker">Computer vision / FER2013 / Proc. SPIE</p>
-            <h1 class="hero-title publication-title">A comparative study on facial expression recognition using MobileNetV2, VGG-16, ResNet and Swin Transformer</h1>
-            <p class="hero-subtitle">
+            <span class="eyebrow" data-i18n="publication.heroEyebrow">Publication / Research</span>
+            <p class="hero-kicker" data-i18n="publication.heroKicker">Computer vision / FER2013 / Proc. SPIE</p>
+            <h1 class="hero-title publication-title" data-i18n="publication.heroTitle">A comparative study on facial expression recognition using MobileNetV2, VGG-16, ResNet and Swin Transformer</h1>
+            <p class="hero-subtitle" data-i18n="publication.heroSubtitle">
               Published in Proceedings of SPIE Volume 13545.
             </p>
-            <p class="hero-description">
+            <p class="hero-description" data-i18n="publication.heroDescription">
               CNN facial-expression models compared with a Swin Transformer on FER2013.
             </p>
             <div class="hero-proof">
@@ -37,43 +37,43 @@
               <span class="signal-chip is-soft">FER2013</span>
             </div>
             <div class="button-row">
-              <a class="btn btn-primary" href="https://doi.org/10.1117/12.3060400" target="_blank" rel="noopener noreferrer">Read at SPIE</a>
-              <a class="btn" href="index.html#about">Back to portfolio</a>
-              <a class="btn btn-ghost" href="https://aixiera.github.io/phosphene-web/" target="_blank" rel="noopener noreferrer">Open phosphene demo</a>
+              <a class="btn btn-primary" href="https://doi.org/10.1117/12.3060400" target="_blank" rel="noopener noreferrer" data-i18n="publication.readSPIE">Read at SPIE</a>
+              <a class="btn" href="index.html#about" data-i18n="publication.backPortfolio">Back to portfolio</a>
+              <a class="btn btn-ghost" href="https://aixiera.github.io/phosphene-web/" target="_blank" rel="noopener noreferrer" data-i18n="publication.openPhosphene">Open phosphene demo</a>
             </div>
           </div>
 
           <div class="hero-side">
             <article class="resume-panel reveal">
               <div class="panel-toolbar">
-                <span class="preview-title">Paper details</span>
+                <span class="preview-title" data-i18n="publication.detailsLabel">Paper details</span>
                 <span class="pill">Proc. SPIE</span>
               </div>
               <ul class="feature-list">
-                <li>Published: 3 March 2025.</li>
-                <li>Proceedings Volume 13545, ICANCT 2024.</li>
-                <li>Conference context: Wuhan, China.</li>
-                <li>DOI: 10.1117/12.3060400.</li>
+                <li data-i18n="publication.detailLi1">Published: 3 March 2025.</li>
+                <li data-i18n="publication.detailLi2">Proceedings Volume 13545, ICANCT 2024.</li>
+                <li data-i18n="publication.detailLi3">Conference context: Wuhan, China.</li>
+                <li data-i18n="publication.detailLi4">DOI: 10.1117/12.3060400.</li>
               </ul>
             </article>
 
             <div class="signal-board reveal">
               <div class="panel-toolbar">
-                <span class="preview-title">Research signal</span>
-                <span class="pill">Model comparison</span>
+                <span class="preview-title" data-i18n="publication.signalLabel">Research signal</span>
+                <span class="pill" data-i18n="publication.signalPill">Model comparison</span>
               </div>
               <div class="signal-list">
                 <div class="signal-item">
-                  <span class="detail-label">Dataset</span>
-                  <p>FER2013, 48x48 images, 7 emotion classes, and augmentation.</p>
+                  <span class="detail-label" data-i18n="publication.datasetLabel">Dataset</span>
+                  <p data-i18n="publication.datasetBody">FER2013, 48x48 images, 7 emotion classes, and augmentation.</p>
                 </div>
                 <div class="signal-item">
-                  <span class="detail-label">Evaluation</span>
-                  <p>Accuracy, F1, precision, recall, loss, and confusion matrices.</p>
+                  <span class="detail-label" data-i18n="publication.evalLabel">Evaluation</span>
+                  <p data-i18n="publication.evalBody">Accuracy, F1, precision, recall, loss, and confusion matrices.</p>
                 </div>
                 <div class="signal-item">
-                  <span class="detail-label">Why it fits here</span>
-                  <p>It connects research discipline with practical AI systems and interfaces.</p>
+                  <span class="detail-label" data-i18n="publication.fitLabel">Why it fits here</span>
+                  <p data-i18n="publication.fitBody">It connects research discipline with practical AI systems and interfaces.</p>
                 </div>
               </div>
             </div>
@@ -82,9 +82,9 @@
 
         <section class="section-shell reveal">
           <div class="section-header">
-            <span class="eyebrow">At a glance</span>
-            <h2 class="section-heading">Short paper summary.</h2>
-            <p class="section-intro">
+            <span class="eyebrow" data-i18n="publication.glanceEyebrow">At a glance</span>
+            <h2 class="section-heading" data-i18n="publication.glanceHeading">Short paper summary.</h2>
+            <p class="section-intro" data-i18n="publication.glanceIntro">
               CNN backbones and a transformer compared under one FER setup.
             </p>
           </div>
@@ -92,43 +92,43 @@
           <div class="hero-metrics">
             <article class="metric-card">
               <strong>04</strong>
-              <span>model families across CNN and transformer approaches</span>
+              <span data-i18n="publication.metric1">model families across CNN and transformer approaches</span>
             </article>
             <article class="metric-card">
               <strong>07</strong>
-              <span>FER2013 emotion categories</span>
+              <span data-i18n="publication.metric2">FER2013 emotion categories</span>
             </article>
             <article class="metric-card">
               <strong>48x48</strong>
-              <span>input image size</span>
+              <span data-i18n="publication.metric3">input image size</span>
             </article>
             <article class="metric-card">
               <strong>20+</strong>
-              <span>training epochs with evaluation visuals</span>
+              <span data-i18n="publication.metric4">training epochs with evaluation visuals</span>
             </article>
           </div>
 
           <div class="resume-grid">
             <article class="resume-panel reveal">
               <div class="panel-toolbar">
-                <span class="preview-title">Summary</span>
-                <span class="pill">Paper overview</span>
+                <span class="preview-title" data-i18n="publication.summaryLabel">Summary</span>
+                <span class="pill" data-i18n="publication.summaryPill">Paper overview</span>
               </div>
-              <p class="surface-copy">
+              <p class="surface-copy" data-i18n="publication.summaryBody">
                 This paper compares CNN local-feature extractors with a Swin Transformer's global-feature approach.
               </p>
             </article>
 
             <article class="resume-panel reveal">
               <div class="panel-toolbar">
-                <span class="preview-title">Method</span>
-                <span class="pill">Evaluation setup</span>
+                <span class="preview-title" data-i18n="publication.methodLabel">Method</span>
+                <span class="pill" data-i18n="publication.methodPill">Evaluation setup</span>
               </div>
               <ul class="feature-list">
-                <li>Pretrained MobileNetV2, VGG-16, ResNet, and Swin Transformer models.</li>
-                <li>FER2013 benchmark with 48x48 images across 7 classes.</li>
-                <li>20+ training epochs with augmentation and visual review.</li>
-                <li>Accuracy, F1, precision, recall, loss, and confusion matrices.</li>
+                <li data-i18n="publication.methodLi1">Pretrained MobileNetV2, VGG-16, ResNet, and Swin Transformer models.</li>
+                <li data-i18n="publication.methodLi2">FER2013 benchmark with 48x48 images across 7 classes.</li>
+                <li data-i18n="publication.methodLi3">20+ training epochs with augmentation and visual review.</li>
+                <li data-i18n="publication.methodLi4">Accuracy, F1, precision, recall, loss, and confusion matrices.</li>
               </ul>
             </article>
           </div>
@@ -136,9 +136,9 @@
 
         <section class="section-shell reveal">
           <div class="section-header">
-            <span class="eyebrow">Related demo</span>
-            <h2 class="section-heading">A live experiment extending the site's vision work.</h2>
-            <p class="section-intro">
+            <span class="eyebrow" data-i18n="publication.relatedEyebrow">Related demo</span>
+            <h2 class="section-heading" data-i18n="publication.relatedHeading">A live experiment extending the site's vision work.</h2>
+            <p class="section-intro" data-i18n="publication.relatedIntro">
               The portfolio also includes a browser-based Phosphene Vision Simulator built with Pulse2Percept.
             </p>
           </div>
@@ -146,33 +146,33 @@
           <div class="resume-grid">
             <article class="resume-panel reveal">
               <div class="panel-toolbar">
-                <span class="preview-title">Phosphene demo</span>
-                <span class="pill">Live experiment</span>
+                <span class="preview-title" data-i18n="publication.demoLabel">Phosphene demo</span>
+                <span class="pill" data-i18n="publication.demoPill">Live experiment</span>
               </div>
               <h3>Kairui (Alex)'s Phosphene Vision Simulator</h3>
-              <p class="surface-copy">
+              <p class="surface-copy" data-i18n="publication.demoBody">
                 This web demo lets users upload a JPG or PNG and generate AlphaAMS, ArgusII, and PRIMA simulations.
               </p>
               <ul class="feature-list">
-                <li>Lightweight browser demo for comparing prosthetic vision outputs.</li>
-                <li>Upload guidance: keep files under 50 KB and avoid sensitive images.</li>
-                <li>Shows scientific and assistive-tech interaction design.</li>
+                <li data-i18n="publication.demoLi1">Lightweight browser demo for comparing prosthetic vision outputs.</li>
+                <li data-i18n="publication.demoLi2">Upload guidance: keep files under 50 KB and avoid sensitive images.</li>
+                <li data-i18n="publication.demoLi3">Shows scientific and assistive-tech interaction design.</li>
               </ul>
               <div class="button-row compact-row">
-                <a class="btn btn-primary" href="https://aixiera.github.io/phosphene-web/" target="_blank" rel="noopener noreferrer">Open live demo</a>
+                <a class="btn btn-primary" href="https://aixiera.github.io/phosphene-web/" target="_blank" rel="noopener noreferrer" data-i18n="publication.openLiveDemo">Open live demo</a>
               </div>
             </article>
 
             <article class="resume-panel reveal">
               <div class="panel-toolbar">
-                <span class="preview-title">Portfolio context</span>
-                <span class="pill">Why it belongs here</span>
+                <span class="preview-title" data-i18n="publication.contextLabel">Portfolio context</span>
+                <span class="pill" data-i18n="publication.contextPill">Why it belongs here</span>
               </div>
-              <p class="surface-copy">
+              <p class="surface-copy" data-i18n="publication.contextBody">
                 The publication and simulator show research-informed computer vision, interface clarity, and practical demo building.
               </p>
               <div class="button-row compact-row">
-                <a class="btn" href="index.html#intro">Back to demo portfolio</a>
+                <a class="btn" href="index.html#intro" data-i18n="publication.backDemoPortfolio">Back to demo portfolio</a>
               </div>
             </article>
           </div>

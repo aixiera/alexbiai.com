@@ -13,17 +13,17 @@
     <script defer src="assets/js/site-config.js"></script>
     <script defer src="assets/js/site-components.js"></script>
   </head>
-  <body>
+  <body data-page="booking" data-i18n-title="booking.title" data-i18n-description="booking.description">
     <site-navbar current="booking"></site-navbar>
     <main class="page-main portfolio-main booking-main">
       <div class="container">
         <article class="calendar-panel booking-page-panel reveal">
           <div class="panel-toolbar">
-            <span class="preview-title">Booking</span>
+            <span class="preview-title" data-i18n="booking.label">Booking</span>
             <span class="pill">Google Meet</span>
           </div>
-          <h1 class="booking-page-title">Book a free 15-min AI workflow audit.</h1>
-          <p class="surface-copy booking-support-copy">
+          <h1 class="booking-page-title" data-i18n="booking.titleBody">Book a free 15-min AI workflow audit.</h1>
+          <p class="surface-copy booking-support-copy" data-i18n="booking.body">
             Pick a time below. If the embed does not load on your device, open the booking page in a new tab or email me directly.
           </p>
           <div class="calendar-embed appointment-embed">
@@ -37,8 +37,8 @@
             ></iframe>
           </div>
           <div class="button-row compact-row">
-            <a class="btn" data-booking-link data-label="Open booking in a new tab" href="#">Open booking in a new tab</a>
-            <a class="btn" href="mailto:bia446635@gmail.com">Email instead</a>
+            <a class="btn" data-booking-link data-label-key="booking.newTab" data-label="Open booking in a new tab" href="#">Open booking in a new tab</a>
+            <a class="btn" href="mailto:bia446635@gmail.com" data-i18n="booking.emailInstead">Email instead</a>
           </div>
         </article>
       </div>
