@@ -1161,6 +1161,7 @@ function applyPageTranslations() {
 }
 
 function refreshLocalizedUi() {
+  document.body?.classList.add("has-reveal");
   document.querySelectorAll("site-navbar").forEach((element) => element.refresh?.());
   document.querySelectorAll("site-footer").forEach((element) => element.refresh?.());
   applySiteTokens();
@@ -1247,12 +1248,14 @@ customElements.define("site-footer", SiteFooter);
 
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => {
+    document.body?.classList.add("has-reveal");
     applySiteTokens();
     applyPageTranslations();
     setupSectionObserver();
     setupRevealObserver();
   });
 } else {
+  document.body?.classList.add("has-reveal");
   applySiteTokens();
   applyPageTranslations();
   setupSectionObserver();
