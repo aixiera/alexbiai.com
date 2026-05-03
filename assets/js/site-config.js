@@ -25,9 +25,11 @@ window.siteConfig = {
     { key: "intro", label: "Intro", href: "index.html#intro" },
     { key: "services", label: "Services", href: "index.html#services" },
     { key: "demos", label: "Demos", href: "index.html#demos" },
+    { key: "xulan", label: "XuLan", href: "index.html#xulan" },
+    { key: "thinking", label: "Thinking", href: "index.html#thinking" },
     { key: "publication", label: "Publication", href: "index.html#publication" },
     { key: "about", label: "About", href: "index.html#about" },
-    { key: "booking", label: "Free Audit", href: "booking.html" },
+    { key: "booking", label: "Free Audit", href: "index.html#booking" },
     { key: "contact", label: "Contact", href: "index.html#contact" }
   ],
   socialLinks: [

@@ -130,8 +130,10 @@ function renderFooter() {
               <div class="footer-links">
                 <a href="${resolveSitePath(`${siteConfig.routes.home}#services`)}">Services</a>
                 <a href="${resolveSitePath(`${siteConfig.routes.home}#demos`)}">Demos</a>
+                <a href="${resolveSitePath(`${siteConfig.routes.home}#xulan`)}">XuLan</a>
+                <a href="${resolveSitePath(`${siteConfig.routes.home}#thinking`)}">Thinking</a>
                 <a href="${resolveSitePath(`${siteConfig.routes.home}#publication`)}">Publication</a>
-                <a href="${resolveSitePath(siteConfig.routes.booking)}">Free Audit</a>
+                <a href="${resolveSitePath(`${siteConfig.routes.home}#booking`)}">Free Audit</a>
                 <a href="${escapeHtml(siteConfig.linkedInUrl)}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                 <a href="${resolveSitePath(siteConfig.routes.genpromptly)}">GenPromptly</a>
                 <a href="${resolveSitePath(siteConfig.routes.privacy)}">Privacy</a>
