@@ -2,10 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="refresh" content="0; url=index.html#intro" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Projects | Kairui Bi</title>
-    <meta name="description" content="Featured AI-agent and automation demos from Kairui Bi." />
+    <meta
+      name="description"
+      content="Selected AI workflow and product projects from Kairui Bi."
+    />
     <link rel="stylesheet" href="assets/css/site.css" />
     <script defer src="assets/js/site-config.js"></script>
     <script defer src="assets/js/site-components.js"></script>
@@ -13,11 +15,80 @@
   <body>
     <site-navbar current="demos"></site-navbar>
     <main class="page-main">
-      <div class="container">
-        <section class="redirect-card reveal">
-          <span class="eyebrow">Redirect</span>
-          <h1>Projects are now featured on the homepage.</h1>
-          <p>Continue to <a class="back-link" href="index.html#intro">Intro</a>.</p>
+      <div class="container page-stack">
+        <section class="section-shell reveal">
+          <div class="section-header">
+            <span class="eyebrow">Projects</span>
+            <h1 class="section-heading">Selected workflow and product work.</h1>
+            <p class="section-intro">
+              Practical AI systems with clear jobs and usable outputs.
+            </p>
+          </div>
+          <div class="section-callout">
+            <span class="pill">Live demo</span>
+            <p>StagePulse Map is a no-login venue feedback app built in 6 hours with Vercel, Supabase, and Elastic.</p>
+          </div>
+        </section>
+
+        <section class="section-shell reveal">
+          <div class="section-header">
+            <span class="eyebrow">Demo list</span>
+            <h2 class="section-heading">Service packages and project examples.</h2>
+            <p class="section-intro">
+              Service cards first. Example projects below.
+            </p>
+          </div>
+          <div class="service-grid">
+            <article class="resume-panel service-card reveal">
+              <div class="panel-toolbar">
+                <span class="preview-title">Service 01</span>
+                <span class="pill">n8n</span>
+              </div>
+              <h3>Custom n8n AI agent</h3>
+              <p class="surface-copy">Build one custom AI agent around a real task.</p>
+              <ul class="feature-list is-tight">
+                <li>Map the trigger, tools, and output.</li>
+                <li>Connect forms, sheets, email, or APIs.</li>
+                <li>Keep review in the loop.</li>
+              </ul>
+              <p class="service-note">Best for: follow-up, research, summaries, and ops tasks.</p>
+            </article>
+
+            <article class="resume-panel service-card reveal">
+              <div class="panel-toolbar">
+                <span class="preview-title">Service 02</span>
+                <span class="pill">Web app</span>
+              </div>
+              <h3>Local web app design</h3>
+              <p class="surface-copy">Design a focused web app around one workflow.</p>
+              <ul class="feature-list is-tight">
+                <li>Build the UI around one clear job.</li>
+                <li>Keep the scope small and usable.</li>
+                <li>Ship a clean GitHub handoff.</li>
+              </ul>
+              <p class="service-note">Best for: internal tools, demos, and client-facing AI utilities.</p>
+            </article>
+
+            <article class="resume-panel service-card reveal">
+              <div class="panel-toolbar">
+                <span class="preview-title">Service 03</span>
+                <span class="pill">Launch</span>
+              </div>
+              <h3>GitHub + Vercel install</h3>
+              <p class="surface-copy">Set up, deploy, and hand off the app cleanly.</p>
+              <ul class="feature-list is-tight">
+                <li>Prepare the repo, env, and deploy flow.</li>
+                <li>Launch on Vercel with simple updates.</li>
+                <li>Keep the local setup easy to maintain.</li>
+              </ul>
+              <p class="service-note">Best for: founders, creators, and small teams shipping fast.</p>
+            </article>
+          </div>
+          <div class="section-callout">
+            <span class="pill">Example builds</span>
+            <p>These demos show the kind of products and workflow systems I can design, build, and launch.</p>
+          </div>
+          <div class="demo-grid" data-demo-grid></div>
         </section>
       </div>
     </main>

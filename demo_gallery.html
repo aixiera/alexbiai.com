@@ -2,22 +2,97 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="refresh" content="0; url=index.html#intro" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Page moved | Kairui Bi</title>
-    <meta name="description" content="This page has moved to the homepage." />
+    <title>Demo Gallery | Kairui Bi</title>
+    <meta
+      name="description"
+      content="Compact AI demos and service packages from Kairui Bi."
+    />
     <link rel="stylesheet" href="assets/css/site.css" />
     <script defer src="assets/js/site-config.js"></script>
     <script defer src="assets/js/site-components.js"></script>
   </head>
   <body>
-    <site-navbar current="home"></site-navbar>
+    <site-navbar current="demos"></site-navbar>
     <main class="page-main">
-      <div class="container">
-        <section class="redirect-card">
-          <span class="eyebrow">Redirect</span>
-          <h1>Demo gallery now lives on the homepage.</h1>
-          <p>You can continue to <a class="back-link" href="index.html#intro">Intro</a>.</p>
+      <div class="container page-stack">
+        <section class="section-shell reveal">
+          <div class="section-header">
+            <span class="eyebrow">Demo gallery</span>
+            <h1 class="section-heading">Compact demos. Clear links.</h1>
+            <p class="section-intro">
+              Service packages first. Live builds below.
+            </p>
+          </div>
+          <div class="section-callout">
+            <span class="pill">Featured</span>
+            <p>StagePulse Map won 2nd place at Vancouver HackerRivals and turns interior space into live feedback.</p>
+          </div>
+          <div class="button-row compact-row">
+            <a class="btn btn-primary" href="https://stage-pulse-map.vercel.app/" target="_blank" rel="noopener noreferrer">Open StagePulse Map</a>
+            <a class="btn" href="index.html#demos">View homepage demos</a>
+          </div>
+        </section>
+
+        <section class="section-shell reveal">
+          <div class="section-header">
+            <span class="eyebrow">All demos</span>
+            <h2 class="section-heading">Service packages and demo builds.</h2>
+            <p class="section-intro">
+              Short service cards first. Live examples below.
+            </p>
+          </div>
+          <div class="service-grid">
+            <article class="resume-panel service-card reveal">
+              <div class="panel-toolbar">
+                <span class="preview-title">Service 01</span>
+                <span class="pill">n8n</span>
+              </div>
+              <h3>Custom n8n AI agent</h3>
+              <p class="surface-copy">Build one custom AI agent around a real task.</p>
+              <ul class="feature-list is-tight">
+                <li>Map the trigger, tools, and output.</li>
+                <li>Connect forms, sheets, email, or APIs.</li>
+                <li>Keep review in the loop.</li>
+              </ul>
+              <p class="service-note">Best for: follow-up, research, summaries, and ops tasks.</p>
+            </article>
+
+            <article class="resume-panel service-card reveal">
+              <div class="panel-toolbar">
+                <span class="preview-title">Service 02</span>
+                <span class="pill">Web app</span>
+              </div>
+              <h3>Local web app design</h3>
+              <p class="surface-copy">Design a focused web app around one workflow.</p>
+              <ul class="feature-list is-tight">
+                <li>Build the UI around one clear job.</li>
+                <li>Keep the scope small and usable.</li>
+                <li>Ship a clean GitHub handoff.</li>
+              </ul>
+              <p class="service-note">Best for: internal tools, demos, and client-facing AI utilities.</p>
+            </article>
+
+            <article class="resume-panel service-card reveal">
+              <div class="panel-toolbar">
+                <span class="preview-title">Service 03</span>
+                <span class="pill">Launch</span>
+              </div>
+              <h3>GitHub + Vercel install</h3>
+              <p class="surface-copy">Set up, deploy, and hand off the app cleanly.</p>
+              <ul class="feature-list is-tight">
+                <li>Prepare the repo, env, and deploy flow.</li>
+                <li>Launch on Vercel with simple updates.</li>
+                <li>Keep the local setup easy to maintain.</li>
+              </ul>
+              <p class="service-note">Best for: founders, creators, and small teams shipping fast.</p>
+            </article>
+          </div>
+          <div class="section-callout">
+            <span class="pill">Example builds</span>
+            <p>These demos show the kind of products and workflow systems I can design, build, and launch.</p>
+          </div>
+          <div class="demo-grid" data-demo-grid></div>
         </section>
       </div>
     </main>

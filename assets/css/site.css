@@ -1215,6 +1215,179 @@ textarea {
   text-transform: uppercase;
 }
 
+.stagepulse-visual {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(220px, 0.88fr);
+  gap: 0.82rem;
+  align-content: start;
+  min-height: 100%;
+  padding: 1rem;
+  background:
+    radial-gradient(circle at 14% 12%, rgba(67, 223, 255, 0.22), transparent 24%),
+    radial-gradient(circle at 86% 18%, rgba(255, 202, 88, 0.18), transparent 20%),
+    linear-gradient(160deg, rgba(5, 19, 35, 0.98), rgba(10, 32, 56, 0.96));
+}
+
+.stagepulse-shell,
+.stagepulse-stat {
+  position: relative;
+  overflow: hidden;
+  clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 16px 32px rgba(3, 10, 20, 0.28);
+}
+
+.stagepulse-shell {
+  display: grid;
+  gap: 0.72rem;
+  padding: 0.92rem;
+}
+
+.stagepulse-toolbar,
+.stagepulse-pill-row {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.stagepulse-toolbar {
+  justify-content: space-between;
+}
+
+.stagepulse-brand,
+.stagepulse-live,
+.stagepulse-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.42rem 0.68rem;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%, 8px 50%);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.stagepulse-brand {
+  color: #05111f;
+  background: linear-gradient(135deg, var(--accent-strong), var(--accent));
+}
+
+.stagepulse-live {
+  color: #052417;
+  background: linear-gradient(135deg, #95ffd4, #64f0bb);
+}
+
+.stagepulse-pill {
+  color: var(--muted-strong);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stagepulse-pill.is-active {
+  color: #05111f;
+  background: linear-gradient(135deg, rgba(255, 202, 88, 0.96), #ffe399);
+  border-color: transparent;
+}
+
+.stagepulse-map {
+  position: relative;
+  min-height: 15.8rem;
+  border: 1px solid rgba(126, 198, 255, 0.14);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    radial-gradient(circle at 32% 52%, rgba(126, 198, 255, 0.12), transparent 26%),
+    radial-gradient(circle at 68% 38%, rgba(255, 202, 88, 0.11), transparent 24%),
+    linear-gradient(160deg, rgba(6, 19, 33, 0.96), rgba(13, 34, 57, 0.94));
+  background-size: 64px 64px, 64px 64px, auto, auto, auto;
+  clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+}
+
+.stagepulse-point {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 3rem;
+  min-height: 3rem;
+  padding: 0.55rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  color: #04101d;
+  background: linear-gradient(135deg, rgba(198, 239, 255, 0.96), rgba(126, 198, 255, 0.92));
+  box-shadow: 0 0 0 8px rgba(126, 198, 255, 0.1), 0 0 26px rgba(126, 198, 255, 0.3);
+}
+
+.stagepulse-point.point-2 {
+  background: linear-gradient(135deg, rgba(255, 202, 88, 0.96), rgba(255, 221, 132, 0.92));
+  box-shadow: 0 0 0 8px rgba(255, 202, 88, 0.08), 0 0 26px rgba(255, 202, 88, 0.26);
+}
+
+.stagepulse-point.point-3 {
+  background: linear-gradient(135deg, rgba(136, 240, 196, 0.98), rgba(83, 235, 181, 0.92));
+  box-shadow: 0 0 0 8px rgba(136, 240, 196, 0.08), 0 0 26px rgba(136, 240, 196, 0.24);
+}
+
+.stagepulse-point.point-4 {
+  background: linear-gradient(135deg, rgba(216, 174, 255, 0.96), rgba(180, 138, 255, 0.92));
+  box-shadow: 0 0 0 8px rgba(196, 156, 255, 0.08), 0 0 26px rgba(196, 156, 255, 0.24);
+}
+
+.stagepulse-point span {
+  display: none;
+}
+
+.stagepulse-bubble {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  width: min(15rem, calc(100% - 2rem));
+  padding: 0.8rem 0.86rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(4, 16, 29, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+.stagepulse-bubble strong,
+.stagepulse-stat strong {
+  display: block;
+  color: var(--muted-strong);
+  font-size: 0.92rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.stagepulse-bubble p,
+.stagepulse-stat p,
+.stagepulse-note {
+  margin: 0.34rem 0 0;
+  color: var(--muted-strong);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.stagepulse-side {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.stagepulse-stat {
+  display: grid;
+  gap: 0.28rem;
+  padding: 0.88rem 0.9rem;
+}
+
+.stagepulse-note {
+  grid-column: 1 / -1;
+  margin-top: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
 .thinking-layout {
   display: grid;
   grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
@@ -1706,8 +1879,8 @@ textarea {
 }
 
 .reveal {
-  opacity: 0;
-  transform: translateY(24px);
+  opacity: 1;
+  transform: none;
   transition:
     opacity 0.5s ease,
     transform 0.5s ease;
@@ -1716,7 +1889,7 @@ textarea {
 
 .reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 @media (max-width: 1080px) {
@@ -1746,6 +1919,7 @@ textarea {
   }
 
   .digest-visual,
+  .stagepulse-visual,
   .booking-grid {
     grid-template-columns: 1fr;
   }

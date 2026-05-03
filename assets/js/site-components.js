@@ -117,7 +117,7 @@ function renderFooter() {
           <div>
               <p class="footer-brand">${siteConfig.ownerName}</p>
               <p class="footer-small">${escapeHtml(siteConfig.roleTagline)}</p>
-              <p class="footer-small">Workflow demos, low-risk services, and products by Kairui Bi.</p>
+              <p class="footer-small">AI demos, service packages, and contact.</p>
               <p class="footer-small">${escapeHtml(siteConfig.hiringStatus)}</p>
             </div>
             <div>
@@ -130,8 +130,7 @@ function renderFooter() {
               <div class="footer-links">
                 <a href="${resolveSitePath(`${siteConfig.routes.home}#services`)}">Services</a>
                 <a href="${resolveSitePath(`${siteConfig.routes.home}#demos`)}">Demos</a>
-                <a href="${resolveSitePath(siteConfig.routes.publications)}">Publication</a>
-                <a href="${resolveSitePath(`${siteConfig.routes.home}#xulan`)}">XuLan</a>
+                <a href="${resolveSitePath(`${siteConfig.routes.home}#publication`)}">Publication</a>
                 <a href="${resolveSitePath(siteConfig.routes.booking)}">Free Audit</a>
                 <a href="${escapeHtml(siteConfig.linkedInUrl)}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                 <a href="${resolveSitePath(siteConfig.routes.genpromptly)}">GenPromptly</a>
@@ -232,6 +231,62 @@ class SiteFooter extends HTMLElement {
 }
 
 function renderDemoVisual(demo) {
+  if (demo.visualType === "stagepulse") {
+    const levels = ["Level 1", "Level 2", "OMNIMAX"];
+    const zones = [
+      { name: "Main Stage", style: "left:18%;top:32%;" },
+      { name: "Booths", style: "left:62%;top:28%;" },
+      { name: "Food", style: "left:42%;top:68%;" },
+      { name: "New Booth", style: "left:74%;top:58%;" }
+    ];
+
+    return `
+      <div class="stagepulse-visual">
+        <div class="stagepulse-shell">
+          <div class="stagepulse-toolbar">
+            <span class="stagepulse-brand">StagePulse Map</span>
+            <span class="stagepulse-live">Live</span>
+          </div>
+          <div class="stagepulse-pill-row">
+            ${levels
+              .map((level, index) => `<span class="stagepulse-pill${index === 0 ? " is-active" : ""}">${escapeHtml(level)}</span>`)
+              .join("")}
+          </div>
+          <div class="stagepulse-map">
+            ${zones
+              .map(
+                (zone, index) => `
+                  <button class="stagepulse-point point-${index + 1}" type="button" style="${zone.style}" aria-label="${escapeHtml(
+                    zone.name
+                  )}">
+                    <span>${escapeHtml(zone.name)}</span>
+                  </button>
+                `
+              )
+              .join("")}
+            <div class="stagepulse-bubble">
+              <strong>New Booth</strong>
+              <p>One tap to create a booth and post feedback.</p>
+            </div>
+          </div>
+        </div>
+        <div class="stagepulse-side">
+          <article class="stagepulse-stat">
+            <span class="detail-label">No login</span>
+            <strong>Vote, comment, add booths</strong>
+            <p>Built for fast event interaction in under 5 seconds.</p>
+          </article>
+          <article class="stagepulse-stat">
+            <span class="detail-label">Live stack</span>
+            <strong>Vercel + Supabase + Elastic</strong>
+            <p>24-hour live data plus Elastic moderation and search-ready comments.</p>
+          </article>
+        </div>
+        <p class="stagepulse-note">A venue comment layer that works for Science World now and any building later.</p>
+      </div>
+    `;
+  }
+
   if (demo.visualType === "digest") {
     const [workflow, emailOne, emailTwo] = demo.images || [];
 
@@ -346,15 +401,10 @@ function renderDemoCards() {
           <div class="demo-frame${demo.visualType ? " is-generated" : ""}">
             ${renderDemoVisual(demo)}
             <div class="demo-visual-meta">
-              <span class="demo-visual-label">System ${String(index + 1).padStart(2, "0")}</span>
               <span class="demo-visual-status">${escapeHtml(demo.status || demo.title)}</span>
             </div>
           </div>
           <div class="demo-copy">
-            <div class="project-meta">
-              <span class="eyebrow">Demo ${String(index + 1).padStart(2, "0")}</span>
-              <span class="project-status">${escapeHtml(demo.status || demo.title)}</span>
-            </div>
             <div class="demo-heading">
               <h3>${escapeHtml(demo.title)}</h3>
               <p class="demo-summary">${escapeHtml(demo.impact)}</p>
@@ -364,48 +414,39 @@ function renderDemoCards() {
                 .map((tag) => `<span class="demo-chip">${escapeHtml(tag)}</span>`)
                 .join("")}
             </div>
-            ${
-              demo.proof?.length
-                ? `<div class="demo-proof-grid">
-                    ${demo.proof
-                      .map(
-                        (item) => `
-                          <article class="demo-proof-card">
-                            <span class="detail-label">${escapeHtml(item.label)}</span>
-                            <strong>${escapeHtml(item.value)}</strong>
-                          </article>
-                        `
-                      )
-                      .join("")}
-                  </div>`
-                : ""
-            }
             <div class="demo-list">
               <div class="demo-detail">
-                <span class="detail-label">Problem</span>
-                <p>${escapeHtml(demo.problem)}</p>
-              </div>
-              <div class="demo-detail">
-                <span class="detail-label">Workflow</span>
-                <p>${escapeHtml(demo.workflow || demo.flow || "")}</p>
+                <span class="detail-label">What it does</span>
+                <p>${escapeHtml(demo.output || demo.workflow || demo.flow || "")}</p>
               </div>
               <div class="demo-detail is-output">
-                <span class="detail-label">Output</span>
-                <p>${escapeHtml(demo.output)}</p>
-              </div>
-              <div class="demo-detail">
                 <span class="detail-label">Best for</span>
                 <p>${escapeHtml(demo.bestFor || demo.stack || "")}</p>
               </div>
             </div>
             ${
-              demo.actionUrl
-                ? `<div class="button-row compact-row demo-actions">${buildButton({
-                    label: demo.actionLabel || "Open",
-                    href: demo.actionUrl,
-                    variant: "btn-primary",
-                    external: Boolean(demo.actionExternal)
-                  })}</div>`
+              demo.actionUrl || demo.extraActionUrl
+                ? `<div class="button-row compact-row demo-actions">
+                    ${
+                      demo.actionUrl
+                        ? buildButton({
+                            label: demo.actionLabel || "Open",
+                            href: demo.actionUrl,
+                            variant: "btn-primary",
+                            external: Boolean(demo.actionExternal)
+                          })
+                        : ""
+                    }
+                    ${
+                      demo.extraActionUrl
+                        ? buildButton({
+                            label: demo.extraActionLabel || "More",
+                            href: demo.extraActionUrl,
+                            external: Boolean(demo.extraActionExternal)
+                          })
+                        : ""
+                    }
+                  </div>`
                 : ""
             }
           </div>
