@@ -636,6 +636,14 @@ function renderNav(current = "") {
       )}">${escapeHtml(getText(`nav.${item.key}`, item.label))}</a>`;
     })
     .join("");
+  const linkedInButton = siteConfig.linkedInUrl
+    ? buildButton({
+        label: "LinkedIn",
+        href: siteConfig.linkedInUrl,
+        variant: "btn-primary",
+        external: true
+      })
+    : "";
 
   return `
     <header class="site-header">
@@ -655,12 +663,7 @@ function renderNav(current = "") {
         )}">${escapeHtml(getText("nav.menu", "Menu"))}</button>
         <nav class="site-nav" aria-label="${escapeHtml(getText("nav.mainAria", "Main navigation"))}">
           ${links}
-          ${buildButton({
-            label: "LinkedIn",
-            href: siteConfig.linkedInUrl,
-            variant: "btn-primary",
-            external: true
-          })}
+          ${linkedInButton}
         </nav>
       </div>
     </header>
@@ -669,6 +672,9 @@ function renderNav(current = "") {
 
 function renderFooter() {
   const socialLinks = renderSocialLinks();
+  const linkedInFooterLink = siteConfig.linkedInUrl
+    ? `<a href="${escapeHtml(siteConfig.linkedInUrl)}" target="_blank" rel="noopener noreferrer">LinkedIn</a>`
+    : "";
   const resumeButton = buildButton({
     label: getText("button.resume", "Resume"),
     href: siteConfig.resumeUrl,
@@ -701,7 +707,7 @@ function renderFooter() {
                 <a href="${resolveSitePath(`${siteConfig.routes.home}#thinking`)}">${escapeHtml(getText("footer.thinking", "Thinking"))}</a>
                 <a href="${resolveSitePath(`${siteConfig.routes.home}#publication`)}">${escapeHtml(getText("footer.publication", "Publication"))}</a>
                 <a href="${resolveSitePath(`${siteConfig.routes.home}#booking`)}">${escapeHtml(getText("footer.audit", "Free Audit"))}</a>
-                <a href="${escapeHtml(siteConfig.linkedInUrl)}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                ${linkedInFooterLink}
                 <a href="${resolveSitePath(siteConfig.routes.genpromptly)}">GenPromptly</a>
                 <a href="${resolveSitePath(siteConfig.routes.privacy)}">${escapeHtml(getText("footer.privacy", "Privacy"))}</a>
                 <a href="${resolveSitePath(siteConfig.routes.terms)}">${escapeHtml(getText("footer.terms", "Terms"))}</a>
@@ -1081,6 +1087,11 @@ function applySiteTokens() {
   });
 
   document.querySelectorAll("[data-linkedin-button]").forEach((element) => {
+    if (!siteConfig.linkedInUrl) {
+      element.remove();
+      return;
+    }
+
     element.innerHTML = buildButton({
       label: "LinkedIn",
       href: siteConfig.linkedInUrl,

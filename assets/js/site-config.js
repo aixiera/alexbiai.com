@@ -4,11 +4,10 @@ window.siteConfig = {
   roleTagline: "Custom AI agents, small web apps, and fast Vercel launches.",
   location: "BC, Canada",
   contactEmail: "bia446635@gmail.com",
-  founderImage: "images/about_selfie.jpg",
   hiringStatus: "Available for custom AI agent builds, web app design, and Vercel launches.",
   resumeUrl: "",
   resumePlaceholder: "Add your resume URL in assets/js/site-config.js.",
-  linkedInUrl: "https://www.linkedin.com/in/kairui-bi-9913ab377/",
+  linkedInUrl: "",
   routes: {
     home: "index.html",
     about: "About.html",
@@ -31,12 +30,7 @@ window.siteConfig = {
     { key: "booking", label: "Free Audit", href: "index.html#booking" },
     { key: "contact", label: "Contact", href: "index.html#contact" }
   ],
-  socialLinks: [
-    {
-      label: "LinkedIn",
-      href: "https://www.linkedin.com/in/kairui-bi-9913ab377/"
-    }
-  ],
+  socialLinks: [],
   booking: {
     publicUrl:
       "https://calendar.google.com/calendar/appointments/schedules/AcZssZ0czzh-VaKOKuwnCJw2I0bd0k3KESTbmkJfyQgNnnSI85QNXp9t2lGTQ0showPV_tvt9Vn9-N47",
@@ -138,24 +132,6 @@ window.siteConfig = {
         { label: "Potential gain", value: "~50% faster content prep" },
         { label: "Throughput", value: "Repeatable weekly cadence" },
         { label: "Review model", value: "Human edit before publish" }
-      ]
-    },
-    {
-      key: "precall-briefing",
-      title: "Client onboarding handoff",
-      status: "Meeting preparation",
-      image: "images/precall 1 cover.png",
-      imageAlt: "Client onboarding handoff visual with pre-call preparation notes and portrait.",
-      tags: ["Onboarding", "Expectation setting", "Workflow messaging"],
-      problem: "Client onboarding gets noisy when context is scattered.",
-      workflow: "Package the context and set expectations before the call.",
-      output: "A cleaner handoff with clearer next steps.",
-      bestFor: "Consultants, agencies, and founder-led teams.",
-      impact: "It reduces repeated explanations before the first meeting.",
-      proof: [
-        { label: "Pain removed", value: "Less back-and-forth" },
-        { label: "Output", value: "Clear meeting handoff" },
-        { label: "Best use", value: "Client-facing workflows" }
       ]
     },
     {
