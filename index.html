@@ -60,6 +60,37 @@
           <div class="hero-side">
             <div class="visual-stage">
               <div class="hero-cosmos" data-home-cosmos aria-hidden="true">
+                <div class="hero-projection-stack">
+                  <div class="hero-projection-beam"></div>
+                  <div class="hero-projection-plane hero-projection-plane-back">
+                    <div class="hero-plane-grid"></div>
+                    <div class="hero-plane-ribbons" aria-hidden="true">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+                  </div>
+                  <div class="hero-projection-plane hero-projection-plane-mid">
+                    <div class="hero-plane-window">
+                      <span class="hero-window-label">Interactive stage</span>
+                      <div class="hero-window-columns" aria-hidden="true">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
+                      <div class="hero-window-scan"></div>
+                    </div>
+                  </div>
+                  <div class="hero-projection-plane hero-projection-plane-front">
+                    <div class="hero-focus-cluster" aria-hidden="true">
+                      <span class="hero-focus-node"></span>
+                      <span class="hero-focus-node"></span>
+                      <span class="hero-focus-node"></span>
+                      <span class="hero-focus-node"></span>
+                    </div>
+                  </div>
+                </div>
                 <canvas class="hero-cosmos-canvas" data-home-cosmos-canvas></canvas>
                 <div class="hero-cosmos-overlay">
                   <div class="hero-sequence-bar">
@@ -126,306 +157,371 @@
           </div>
         </section>
 
-        <section class="section-shell reveal" id="services" data-section>
-          <div class="section-header section-header-with-badge">
-            <div class="section-header-copy">
-              <span class="eyebrow" data-i18n="home.servicesEyebrow">Services</span>
-              <h2 class="section-heading" data-i18n="home.servicesHeading">What I offer.</h2>
-              <p class="section-intro" data-i18n="home.servicesIntro">
-                Custom AI agent builds through n8n, plus focused GitHub + Vercel web app design and installation.
-              </p>
-            </div>
-            <aside class="service-badge" aria-label="n8n service icon">
-              <span class="service-badge-icon" aria-hidden="true">
-                <svg viewBox="0 0 64 64" role="presentation" focusable="false">
-                  <circle cx="12" cy="24" r="6"></circle>
-                  <circle cx="28" cy="24" r="6"></circle>
-                  <circle cx="48" cy="14" r="6"></circle>
-                  <circle cx="42" cy="42" r="6"></circle>
-                  <path d="M18 24h4m12 0h2a10 10 0 0 0 7.2-3l.6-.6M34 24h2a8 8 0 0 1 5.7 2.3l.3.3M28 24h6"></path>
-                </svg>
-              </span>
-              <span class="service-badge-wordmark">n8n</span>
-            </aside>
+        <section class="section-shell section-story reveal" id="services" data-section data-scroll-stage data-story-index="01">
+          <div class="section-atmosphere" aria-hidden="true">
+            <span class="section-atmosphere-line"></span>
+            <span class="section-atmosphere-glow"></span>
+            <span class="section-atmosphere-orbit"></span>
           </div>
-          <div class="section-callout">
-            <span class="pill" data-i18n="home.approachLabel">Approach</span>
-            <p data-i18n="home.approachBody">One job. Small scope. Clean launch.</p>
-          </div>
-          <article class="resume-panel reveal">
-            <div class="panel-toolbar">
-              <span class="preview-title" data-i18n="home.serviceFocusLabel">Service focus</span>
-              <span class="pill" data-i18n="home.serviceFocusPill">Practical</span>
-            </div>
-            <h3 data-i18n="home.serviceFocusTitle">Build only what is needed.</h3>
-            <p class="surface-copy" data-i18n="home.serviceFocusBody">
-              I start with one repetitive task, one useful output, and one clean deployment path.
-            </p>
-            <div class="button-row compact-row">
-              <a class="btn btn-primary" href="#demos" data-i18n="home.serviceFocusPrimary">View service packages</a>
-              <a class="btn" href="#contact" data-i18n="home.serviceFocusSecondary">Start by email</a>
-            </div>
-          </article>
-        </section>
-
-        <section class="section-shell reveal" id="demos" data-section>
-          <div class="section-header">
-            <span class="eyebrow" data-i18n="home.demosEyebrow">Demos</span>
-            <h2 class="section-heading" data-i18n="home.demosHeading">What I build.</h2>
-            <p class="section-intro" data-i18n="home.demosIntro">
-              Service packages first. Live examples below.
-            </p>
-          </div>
-          <div class="service-grid">
-            <article class="resume-panel service-card reveal">
-              <div class="panel-toolbar">
-                <span class="preview-title" data-i18n="service.card1.label">Service 01</span>
-                <span class="pill">n8n</span>
-              </div>
-              <h3 data-i18n="service.card1.title">Custom n8n AI agent</h3>
-              <p class="surface-copy" data-i18n="service.card1.body">Build one custom AI agent around a real task.</p>
-              <ul class="feature-list is-tight">
-                <li data-i18n="service.card1.li1">Map the trigger and output.</li>
-                <li data-i18n="service.card1.li2">Connect forms, sheets, email, or APIs.</li>
-                <li data-i18n="service.card1.li3">Keep review in the loop.</li>
-              </ul>
-              <p class="service-note" data-i18n="service.card1.note">Best for: follow-up, research, summaries, and ops.</p>
-            </article>
-
-            <article class="resume-panel service-card reveal">
-              <div class="panel-toolbar">
-                <span class="preview-title" data-i18n="service.card2.label">Service 02</span>
-                <span class="pill">Web app</span>
-              </div>
-              <h3 data-i18n="service.card2.title">Local web app design</h3>
-              <p class="surface-copy" data-i18n="service.card2.body">Design a focused web app around one workflow.</p>
-              <ul class="feature-list is-tight">
-                <li data-i18n="service.card2.li1">Build the UI around one clear job.</li>
-                <li data-i18n="service.card2.li2">Keep the scope small and usable.</li>
-                <li data-i18n="service.card2.li3">Ship a clean GitHub handoff.</li>
-              </ul>
-              <p class="service-note" data-i18n="service.card2.note">Best for: internal tools, demos, and AI utilities.</p>
-            </article>
-
-            <article class="resume-panel service-card reveal">
-              <div class="panel-toolbar">
-                <span class="preview-title" data-i18n="service.card3.label">Service 03</span>
-                <span class="pill">Launch</span>
-              </div>
-              <h3 data-i18n="service.card3.title">GitHub + Vercel install</h3>
-              <p class="surface-copy" data-i18n="service.card3.body">Set up, deploy, and hand off the app cleanly.</p>
-              <ul class="feature-list is-tight">
-                <li data-i18n="service.card3.li1">Prepare the repo, env, and deploy flow.</li>
-                <li data-i18n="service.card3.li2">Launch on Vercel with simple updates.</li>
-                <li data-i18n="service.card3.li3">Keep the local setup easy to maintain.</li>
-              </ul>
-              <p class="service-note" data-i18n="service.card3.note">Best for: founders, creators, and small teams shipping fast.</p>
-            </article>
-          </div>
-          <div class="section-callout">
-            <span class="pill" data-i18n="home.exampleLabel">Example builds</span>
-            <p data-i18n="home.exampleBody">These demos show the kind of tools, workflows, and product surfaces I can ship.</p>
-          </div>
-          <div class="demo-grid" data-demo-grid></div>
-        </section>
-
-        <section class="section-shell reveal" id="process" data-section>
-          <div class="section-header">
-            <span class="eyebrow" data-i18n="home.processEyebrow">Process</span>
-            <h2 class="section-heading" data-i18n="home.processHeading">How a build usually moves.</h2>
-            <p class="section-intro" data-i18n="home.processIntro">
-              I keep the work small, visible, and launchable so a useful result arrives fast without creating a giant AI mess.
-            </p>
-          </div>
-          <div class="process-layout">
-            <article class="resume-panel process-note reveal">
-              <div class="panel-toolbar">
-                <span class="preview-title" data-i18n="home.processNoteLabel">Working style</span>
-                <span class="pill" data-i18n="home.processNotePill">Small scope</span>
-              </div>
-              <h3 data-i18n="home.processNoteTitle">Audit first. Build second. Launch cleanly.</h3>
-              <p class="surface-copy" data-i18n="home.processNoteBody">
-                The goal is not to automate everything. The goal is to find one repetitive task, shape one reliable output, and make the handoff easy to maintain.
-              </p>
-              <div class="button-row compact-row">
-                <a class="btn btn-primary" href="booking.html" data-i18n="home.processPrimary">Book the audit</a>
-                <a class="btn" href="#demos" data-i18n="home.processSecondary">See example builds</a>
-              </div>
-            </article>
-            <div class="process-stack">
-              <article class="resume-panel process-card reveal">
-                <span class="process-step" data-i18n="home.processStep1Label">Step 01</span>
-                <h3 data-i18n="home.processStep1Title">Map the task</h3>
-                <p class="surface-copy" data-i18n="home.processStep1Body">
-                  We isolate the trigger, the decision point, and the output that actually matters.
-                </p>
-              </article>
-              <article class="resume-panel process-card reveal">
-                <span class="process-step" data-i18n="home.processStep2Label">Step 02</span>
-                <h3 data-i18n="home.processStep2Title">Build the smallest useful system</h3>
-                <p class="surface-copy" data-i18n="home.processStep2Body">
-                  That might be an n8n workflow, a compact web app, or a GitHub + Vercel install around one job.
-                </p>
-              </article>
-              <article class="resume-panel process-card reveal">
-                <span class="process-step" data-i18n="home.processStep3Label">Step 03</span>
-                <h3 data-i18n="home.processStep3Title">Keep review visible</h3>
-                <p class="surface-copy" data-i18n="home.processStep3Body">
-                  The result should stay easy to inspect, edit, and trust after handoff.
-                </p>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <section class="section-shell reveal" id="thinking" data-section>
-          <div class="section-header">
-            <span class="eyebrow" data-i18n="home.thinkingEyebrow">AI Agent Thinking</span>
-            <h2 class="section-heading" data-i18n="home.thinkingHeading">How I think about agents.</h2>
-            <p class="section-intro" data-i18n="home.thinkingIntro">
-              I treat agents as scoped workflow systems, not vague magic.
-            </p>
-          </div>
-          <div class="angle-grid">
-            <article class="thinking-card reveal">
-              <span class="icon-badge">01</span>
-              <h3 data-i18n="home.thinking1Title">One job first</h3>
-              <p data-i18n="home.thinking1Body">Good agents should do one clear job well.</p>
-            </article>
-            <article class="thinking-card reveal">
-              <span class="icon-badge">02</span>
-              <h3 data-i18n="home.thinking2Title">Human review stays visible</h3>
-              <p data-i18n="home.thinking2Body">Outputs should stay easy to check, edit, and trust.</p>
-            </article>
-            <article class="thinking-card reveal">
-              <span class="icon-badge">03</span>
-              <h3 data-i18n="home.thinking3Title">Context matters</h3>
-              <p data-i18n="home.thinking3Body">Useful systems turn scattered information into usable context.</p>
-            </article>
-            <article class="thinking-card reveal">
-              <span class="icon-badge">04</span>
-              <h3 data-i18n="home.thinking4Title">Launch small</h3>
-              <p data-i18n="home.thinking4Body">Small, usable systems beat oversized AI promises.</p>
-            </article>
-          </div>
-        </section>
-
-        <section class="section-shell reveal" id="publication" data-section>
-          <div class="section-header">
-            <span class="eyebrow" data-i18n="home.publicationEyebrow">Publication</span>
-            <h2 class="section-heading" data-i18n="home.publicationHeading">Research and publication.</h2>
-            <p class="section-intro" data-i18n="home.publicationIntro">
-              I also have a Proc. SPIE publication comparing CNN models and a Swin Transformer for facial expression recognition.
-            </p>
-          </div>
-          <div class="resume-grid">
-            <article class="resume-panel reveal">
-              <div class="panel-toolbar">
-                <span class="preview-title" data-i18n="home.paperLabel">Paper</span>
-                <span class="pill">Proc. SPIE</span>
-              </div>
-              <h3 data-i18n="home.paperTitle">Facial expression recognition model comparison.</h3>
-              <p class="surface-copy" data-i18n="home.paperBody">
-                MobileNetV2, VGG-16, ResNet, and Swin Transformer compared on FER2013.
-              </p>
-              <ul class="feature-list">
-                <li data-i18n="home.paperLi1">Published in Proceedings of SPIE.</li>
-                <li data-i18n="home.paperLi2">CNN vs transformer tradeoffs.</li>
-                <li data-i18n="home.paperLi3">Useful research foundation.</li>
-              </ul>
-            </article>
-
-            <article class="resume-panel reveal">
-              <div class="panel-toolbar">
-                <span class="preview-title" data-i18n="home.readMoreLabel">Read more</span>
-                <span class="pill" data-i18n="home.fullPagePill">Full page</span>
-              </div>
-              <p class="surface-copy" data-i18n="home.publicationBody">
-                Open the full publication page for the abstract, method, and related demo.
-              </p>
-              <div class="button-row compact-row">
-                <a class="btn btn-primary" href="publications.html" data-i18n="home.viewPublication">View publication</a>
-                <a class="btn" href="https://doi.org/10.1117/12.3060400" target="_blank" rel="noopener noreferrer" data-i18n="home.readSPIE">Read at SPIE</a>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <section class="section-shell reveal" id="contact" data-section>
-          <div class="section-header">
-            <span class="eyebrow" data-i18n="home.contactEyebrow">Contact</span>
-            <h2 class="section-heading" data-i18n="home.contactHeading">Contact and booking.</h2>
-            <p class="section-intro" data-i18n="home.contactIntro">
-              Start with a short audit or send the workflow idea by email.
-            </p>
-          </div>
-
-          <div class="contact-grid">
-            <div class="contact-panel reveal">
-              <div class="panel-toolbar">
-                <span class="preview-title" data-i18n="home.contactStart">Start here</span>
-                <span class="pill" data-i18n="home.contactFree">Free 15 min</span>
-              </div>
-              <div class="contact-list">
-                <div class="contact-item">
-                  <strong data-i18n="home.contactEmail">Email</strong>
-                  <a data-contact-link href="#"></a>
+          <div class="section-story-layout">
+            <div class="section-story-head">
+              <div class="section-header section-header-with-badge">
+                <div class="section-header-copy">
+                  <span class="eyebrow" data-i18n="home.servicesEyebrow">Services</span>
+                  <h2 class="section-heading" data-i18n="home.servicesHeading">What I offer.</h2>
+                  <p class="section-intro" data-i18n="home.servicesIntro">
+                    Custom AI agent builds through n8n, plus focused GitHub + Vercel web app design and installation.
+                  </p>
                 </div>
-                <div class="contact-item">
-                  <strong data-i18n="home.contactLocation">Location</strong>
-                  <span data-location></span>
-                </div>
-                <div class="contact-item">
-                  <strong data-i18n="home.contactStatus">Status</strong>
-                  <span data-hiring-status></span>
-                </div>
+                <aside class="service-badge" aria-label="n8n service icon">
+                  <span class="service-badge-icon" aria-hidden="true">
+                    <svg viewBox="0 0 64 64" role="presentation" focusable="false">
+                      <circle cx="12" cy="24" r="6"></circle>
+                      <circle cx="28" cy="24" r="6"></circle>
+                      <circle cx="48" cy="14" r="6"></circle>
+                      <circle cx="42" cy="42" r="6"></circle>
+                      <path d="M18 24h4m12 0h2a10 10 0 0 0 7.2-3l.6-.6M34 24h2a8 8 0 0 1 5.7 2.3l.3.3M28 24h6"></path>
+                    </svg>
+                  </span>
+                  <span class="service-badge-wordmark">n8n</span>
+                </aside>
               </div>
-              <div class="contact-actions">
-                <a class="btn btn-primary" href="booking.html" data-i18n="home.contactPrimary">Book a free 15-min AI workflow audit</a>
-                <a class="btn" data-contact-button href="#" data-i18n="home.contactSecondary">Email workflow details</a>
+              <div class="section-callout">
+                <span class="pill" data-i18n="home.approachLabel">Approach</span>
+                <p data-i18n="home.approachBody">One job. Small scope. Clean launch.</p>
               </div>
-              <p class="risk-banner" data-i18n="home.riskBanner">
-                Low-risk workflows only: no sensitive customer data, no password sharing, and review stays in the loop.
-              </p>
             </div>
-
-            <div class="support-topics">
-              <article class="topic-item reveal">
-                <h3 data-i18n="home.fitTitle">Good first fit</h3>
-                <p data-i18n="home.fitBody">Research, pre-call prep, follow-up, summaries, and simple AI utilities.</p>
-              </article>
-              <article class="topic-item reveal">
-                <h3 data-i18n="home.auditTitle">What the audit covers</h3>
-                <p data-i18n="home.auditBody">We map one task and decide if automation is worth building.</p>
-              </article>
-            </div>
-          </div>
-
-          <article class="calendar-panel booking-cta-panel reveal" id="booking" data-section>
-            <div class="panel-toolbar">
-              <span class="preview-title" data-i18n="home.bookingLabel">Booking</span>
-              <span class="pill" data-i18n="home.googleMeet">Google Meet</span>
-            </div>
-            <div class="booking-grid">
-              <div>
-                <h3 data-i18n="home.bookingTitle">Use the booking page for the scheduler.</h3>
-                <p class="surface-copy" data-i18n="home.bookingBody">
-                  The booking page uses your Google Appointment Schedule embed, with a direct fallback link.
+            <div class="section-story-body">
+              <article class="resume-panel reveal">
+                <div class="panel-toolbar">
+                  <span class="preview-title" data-i18n="home.serviceFocusLabel">Service focus</span>
+                  <span class="pill" data-i18n="home.serviceFocusPill">Practical</span>
+                </div>
+                <h3 data-i18n="home.serviceFocusTitle">Build only what is needed.</h3>
+                <p class="surface-copy" data-i18n="home.serviceFocusBody">
+                  I start with one repetitive task, one useful output, and one clean deployment path.
                 </p>
                 <div class="button-row compact-row">
-                  <a class="btn btn-primary" href="booking.html" data-i18n="home.bookingPrimary">Open booking page</a>
-                  <a class="btn" href="#services" data-i18n="home.bookingSecondary">Review services</a>
+                  <a class="btn btn-primary" href="#demos" data-i18n="home.serviceFocusPrimary">View service packages</a>
+                  <a class="btn" href="#contact" data-i18n="home.serviceFocusSecondary">Start by email</a>
                 </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-shell section-story reveal" id="demos" data-section data-scroll-stage data-story-index="02">
+          <div class="section-atmosphere" aria-hidden="true">
+            <span class="section-atmosphere-line"></span>
+            <span class="section-atmosphere-glow"></span>
+            <span class="section-atmosphere-orbit"></span>
+          </div>
+          <div class="section-story-layout">
+            <div class="section-story-head">
+              <div class="section-header">
+                <span class="eyebrow" data-i18n="home.demosEyebrow">Demos</span>
+                <h2 class="section-heading" data-i18n="home.demosHeading">What I build.</h2>
+                <p class="section-intro" data-i18n="home.demosIntro">
+                  Service packages first. Live examples below.
+                </p>
               </div>
-              <div class="booking-side">
-                <ul class="feature-list is-tight booking-checklist">
-                  <li data-i18n="home.bookingLi1">Free 15-minute workflow audit.</li>
-                  <li data-i18n="home.bookingLi2">One repetitive process mapped into a clear next step.</li>
-                  <li data-i18n="home.bookingLi3">Low-risk scope with human review still in the loop.</li>
-                </ul>
+              <div class="section-callout">
+                <span class="pill" data-i18n="home.exampleLabel">Example builds</span>
+                <p data-i18n="home.exampleBody">These demos show the kind of tools, workflows, and product surfaces I can ship.</p>
               </div>
             </div>
-          </article>
+            <div class="section-story-body">
+              <div class="service-grid">
+                <article class="resume-panel service-card reveal">
+                  <div class="panel-toolbar">
+                    <span class="preview-title" data-i18n="service.card1.label">Service 01</span>
+                    <span class="pill">n8n</span>
+                  </div>
+                  <h3 data-i18n="service.card1.title">Custom n8n AI agent</h3>
+                  <p class="surface-copy" data-i18n="service.card1.body">Build one custom AI agent around a real task.</p>
+                  <ul class="feature-list is-tight">
+                    <li data-i18n="service.card1.li1">Map the trigger and output.</li>
+                    <li data-i18n="service.card1.li2">Connect forms, sheets, email, or APIs.</li>
+                    <li data-i18n="service.card1.li3">Keep review in the loop.</li>
+                  </ul>
+                  <p class="service-note" data-i18n="service.card1.note">Best for: follow-up, research, summaries, and ops.</p>
+                </article>
+
+                <article class="resume-panel service-card reveal">
+                  <div class="panel-toolbar">
+                    <span class="preview-title" data-i18n="service.card2.label">Service 02</span>
+                    <span class="pill">Web app</span>
+                  </div>
+                  <h3 data-i18n="service.card2.title">Local web app design</h3>
+                  <p class="surface-copy" data-i18n="service.card2.body">Design a focused web app around one workflow.</p>
+                  <ul class="feature-list is-tight">
+                    <li data-i18n="service.card2.li1">Build the UI around one clear job.</li>
+                    <li data-i18n="service.card2.li2">Keep the scope small and usable.</li>
+                    <li data-i18n="service.card2.li3">Ship a clean GitHub handoff.</li>
+                  </ul>
+                  <p class="service-note" data-i18n="service.card2.note">Best for: internal tools, demos, and AI utilities.</p>
+                </article>
+
+                <article class="resume-panel service-card reveal">
+                  <div class="panel-toolbar">
+                    <span class="preview-title" data-i18n="service.card3.label">Service 03</span>
+                    <span class="pill">Launch</span>
+                  </div>
+                  <h3 data-i18n="service.card3.title">GitHub + Vercel install</h3>
+                  <p class="surface-copy" data-i18n="service.card3.body">Set up, deploy, and hand off the app cleanly.</p>
+                  <ul class="feature-list is-tight">
+                    <li data-i18n="service.card3.li1">Prepare the repo, env, and deploy flow.</li>
+                    <li data-i18n="service.card3.li2">Launch on Vercel with simple updates.</li>
+                    <li data-i18n="service.card3.li3">Keep the local setup easy to maintain.</li>
+                  </ul>
+                  <p class="service-note" data-i18n="service.card3.note">Best for: founders, creators, and small teams shipping fast.</p>
+                </article>
+              </div>
+              <div class="demo-grid" data-demo-grid></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-shell section-story reveal" id="process" data-section data-scroll-stage data-story-index="03">
+          <div class="section-atmosphere" aria-hidden="true">
+            <span class="section-atmosphere-line"></span>
+            <span class="section-atmosphere-glow"></span>
+            <span class="section-atmosphere-orbit"></span>
+          </div>
+          <div class="section-story-layout">
+            <div class="section-story-head">
+              <div class="section-header">
+                <span class="eyebrow" data-i18n="home.processEyebrow">Process</span>
+                <h2 class="section-heading" data-i18n="home.processHeading">How a build usually moves.</h2>
+                <p class="section-intro" data-i18n="home.processIntro">
+                  I keep the work small, visible, and launchable so a useful result arrives fast without creating a giant AI mess.
+                </p>
+              </div>
+            </div>
+            <div class="section-story-body">
+              <div class="process-layout">
+                <article class="resume-panel process-note reveal">
+                  <div class="panel-toolbar">
+                    <span class="preview-title" data-i18n="home.processNoteLabel">Working style</span>
+                    <span class="pill" data-i18n="home.processNotePill">Small scope</span>
+                  </div>
+                  <h3 data-i18n="home.processNoteTitle">Audit first. Build second. Launch cleanly.</h3>
+                  <p class="surface-copy" data-i18n="home.processNoteBody">
+                    The goal is not to automate everything. The goal is to find one repetitive task, shape one reliable output, and make the handoff easy to maintain.
+                  </p>
+                  <div class="button-row compact-row">
+                    <a class="btn btn-primary" href="booking.html" data-i18n="home.processPrimary">Book the audit</a>
+                    <a class="btn" href="#demos" data-i18n="home.processSecondary">See example builds</a>
+                  </div>
+                </article>
+                <div class="process-stack">
+                  <article class="resume-panel process-card reveal">
+                    <span class="process-step" data-i18n="home.processStep1Label">Step 01</span>
+                    <h3 data-i18n="home.processStep1Title">Map the task</h3>
+                    <p class="surface-copy" data-i18n="home.processStep1Body">
+                      We isolate the trigger, the decision point, and the output that actually matters.
+                    </p>
+                  </article>
+                  <article class="resume-panel process-card reveal">
+                    <span class="process-step" data-i18n="home.processStep2Label">Step 02</span>
+                    <h3 data-i18n="home.processStep2Title">Build the smallest useful system</h3>
+                    <p class="surface-copy" data-i18n="home.processStep2Body">
+                      That might be an n8n workflow, a compact web app, or a GitHub + Vercel install around one job.
+                    </p>
+                  </article>
+                  <article class="resume-panel process-card reveal">
+                    <span class="process-step" data-i18n="home.processStep3Label">Step 03</span>
+                    <h3 data-i18n="home.processStep3Title">Keep review visible</h3>
+                    <p class="surface-copy" data-i18n="home.processStep3Body">
+                      The result should stay easy to inspect, edit, and trust after handoff.
+                    </p>
+                  </article>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-shell section-story reveal" id="thinking" data-section data-scroll-stage data-story-index="04">
+          <div class="section-atmosphere" aria-hidden="true">
+            <span class="section-atmosphere-line"></span>
+            <span class="section-atmosphere-glow"></span>
+            <span class="section-atmosphere-orbit"></span>
+          </div>
+          <div class="section-story-layout">
+            <div class="section-story-head">
+              <div class="section-header">
+                <span class="eyebrow" data-i18n="home.thinkingEyebrow">AI Agent Thinking</span>
+                <h2 class="section-heading" data-i18n="home.thinkingHeading">How I think about agents.</h2>
+                <p class="section-intro" data-i18n="home.thinkingIntro">
+                  I treat agents as scoped workflow systems, not vague magic.
+                </p>
+              </div>
+            </div>
+            <div class="section-story-body">
+              <div class="angle-grid">
+                <article class="thinking-card reveal">
+                  <span class="icon-badge">01</span>
+                  <h3 data-i18n="home.thinking1Title">One job first</h3>
+                  <p data-i18n="home.thinking1Body">Good agents should do one clear job well.</p>
+                </article>
+                <article class="thinking-card reveal">
+                  <span class="icon-badge">02</span>
+                  <h3 data-i18n="home.thinking2Title">Human review stays visible</h3>
+                  <p data-i18n="home.thinking2Body">Outputs should stay easy to check, edit, and trust.</p>
+                </article>
+                <article class="thinking-card reveal">
+                  <span class="icon-badge">03</span>
+                  <h3 data-i18n="home.thinking3Title">Context matters</h3>
+                  <p data-i18n="home.thinking3Body">Useful systems turn scattered information into usable context.</p>
+                </article>
+                <article class="thinking-card reveal">
+                  <span class="icon-badge">04</span>
+                  <h3 data-i18n="home.thinking4Title">Launch small</h3>
+                  <p data-i18n="home.thinking4Body">Small, usable systems beat oversized AI promises.</p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-shell section-story reveal" id="publication" data-section data-scroll-stage data-story-index="05">
+          <div class="section-atmosphere" aria-hidden="true">
+            <span class="section-atmosphere-line"></span>
+            <span class="section-atmosphere-glow"></span>
+            <span class="section-atmosphere-orbit"></span>
+          </div>
+          <div class="section-story-layout">
+            <div class="section-story-head">
+              <div class="section-header">
+                <span class="eyebrow" data-i18n="home.publicationEyebrow">Publication</span>
+                <h2 class="section-heading" data-i18n="home.publicationHeading">Research and publication.</h2>
+                <p class="section-intro" data-i18n="home.publicationIntro">
+                  I also have a Proc. SPIE publication comparing CNN models and a Swin Transformer for facial expression recognition.
+                </p>
+              </div>
+            </div>
+            <div class="section-story-body">
+              <div class="resume-grid">
+                <article class="resume-panel reveal">
+                  <div class="panel-toolbar">
+                    <span class="preview-title" data-i18n="home.paperLabel">Paper</span>
+                    <span class="pill">Proc. SPIE</span>
+                  </div>
+                  <h3 data-i18n="home.paperTitle">Facial expression recognition model comparison.</h3>
+                  <p class="surface-copy" data-i18n="home.paperBody">
+                    MobileNetV2, VGG-16, ResNet, and Swin Transformer compared on FER2013.
+                  </p>
+                  <ul class="feature-list">
+                    <li data-i18n="home.paperLi1">Published in Proceedings of SPIE.</li>
+                    <li data-i18n="home.paperLi2">CNN vs transformer tradeoffs.</li>
+                    <li data-i18n="home.paperLi3">Useful research foundation.</li>
+                  </ul>
+                </article>
+
+                <article class="resume-panel reveal">
+                  <div class="panel-toolbar">
+                    <span class="preview-title" data-i18n="home.readMoreLabel">Read more</span>
+                    <span class="pill" data-i18n="home.fullPagePill">Full page</span>
+                  </div>
+                  <p class="surface-copy" data-i18n="home.publicationBody">
+                    Open the full publication page for the abstract, method, and related demo.
+                  </p>
+                  <div class="button-row compact-row">
+                    <a class="btn btn-primary" href="publications.html" data-i18n="home.viewPublication">View publication</a>
+                    <a class="btn" href="https://doi.org/10.1117/12.3060400" target="_blank" rel="noopener noreferrer" data-i18n="home.readSPIE">Read at SPIE</a>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-shell section-story reveal" id="contact" data-section data-scroll-stage data-story-index="06">
+          <div class="section-atmosphere" aria-hidden="true">
+            <span class="section-atmosphere-line"></span>
+            <span class="section-atmosphere-glow"></span>
+            <span class="section-atmosphere-orbit"></span>
+          </div>
+          <div class="section-story-layout">
+            <div class="section-story-head">
+              <div class="section-header">
+                <span class="eyebrow" data-i18n="home.contactEyebrow">Contact</span>
+                <h2 class="section-heading" data-i18n="home.contactHeading">Contact and booking.</h2>
+                <p class="section-intro" data-i18n="home.contactIntro">
+                  Start with a short audit or send the workflow idea by email.
+                </p>
+              </div>
+            </div>
+            <div class="section-story-body">
+              <div class="contact-grid">
+                <div class="contact-panel reveal">
+                  <div class="panel-toolbar">
+                    <span class="preview-title" data-i18n="home.contactStart">Start here</span>
+                    <span class="pill" data-i18n="home.contactFree">Free 15 min</span>
+                  </div>
+                  <div class="contact-list">
+                    <div class="contact-item">
+                      <strong data-i18n="home.contactEmail">Email</strong>
+                      <a data-contact-link href="#"></a>
+                    </div>
+                    <div class="contact-item">
+                      <strong data-i18n="home.contactLocation">Location</strong>
+                      <span data-location></span>
+                    </div>
+                    <div class="contact-item">
+                      <strong data-i18n="home.contactStatus">Status</strong>
+                      <span data-hiring-status></span>
+                    </div>
+                  </div>
+                  <div class="contact-actions">
+                    <a class="btn btn-primary" href="booking.html" data-i18n="home.contactPrimary">Book a free 15-min AI workflow audit</a>
+                    <a class="btn" data-contact-button href="#" data-i18n="home.contactSecondary">Email workflow details</a>
+                  </div>
+                  <p class="risk-banner" data-i18n="home.riskBanner">
+                    Low-risk workflows only: no sensitive customer data, no password sharing, and review stays in the loop.
+                  </p>
+                </div>
+
+                <div class="support-topics">
+                  <article class="topic-item reveal">
+                    <h3 data-i18n="home.fitTitle">Good first fit</h3>
+                    <p data-i18n="home.fitBody">Research, pre-call prep, follow-up, summaries, and simple AI utilities.</p>
+                  </article>
+                  <article class="topic-item reveal">
+                    <h3 data-i18n="home.auditTitle">What the audit covers</h3>
+                    <p data-i18n="home.auditBody">We map one task and decide if automation is worth building.</p>
+                  </article>
+                </div>
+              </div>
+
+              <article class="calendar-panel booking-cta-panel reveal" id="booking" data-section>
+                <div class="panel-toolbar">
+                  <span class="preview-title" data-i18n="home.bookingLabel">Booking</span>
+                  <span class="pill" data-i18n="home.googleMeet">Google Meet</span>
+                </div>
+                <div class="booking-grid">
+                  <div>
+                    <h3 data-i18n="home.bookingTitle">Use the booking page for the scheduler.</h3>
+                    <p class="surface-copy" data-i18n="home.bookingBody">
+                      The booking page uses your Google Appointment Schedule embed, with a direct fallback link.
+                    </p>
+                    <div class="button-row compact-row">
+                      <a class="btn btn-primary" href="booking.html" data-i18n="home.bookingPrimary">Open booking page</a>
+                      <a class="btn" href="#services" data-i18n="home.bookingSecondary">Review services</a>
+                    </div>
+                  </div>
+                  <div class="booking-side">
+                    <ul class="feature-list is-tight booking-checklist">
+                      <li data-i18n="home.bookingLi1">Free 15-minute workflow audit.</li>
+                      <li data-i18n="home.bookingLi2">One repetitive process mapped into a clear next step.</li>
+                      <li data-i18n="home.bookingLi3">Low-risk scope with human review still in the loop.</li>
+                    </ul>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
         </section>
       </div>
     </main>

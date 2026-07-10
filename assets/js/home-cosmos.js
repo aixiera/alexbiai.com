@@ -1,5 +1,15 @@
 const THREE_MODULE_URL = "https://cdn.jsdelivr.net/npm/three@0.167.1/build/three.module.min.js";
 const SEQUENCE_INTERVAL_MS = 2400;
+const STORY_CARD_SELECTOR = [
+  ".resume-panel",
+  ".thinking-card",
+  ".topic-item",
+  ".contact-panel",
+  ".calendar-panel",
+  ".service-card",
+  ".process-card",
+  ".demo-card"
+].join(", ");
 
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
@@ -271,6 +281,66 @@ function activateSequence(nodes, panels, index) {
   });
 }
 
+function initScrollStages() {
+  const stages = Array.from(document.querySelectorAll("[data-scroll-stage]"));
+  if (!stages.length) {
+    return () => {};
+  }
+
+  stages.forEach((stage) => {
+    Array.from(stage.querySelectorAll(STORY_CARD_SELECTOR)).forEach((card, index) => {
+      card.style.setProperty("--story-order", String(index));
+      card.style.setProperty("--story-depth", `${index * 18}px`);
+    });
+  });
+
+  let frameHandle = 0;
+
+  const update = () => {
+    frameHandle = 0;
+    const viewportHeight = window.innerHeight || 1;
+
+    stages.forEach((stage) => {
+      const rect = stage.getBoundingClientRect();
+      const progress = clamp(
+        mapRange(viewportHeight - rect.top, viewportHeight * 0.12, viewportHeight + rect.height * 0.36, 0, 1),
+        0,
+        1
+      );
+      const cards = Array.from(stage.querySelectorAll(STORY_CARD_SELECTOR));
+
+      stage.style.setProperty("--section-progress", progress.toFixed(4));
+      stage.classList.toggle("is-active", progress > 0.04 && progress < 0.98);
+
+      cards.forEach((card, index) => {
+        const cardProgress = clamp(progress * 1.18 - index * 0.08, 0, 1);
+        card.style.setProperty("--story-card-progress", cardProgress.toFixed(4));
+      });
+    });
+  };
+
+  const requestUpdate = () => {
+    if (frameHandle) {
+      return;
+    }
+
+    frameHandle = window.requestAnimationFrame(update);
+  };
+
+  requestUpdate();
+  window.addEventListener("scroll", requestUpdate, { passive: true });
+  window.addEventListener("resize", requestUpdate);
+
+  return () => {
+    if (frameHandle) {
+      window.cancelAnimationFrame(frameHandle);
+    }
+
+    window.removeEventListener("scroll", requestUpdate);
+    window.removeEventListener("resize", requestUpdate);
+  };
+}
+
 function initHomeHero() {
   const hero = document.querySelector("[data-home-hero]");
   if (!hero) {
@@ -283,6 +353,7 @@ function initHomeHero() {
   const sequenceNodes = Array.from(hero.querySelectorAll("[data-sequence-step]"));
   const sequencePanels = Array.from(hero.querySelectorAll("[data-sequence-panel]"));
   const pointer = { targetX: 0, targetY: 0 };
+  const cleanupStages = initScrollStages();
 
   let activeIndex = 0;
   let sequenceTimer = 0;
@@ -315,6 +386,8 @@ function initHomeHero() {
     hero.style.setProperty("--hero-tilt-y", pointer.targetY.toFixed(4));
     hero.style.setProperty("--hero-shift-x", (pointer.targetX * 0.9).toFixed(4));
     hero.style.setProperty("--hero-shift-y", (pointer.targetY * 0.6).toFixed(4));
+    hero.style.setProperty("--hero-shift-x-px", `${pointer.targetX * 26}px`);
+    hero.style.setProperty("--hero-shift-y-px", `${pointer.targetY * 18}px`);
 
     if (hero.__homeCosmosPointer) {
       hero.__homeCosmosPointer.targetX = pointer.targetX;
@@ -329,6 +402,8 @@ function initHomeHero() {
     hero.style.setProperty("--hero-tilt-y", "0");
     hero.style.setProperty("--hero-shift-x", "0");
     hero.style.setProperty("--hero-shift-y", "0");
+    hero.style.setProperty("--hero-shift-x-px", "0px");
+    hero.style.setProperty("--hero-shift-y-px", "0px");
 
     if (hero.__homeCosmosPointer) {
       hero.__homeCosmosPointer.targetX = 0;
@@ -372,6 +447,7 @@ function initHomeHero() {
     () => {
       liveObserver.disconnect();
       window.clearInterval(sequenceTimer);
+      cleanupStages();
       hero.removeEventListener("pointermove", updatePointer);
       hero.removeEventListener("pointerleave", resetPointer);
       hero.removeEventListener("pointercancel", resetPointer);
