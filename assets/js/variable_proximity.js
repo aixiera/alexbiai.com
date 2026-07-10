@@ -8,6 +8,8 @@
 
   const mousePosition = { x: 0, y: 0 };
   let hasPointer = false;
+  const instances = [];
+  let animationStarted = false;
 
   const updatePosition = (x, y) => {
     mousePosition.x = x;
@@ -78,6 +80,9 @@
   };
 
   const buildLetters = (element, fromSettings) => {
+    const plainText = element.textContent || '';
+    element.textContent = plainText;
+
     const letterRefs = [];
     const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, {
       acceptNode: node => {
@@ -98,72 +103,91 @@
     return letterRefs;
   };
 
+  const upsertInstance = target => {
+    const existingIndex = instances.findIndex(instance => instance.target === target);
+    if (existingIndex !== -1) {
+      instances.splice(existingIndex, 1);
+    }
+
+    const fromSettings = target.dataset.fromSettings || DEFAULTS.from;
+    const toSettings = target.dataset.toSettings || DEFAULTS.to;
+    const radius = Number(target.dataset.radius || DEFAULTS.radius);
+    const falloff = target.dataset.falloff || DEFAULTS.falloff;
+    const parsedSettings = parseSettings(fromSettings, toSettings);
+    const letterRefs = buildLetters(target, fromSettings);
+
+    instances.push({
+      target,
+      letterRefs,
+      parsedSettings,
+      fromSettings,
+      radius,
+      falloff,
+      lastPosition: { x: null, y: null }
+    });
+  };
+
+  const animate = () => {
+    instances.forEach((instance, index) => {
+      if (!instance.target.isConnected) {
+        instances.splice(index, 1);
+        return;
+      }
+
+      if (!hasPointer) {
+        return;
+      }
+
+      const { target, letterRefs, parsedSettings, fromSettings, radius, falloff, lastPosition } = instance;
+      const rect = target.getBoundingClientRect();
+      const currentX = mousePosition.x - rect.left;
+      const currentY = mousePosition.y - rect.top;
+
+      if (lastPosition.x === currentX && lastPosition.y === currentY) return;
+      instance.lastPosition = { x: currentX, y: currentY };
+
+      letterRefs.forEach(letter => {
+        const letterRect = letter.getBoundingClientRect();
+        const letterCenterX = letterRect.left + letterRect.width / 2 - rect.left;
+        const letterCenterY = letterRect.top + letterRect.height / 2 - rect.top;
+        const distance = Math.hypot(letterCenterX - currentX, letterCenterY - currentY);
+
+        if (distance >= radius) {
+          letter.style.fontVariationSettings = fromSettings;
+          return;
+        }
+
+        const falloffValue = calculateFalloff(distance, radius, falloff);
+        const newSettings = parsedSettings
+          .map(({ axis, fromValue, toValue }) => {
+            const interpolatedValue = fromValue + (toValue - fromValue) * falloffValue;
+            return `'${axis}' ${interpolatedValue}`;
+          })
+          .join(', ');
+
+        letter.style.fontVariationSettings = newSettings;
+      });
+    });
+
+    requestAnimationFrame(animate);
+  };
+
   const initVariableProximity = () => {
     const targets = Array.from(document.querySelectorAll('[data-variable-proximity]'));
     if (!targets.length) return;
 
-    const instances = targets.map(target => {
+    targets.forEach(target => {
       const fromSettings = target.dataset.fromSettings || DEFAULTS.from;
-      const toSettings = target.dataset.toSettings || DEFAULTS.to;
-      const radius = Number(target.dataset.radius || DEFAULTS.radius);
-      const falloff = target.dataset.falloff || DEFAULTS.falloff;
-      const parsedSettings = parseSettings(fromSettings, toSettings);
-
-      const letterRefs = buildLetters(target, fromSettings);
-
-      return {
-        target,
-        letterRefs,
-        parsedSettings,
-        fromSettings,
-        radius,
-        falloff,
-        lastPosition: { x: null, y: null }
-      };
+      if (getComputedStyle(target).fontVariationSettings === 'normal' && !target.dataset.fromSettings) {
+        target.style.fontVariationSettings = fromSettings;
+      }
+      upsertInstance(target);
     });
 
-    const animate = () => {
-      if (!hasPointer) {
-        requestAnimationFrame(animate);
-        return;
-      }
-
-      instances.forEach(instance => {
-        const { target, letterRefs, parsedSettings, fromSettings, radius, falloff, lastPosition } = instance;
-        const rect = target.getBoundingClientRect();
-        const currentX = mousePosition.x - rect.left;
-        const currentY = mousePosition.y - rect.top;
-
-        if (lastPosition.x === currentX && lastPosition.y === currentY) return;
-        instance.lastPosition = { x: currentX, y: currentY };
-
-        letterRefs.forEach(letter => {
-          const letterRect = letter.getBoundingClientRect();
-          const letterCenterX = letterRect.left + letterRect.width / 2 - rect.left;
-          const letterCenterY = letterRect.top + letterRect.height / 2 - rect.top;
-          const distance = Math.hypot(letterCenterX - currentX, letterCenterY - currentY);
-
-          if (distance >= radius) {
-            letter.style.fontVariationSettings = fromSettings;
-            return;
-          }
-
-          const falloffValue = calculateFalloff(distance, radius, falloff);
-          const newSettings = parsedSettings
-            .map(({ axis, fromValue, toValue }) => {
-              const interpolatedValue = fromValue + (toValue - fromValue) * falloffValue;
-              return `'${axis}' ${interpolatedValue}`;
-            })
-            .join(', ');
-
-          letter.style.fontVariationSettings = newSettings;
-        });
-      });
-
+    if (!animationStarted) {
+      animationStarted = true;
       requestAnimationFrame(animate);
-    };
-
-    requestAnimationFrame(animate);
+    }
   };
 
   if (document.readyState === 'loading') {
@@ -171,4 +195,6 @@
   } else {
     initVariableProximity();
   }
+
+  document.addEventListener('site:refresh', initVariableProximity);
 })();

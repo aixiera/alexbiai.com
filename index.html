@@ -12,17 +12,29 @@
     <link rel="stylesheet" href="assets/css/site.css" />
     <script defer src="assets/js/site-config.js"></script>
     <script defer src="assets/js/site-components.js"></script>
+    <script defer src="assets/js/variable_proximity.js"></script>
+    <script type="module" src="assets/js/home-cosmos.js"></script>
   </head>
   <body data-page="home" data-i18n-title="home.title" data-i18n-description="home.description">
     <site-navbar current="intro"></site-navbar>
 
     <main class="page-main portfolio-main">
       <div class="container page-stack">
-        <section class="hero-shell hero-portfolio reveal" id="intro" data-section>
+        <section class="hero-shell hero-portfolio reveal" id="intro" data-section data-home-hero>
           <div class="hero-content">
             <span class="eyebrow" data-i18n="home.heroEyebrow">AI Workflow Services / Kairui Bi</span>
             <p class="hero-kicker" data-i18n="home.heroKicker">N8N / AI AGENTS / GITHUB / VERCEL</p>
-            <h1 class="hero-title" data-i18n="home.heroTitle">Custom AI agents. Compact web apps.</h1>
+            <h1
+              class="hero-title"
+              data-i18n="home.heroTitle"
+              data-variable-proximity
+              data-from-settings="'wght' 520"
+              data-to-settings="'wght' 760"
+              data-radius="170"
+              data-falloff="gaussian"
+            >
+              Custom AI agents. Compact web apps.
+            </h1>
             <p class="hero-subtitle" data-i18n="home.heroSubtitle">
               I help founders, creators, and small businesses turn repetitive research, follow-up, and content work into practical AI workflows.
             </p>
@@ -47,31 +59,68 @@
 
           <div class="hero-side">
             <div class="visual-stage">
-              <article class="stage-primary">
-                <img src="images/stagepulse.png" alt="StagePulse Map live interface shown on the Science World level map" />
-                <div class="stage-caption">
-                  <span class="detail-label" data-i18n="home.featuredLabel">Featured visual</span>
-                  <strong>StagePulse Map</strong>
-                  <p data-i18n="home.featuredCaption">Real Science World map asset from the 2nd-place hackathon build.</p>
+              <div class="hero-cosmos" data-home-cosmos aria-hidden="true">
+                <canvas class="hero-cosmos-canvas" data-home-cosmos-canvas></canvas>
+                <div class="hero-cosmos-overlay">
+                  <div class="hero-sequence-bar">
+                    <span class="hero-sequence-label">Motion stack</span>
+                    <div class="hero-sequence-track" aria-hidden="true">
+                      <span class="hero-sequence-node is-active" data-sequence-step>Scan</span>
+                      <span class="hero-sequence-node" data-sequence-step>Compose</span>
+                      <span class="hero-sequence-node" data-sequence-step>Launch</span>
+                    </div>
+                  </div>
+
+                  <div class="hero-orbit-row">
+                    <span class="hero-orbit-chip">three.js field</span>
+                    <span class="hero-orbit-chip">remotion-style timing</span>
+                    <span class="hero-orbit-chip">depth parallax</span>
+                  </div>
+
+                  <div class="hero-readout-grid">
+                    <article class="hero-readout is-active" data-sequence-panel>
+                      <strong>Sequence 01</strong>
+                      <p>Warm particles and orbital lines build a live stage behind the work.</p>
+                    </article>
+                    <article class="hero-readout" data-sequence-panel>
+                      <strong>Sequence 02</strong>
+                      <p>Cards and type move on a timed rhythm instead of plain fade-ins.</p>
+                    </article>
+                    <article class="hero-readout" data-sequence-panel>
+                      <strong>Sequence 03</strong>
+                      <p>Scroll and pointer depth keep the page feeling tactile and responsive.</p>
+                    </article>
+                  </div>
                 </div>
-              </article>
+              </div>
 
-              <div class="stage-stack">
-                <article class="stage-mini">
-                  <img src="images/ai-digest-workflow.jpg" alt="n8n AI workflow visual" />
-                  <div class="stage-mini-copy">
-                    <span class="detail-label" data-i18n="home.stageMini1Label">n8n agents</span>
-                    <p data-i18n="home.stageMini1Body">Custom automations for real tasks.</p>
+              <div class="hero-card-cluster">
+                <article class="stage-primary">
+                  <img src="images/stagepulse.png" alt="StagePulse Map live interface shown on the Science World level map" />
+                  <div class="stage-caption">
+                    <span class="detail-label" data-i18n="home.featuredLabel">Featured visual</span>
+                    <strong>StagePulse Map</strong>
+                    <p data-i18n="home.featuredCaption">Real Science World map asset from the 2nd-place hackathon build.</p>
                   </div>
                 </article>
 
-                <article class="stage-mini">
-                  <img src="images/n8n-asmr-screenshot.jpg" alt="n8n ASMR video generator visual" />
-                  <div class="stage-mini-copy">
-                    <span class="detail-label" data-i18n="home.stageMini2Label">Build style</span>
-                    <p data-i18n="home.stageMini2Body">Compact tools, clear inputs, usable outputs.</p>
-                  </div>
-                </article>
+                <div class="stage-stack">
+                  <article class="stage-mini">
+                    <img src="images/ai-digest-workflow.jpg" alt="n8n AI workflow visual" />
+                    <div class="stage-mini-copy">
+                      <span class="detail-label" data-i18n="home.stageMini1Label">n8n agents</span>
+                      <p data-i18n="home.stageMini1Body">Custom automations for real tasks.</p>
+                    </div>
+                  </article>
+
+                  <article class="stage-mini">
+                    <img src="images/n8n-asmr-screenshot.jpg" alt="n8n ASMR video generator visual" />
+                    <div class="stage-mini-copy">
+                      <span class="detail-label" data-i18n="home.stageMini2Label">Build style</span>
+                      <p data-i18n="home.stageMini2Body">Compact tools, clear inputs, usable outputs.</p>
+                    </div>
+                  </article>
+                </div>
               </div>
             </div>
           </div>
@@ -180,66 +229,52 @@
           <div class="demo-grid" data-demo-grid></div>
         </section>
 
-        <section class="section-shell reveal" id="xulan" data-section>
+        <section class="section-shell reveal" id="process" data-section>
           <div class="section-header">
-            <span class="eyebrow" data-i18n="home.xulanEyebrow">XuLan</span>
-            <h2 class="section-heading" data-i18n="home.xulanHeading">Public AI notes and tutorials.</h2>
-            <p class="section-intro" data-i18n="home.xulanIntro">
-              XuLan is the public identity for my AI automation notes, source packs, and workflow tutorials.
+            <span class="eyebrow" data-i18n="home.processEyebrow">Process</span>
+            <h2 class="section-heading" data-i18n="home.processHeading">How a build usually moves.</h2>
+            <p class="section-intro" data-i18n="home.processIntro">
+              I keep the work small, visible, and launchable so a useful result arrives fast without creating a giant AI mess.
             </p>
           </div>
-          <div class="resume-grid xulan-layout">
-            <article class="resume-panel xulan-card reveal">
-              <figure class="xulan-portrait">
-                <img src="images/xulan_face.png" alt="XuLan avatar asset" />
-              </figure>
-              <div class="xulan-copy">
-                <div class="panel-toolbar">
-                  <span class="preview-title" data-i18n="home.xulanWhat">What it is</span>
-                  <span class="pill" data-i18n="home.xulanLayer">Public layer</span>
-                </div>
-                <h3 data-i18n="home.xulanTitle">Notes, tutorials, and AI study in public.</h3>
-                <ul class="feature-list is-tight">
-                  <li data-i18n="home.xulanLi1">Workflow notes and AI essays.</li>
-                  <li data-i18n="home.xulanLi2">Source packs and public folders.</li>
-                  <li data-i18n="home.xulanLi3">Short tutorials and updates.</li>
-                </ul>
-              </div>
-            </article>
-
-            <article class="resume-panel reveal">
+          <div class="process-layout">
+            <article class="resume-panel process-note reveal">
               <div class="panel-toolbar">
-                <span class="preview-title" data-i18n="home.xulanLinks">Links</span>
-                <span class="pill" data-i18n="home.xulanChannels">Channels</span>
+                <span class="preview-title" data-i18n="home.processNoteLabel">Working style</span>
+                <span class="pill" data-i18n="home.processNotePill">Small scope</span>
               </div>
-              <p class="surface-copy" data-i18n="home.xulanBody">Follow XuLan across video, notes, and public resources.</p>
-              <div class="channel-row">
-                <a class="channel-link is-bilibili" href="https://space.bilibili.com/1633897017" target="_blank" rel="noopener noreferrer">
-                  <span class="channel-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" role="presentation" focusable="false">
-                      <path d="M7 4.5 5.8 2.9a1 1 0 0 1 1.6-1.2L9 3.8h6l1.6-2.1a1 1 0 0 1 1.6 1.2L17 4.5h1.5A3.5 3.5 0 0 1 22 8v8.5A3.5 3.5 0 0 1 18.5 20h-13A3.5 3.5 0 0 1 2 16.5V8a3.5 3.5 0 0 1 3.5-3.5H7Zm11.5 2h-13A1.5 1.5 0 0 0 4 8v8.5A1.5 1.5 0 0 0 5.5 18h13a1.5 1.5 0 0 0 1.5-1.5V8a1.5 1.5 0 0 0-1.5-1.5ZM8.2 10.2a1 1 0 0 1 1 1v2.6a1 1 0 1 1-2 0v-2.6a1 1 0 0 1 1-1Zm7.6 0a1 1 0 0 1 1 1v2.6a1 1 0 1 1-2 0v-2.6a1 1 0 0 1 1-1Z"></path>
-                    </svg>
-                  </span>
-                  <span>Bilibili</span>
-                </a>
-                <a class="channel-link is-youtube" href="https://www.youtube.com/@xulanjiang" target="_blank" rel="noopener noreferrer">
-                  <span class="channel-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" role="presentation" focusable="false">
-                      <path d="M21.2 7.4a2.9 2.9 0 0 0-2-2c-1.8-.5-7.2-.5-7.2-.5s-5.4 0-7.2.5a2.9 2.9 0 0 0-2 2A30 30 0 0 0 2.3 12a30 30 0 0 0 .5 4.6 2.9 2.9 0 0 0 2 2c1.8.5 7.2.5 7.2.5s5.4 0 7.2-.5a2.9 2.9 0 0 0 2-2 30 30 0 0 0 .5-4.6 30 30 0 0 0-.5-4.6ZM10.2 15.4V8.6l5.7 3.4-5.7 3.4Z"></path>
-                    </svg>
-                  </span>
-                  <span>YouTube</span>
-                </a>
-                <a class="channel-link is-feishu" href="https://mjpl73bxeo1o.jp.larksuite.com/drive/folder/TACRf1lnIlMuOxdyaSjjPhqfpGc?from=from_copylink" target="_blank" rel="noopener noreferrer">
-                  <span class="channel-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" role="presentation" focusable="false">
-                      <path d="M6 3.5h8.7L20 8.8v11.7H6V3.5Zm2 2v13h10V10h-4.1V5.5H8Zm7.8.9v2.4h2.4l-2.4-2.4ZM10 12h6v1.6h-6V12Zm0 3h6v1.6h-6V15Zm0-6h2.8V10.6H10V9Z"></path>
-                    </svg>
-                  </span>
-                  <span>Feishu AI</span>
-                </a>
+              <h3 data-i18n="home.processNoteTitle">Audit first. Build second. Launch cleanly.</h3>
+              <p class="surface-copy" data-i18n="home.processNoteBody">
+                The goal is not to automate everything. The goal is to find one repetitive task, shape one reliable output, and make the handoff easy to maintain.
+              </p>
+              <div class="button-row compact-row">
+                <a class="btn btn-primary" href="booking.html" data-i18n="home.processPrimary">Book the audit</a>
+                <a class="btn" href="#demos" data-i18n="home.processSecondary">See example builds</a>
               </div>
             </article>
+            <div class="process-stack">
+              <article class="resume-panel process-card reveal">
+                <span class="process-step" data-i18n="home.processStep1Label">Step 01</span>
+                <h3 data-i18n="home.processStep1Title">Map the task</h3>
+                <p class="surface-copy" data-i18n="home.processStep1Body">
+                  We isolate the trigger, the decision point, and the output that actually matters.
+                </p>
+              </article>
+              <article class="resume-panel process-card reveal">
+                <span class="process-step" data-i18n="home.processStep2Label">Step 02</span>
+                <h3 data-i18n="home.processStep2Title">Build the smallest useful system</h3>
+                <p class="surface-copy" data-i18n="home.processStep2Body">
+                  That might be an n8n workflow, a compact web app, or a GitHub + Vercel install around one job.
+                </p>
+              </article>
+              <article class="resume-panel process-card reveal">
+                <span class="process-step" data-i18n="home.processStep3Label">Step 03</span>
+                <h3 data-i18n="home.processStep3Title">Keep review visible</h3>
+                <p class="surface-copy" data-i18n="home.processStep3Body">
+                  The result should stay easy to inspect, edit, and trust after handoff.
+                </p>
+              </article>
+            </div>
           </div>
         </section>
 

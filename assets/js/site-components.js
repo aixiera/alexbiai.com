@@ -62,7 +62,7 @@ const TEXT = {
   "nav.intro": { en: "Intro", zh: "首页" },
   "nav.services": { en: "Services", zh: "服务" },
   "nav.demos": { en: "Demos", zh: "作品" },
-  "nav.xulan": { en: "XuLan", zh: "序蓝" },
+  "nav.process": { en: "Process", zh: "流程" },
   "nav.thinking": { en: "Thinking", zh: "智能体思考" },
   "nav.publication": { en: "Publication", zh: "论文" },
   "nav.about": { en: "About", zh: "关于" },
@@ -88,7 +88,7 @@ const TEXT = {
   "footer.links": { en: "Links", zh: "链接" },
   "footer.services": { en: "Services", zh: "服务" },
   "footer.demos": { en: "Demos", zh: "作品" },
-  "footer.xulan": { en: "XuLan", zh: "序蓝" },
+  "footer.process": { en: "Process", zh: "流程" },
   "footer.thinking": { en: "Thinking", zh: "思考" },
   "footer.publication": { en: "Publication", zh: "论文" },
   "footer.audit": { en: "Free Audit", zh: "免费诊断" },
@@ -193,18 +193,39 @@ const TEXT = {
   "service.card3.li2": { en: "Launch on Vercel with simple updates.", zh: "在 Vercel 上线，并保持后续更新简单。" },
   "service.card3.li3": { en: "Keep the local setup easy to maintain.", zh: "让本地环境便于维护。" },
   "service.card3.note": { en: "Best for: founders, creators, and small teams shipping fast.", zh: "适合：创业者、创作者与需要快速上线的小团队。" },
-  "home.xulanEyebrow": { en: "XuLan", zh: "序蓝" },
-  "home.xulanHeading": { en: "Public AI notes and tutorials.", zh: "公开的 AI 笔记与教程。" },
-  "home.xulanIntro": { en: "XuLan is the public identity for my AI automation notes, source packs, and workflow tutorials.", zh: "序蓝是我公开发布 AI 自动化笔记、资料包和工作流教程的内容身份。" },
-  "home.xulanWhat": { en: "What it is", zh: "它是什么" },
-  "home.xulanLayer": { en: "Public layer", zh: "公开内容" },
-  "home.xulanTitle": { en: "Notes, tutorials, and AI study in public.", zh: "把 AI 学习、教程与思考公开出来。" },
-  "home.xulanLi1": { en: "Workflow notes and AI essays.", zh: "工作流笔记与 AI 文章。" },
-  "home.xulanLi2": { en: "Source packs and public folders.", zh: "资料包与公开资源文件夹。" },
-  "home.xulanLi3": { en: "Short tutorials and updates.", zh: "简短教程与持续更新。" },
-  "home.xulanLinks": { en: "Links", zh: "链接" },
-  "home.xulanChannels": { en: "Channels", zh: "渠道" },
-  "home.xulanBody": { en: "Follow XuLan across video, notes, and public resources.", zh: "可以通过视频、笔记与公开资料持续关注序蓝。" },
+  "home.processEyebrow": { en: "Process", zh: "流程" },
+  "home.processHeading": { en: "How a build usually moves.", zh: "一个项目通常怎么推进。" },
+  "home.processIntro": {
+    en: "I keep the work small, visible, and launchable so a useful result arrives fast without creating a giant AI mess.",
+    zh: "我会把项目控制在小范围、可见进度、可上线的节奏里，让结果尽快可用，而不是做成一个失控的 AI 大工程。"
+  },
+  "home.processNoteLabel": { en: "Working style", zh: "合作方式" },
+  "home.processNotePill": { en: "Small scope", zh: "小范围" },
+  "home.processNoteTitle": { en: "Audit first. Build second. Launch cleanly.", zh: "先诊断，再搭建，最后干净上线。" },
+  "home.processNoteBody": {
+    en: "The goal is not to automate everything. The goal is to find one repetitive task, shape one reliable output, and make the handoff easy to maintain.",
+    zh: "目标不是把一切都自动化，而是先找准一个重复任务，做出一个可靠输出，并让后续维护和交接都足够轻松。"
+  },
+  "home.processPrimary": { en: "Book the audit", zh: "预约诊断" },
+  "home.processSecondary": { en: "See example builds", zh: "查看示例作品" },
+  "home.processStep1Label": { en: "Step 01", zh: "步骤 01" },
+  "home.processStep1Title": { en: "Map the task", zh: "先把任务画清楚" },
+  "home.processStep1Body": {
+    en: "We isolate the trigger, the decision point, and the output that actually matters.",
+    zh: "先拆出触发点、关键判断点，以及真正重要的输出结果。"
+  },
+  "home.processStep2Label": { en: "Step 02", zh: "步骤 02" },
+  "home.processStep2Title": { en: "Build the smallest useful system", zh: "搭建最小但有用的系统" },
+  "home.processStep2Body": {
+    en: "That might be an n8n workflow, a compact web app, or a GitHub + Vercel install around one job.",
+    zh: "这个系统可以是一个 n8n 工作流、一个小而清晰的 Web 工具，或一套围绕单一任务的 GitHub + Vercel 部署。"
+  },
+  "home.processStep3Label": { en: "Step 03", zh: "步骤 03" },
+  "home.processStep3Title": { en: "Keep review visible", zh: "把复核留在台面上" },
+  "home.processStep3Body": {
+    en: "The result should stay easy to inspect, edit, and trust after handoff.",
+    zh: "最终结果必须在交付后依然方便检查、修改，并且值得信任。"
+  },
   "home.thinkingEyebrow": { en: "AI Agent Thinking", zh: "AI 智能体思考" },
   "home.thinkingHeading": { en: "How I think about agents.", zh: "我如何理解智能体。" },
   "home.thinkingIntro": { en: "I treat agents as scoped workflow systems, not vague magic.", zh: "我把智能体看成有边界的流程系统，而不是模糊的魔法。" },
@@ -703,7 +724,7 @@ function renderFooter() {
               <div class="footer-links">
                 <a href="${resolveSitePath(`${siteConfig.routes.home}#services`)}">${escapeHtml(getText("footer.services", "Services"))}</a>
                 <a href="${resolveSitePath(`${siteConfig.routes.home}#demos`)}">${escapeHtml(getText("footer.demos", "Demos"))}</a>
-                <a href="${resolveSitePath(`${siteConfig.routes.home}#xulan`)}">${escapeHtml(getText("footer.xulan", "XuLan"))}</a>
+                <a href="${resolveSitePath(`${siteConfig.routes.home}#process`)}">${escapeHtml(getText("footer.process", "Process"))}</a>
                 <a href="${resolveSitePath(`${siteConfig.routes.home}#thinking`)}">${escapeHtml(getText("footer.thinking", "Thinking"))}</a>
                 <a href="${resolveSitePath(`${siteConfig.routes.home}#publication`)}">${escapeHtml(getText("footer.publication", "Publication"))}</a>
                 <a href="${resolveSitePath(`${siteConfig.routes.home}#booking`)}">${escapeHtml(getText("footer.audit", "Free Audit"))}</a>
@@ -1179,6 +1200,7 @@ function refreshLocalizedUi() {
   applyPageTranslations();
   setupSectionObserver();
   setupRevealObserver();
+  document.dispatchEvent(new Event("site:refresh"));
 }
 
 function setActiveLanguage(language) {
