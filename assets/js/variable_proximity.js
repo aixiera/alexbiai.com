@@ -173,6 +173,7 @@
   };
 
   const initVariableProximity = () => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const targets = Array.from(document.querySelectorAll('[data-variable-proximity]'));
     if (!targets.length) return;
 

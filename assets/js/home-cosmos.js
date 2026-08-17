@@ -8,7 +8,15 @@ const STORY_CARD_SELECTOR = [
   ".calendar-panel",
   ".service-card",
   ".process-card",
-  ".demo-card"
+  ".demo-card",
+  ".problem-card",
+  ".industry-card",
+  ".example-card",
+  ".proof-card",
+  ".flow-step",
+  ".lead-form-card",
+  ".founder-panel",
+  ".faq-list details"
 ].join(", ");
 
 function clamp(value, min, max) {
@@ -353,7 +361,7 @@ function initHomeHero() {
   const sequenceNodes = Array.from(hero.querySelectorAll("[data-sequence-step]"));
   const sequencePanels = Array.from(hero.querySelectorAll("[data-sequence-panel]"));
   const pointer = { targetX: 0, targetY: 0 };
-  const cleanupStages = initScrollStages();
+  const cleanupStages = reducedMotion ? () => {} : initScrollStages();
 
   let activeIndex = 0;
   let sequenceTimer = 0;

@@ -1,1296 +1,639 @@
-const siteConfig = window.siteConfig;
+(function () {
+  "use strict";
 
-if (!siteConfig) {
-  throw new Error("siteConfig must be loaded before site-components.js");
-}
+  const config = window.siteConfig;
+  if (!config) return;
+  document.documentElement.classList.add("js");
 
-function getSitePrefix() {
-  const pathname = decodeURIComponent(window.location.pathname).replaceAll("\\", "/");
-  const segments = pathname.split("/").filter(Boolean);
-  const rootIndex = segments.findIndex((segment) => segment.toLowerCase() === "kairuibi.com");
-  const siteSegments = rootIndex >= 0 ? segments.slice(rootIndex + 1) : segments;
-  const directoryDepth = Math.max(siteSegments.length - 1, 0);
+  const LANGUAGE_KEY = "kb-site-language";
+  const CAMPAIGN_KEY = "kb-campaign";
+  const CONSENT_KEY = "kb-privacy-consent-v1";
+  const SUPPORTED_LANGUAGES = new Set(["en", "zh"]);
+  let language = readStorage(LANGUAGE_KEY) || "en";
+  let leadFormStarted = false;
 
-  return directoryDepth ? "../".repeat(directoryDepth) : "";
-}
+  const TEXT = {
+    "nav.services": { en: "Services", zh: "服务" },
+    "nav.industries": { en: "Industries", zh: "行业" },
+    "nav.examples": { en: "Results / Examples", zh: "成果 / 示例" },
+    "nav.process": { en: "Process", zh: "流程" },
+    "nav.about": { en: "About", zh: "关于" },
+    "nav.book": { en: "Book a Checkup", zh: "预约系统检查" },
+    "nav.menu": { en: "Menu", zh: "菜单" },
+    "nav.close": { en: "Close", zh: "关闭" },
 
-const sitePrefix = getSitePrefix();
-const LANGUAGE_STORAGE_KEY = "kb-site-language";
-const DEFAULT_LANGUAGE = "en";
-const SUPPORTED_LANGUAGES = new Set(["en", "zh"]);
+    "home.title": { en: "Kairui Bi | Websites & Automation for Canadian Local Businesses", zh: "Kairui Bi | 加拿大本地企业网站与自动化" },
+    "home.description": { en: "Websites, lead capture, and practical automation for Canadian local businesses. Based in BC and built by Kairui Bi.", zh: "为加拿大本地企业提供网站、潜客收集与实用自动化。Kairui Bi 常驻卑诗省。" },
+    "home.heroEyebrow": { en: "BC-based · Serving businesses across Canada", zh: "常驻卑诗省 · 服务加拿大各地企业" },
+    "home.heroTitle": { en: "Websites and automations that help Canadian local businesses win more work and waste less time.", zh: "帮助加拿大本地企业赢得更多业务、减少时间浪费的网站与自动化。" },
+    "home.heroBody": { en: "I design local-business websites, connect the tools you already use, and automate repetitive lead and admin workflows. Built and handed off by Kairui Bi.", zh: "我为本地企业设计网站、连接现有工具，并自动化重复的潜客与行政流程。由 Kairui Bi 亲自搭建和交付。" },
+    "cta.checkup15": { en: "Book a free 15-min Systems Checkup", zh: "预约免费 15 分钟系统检查" },
+    "cta.checkup": { en: "Book a free Systems Checkup", zh: "预约免费系统检查" },
+    "cta.workflow": { en: "See how a lead workflow works", zh: "查看潜客流程示例" },
+    "cta.linkedin": { en: "View LinkedIn", zh: "查看 LinkedIn" },
+    "trust.one": { en: "One-person builder", zh: "一人全程负责" },
+    "trust.human": { en: "Human-reviewed automation", zh: "人工复核自动化" },
+    "trust.handoff": { en: "Clean handoff", zh: "清晰交付" },
+    "workflow.example": { en: "Example system", zh: "示例系统" },
+    "workflow.leadJob": { en: "Lead to job", zh: "从潜客到订单" },
+    "workflow.inquiry": { en: "New inquiry", zh: "新咨询" },
+    "workflow.inquiryNote": { en: "Website, phone, or ad", zh: "网站、电话或广告" },
+    "workflow.captured": { en: "Captured", zh: "统一收集" },
+    "workflow.capturedNote": { en: "Details organized once", zh: "信息一次整理" },
+    "workflow.alerted": { en: "Owner alerted", zh: "负责人收到提醒" },
+    "workflow.alertedNote": { en: "The right person sees it", zh: "正确的人及时看到" },
+    "workflow.followup": { en: "Estimate & follow-up", zh: "报价与跟进" },
+    "workflow.followupNote": { en: "Nothing quietly disappears", zh: "不让机会悄悄流失" },
+    "workflow.note": { en: "Start with the business problem. Use AI only when it helps.", zh: "先从业务问题出发，只在真正有帮助时使用 AI。" },
+    "workflow.visualLabel": { en: "Lead workflow", zh: "潜客流程" },
+    "workflow.capture": { en: "Capture", zh: "收集" },
+    "workflow.route": { en: "Route", zh: "分配" },
+    "workflow.followShort": { en: "Follow up", zh: "跟进" },
+    "workflow.websiteCall": { en: "Website / call / ad", zh: "网站 / 电话 / 广告" },
+    "workflow.ownerAlert": { en: "Owner alert", zh: "负责人提醒" },
+    "workflow.estimateReminder": { en: "Estimate reminder", zh: "报价提醒" },
+    "workflow.sequence1": { en: "Every inquiry enters one organized intake.", zh: "每条咨询都进入统一整理的入口。" },
+    "workflow.sequence2": { en: "The right person sees the details and next action.", zh: "正确的人会看到详情和下一步操作。" },
+    "workflow.sequence3": { en: "Estimates stay visible until follow-up is complete.", zh: "报价会保持可见，直到跟进完成。" },
+    "workflow.ready": { en: "Ready for action", zh: "等待处理" },
+    "workflow.nothingLost": { en: "Nothing lost", zh: "不再遗漏" },
 
-function readStoredLanguage() {
-  try {
-    const stored = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
-    return SUPPORTED_LANGUAGES.has(stored) ? stored : null;
-  } catch {
-    return null;
-  }
-}
+    "pain.eyebrow": { en: "Problem recognition", zh: "常见问题" },
+    "pain.title": { en: "Where does work fall through the cracks?", zh: "工作在哪些环节悄悄流失？" },
+    "pain.body": { en: "The best first project is usually hiding inside a small, repeated frustration.", zh: "最值得先解决的项目，通常藏在每天反复出现的小麻烦里。" },
+    "pain.1": { en: "A quote request sits in an inbox while the day gets busy.", zh: "报价请求躺在收件箱里，忙起来就被忘记。" },
+    "pain.2": { en: "Lead details are copied by hand into a spreadsheet or CRM.", zh: "潜客资料需要手工复制到表格或 CRM。" },
+    "pain.3": { en: "The website makes calling or requesting a quote difficult on mobile.", zh: "网站在手机上不方便拨打电话或提交报价请求。" },
+    "pain.4": { en: "Estimates and bookings live in different tools with inconsistent follow-up.", zh: "报价和预约分散在不同工具中，跟进不一致。" },
+    "pain.5": { en: "Employees repeat the same data entry and status updates.", zh: "员工反复录入相同资料、更新相同状态。" },
+    "pain.6": { en: "You are unsure which AI tools are actually worth paying for.", zh: "你不确定哪些 AI 工具真正值得付费。" },
 
-let currentLanguage = readStoredLanguage() || DEFAULT_LANGUAGE;
+    "services.eyebrow": { en: "Services", zh: "服务" },
+    "services.title": { en: "Diagnose first. Build what helps.", zh: "先诊断，再搭建真正有用的系统。" },
+    "services.body": { en: "The goal is not to sell more software. It is to fix one clear operational problem with the simplest useful approach.", zh: "目标不是卖更多软件，而是用最简单有效的方式解决一个明确的运营问题。" },
+    "services.diagnose": { en: "Digital Systems Checkup", zh: "数字系统检查" },
+    "services.diagnoseBody": { en: "Map one real workflow, find the bottleneck, review the tools you already pay for, and recommend the simplest path forward.", zh: "梳理一条真实流程，找出瓶颈，检查你已经付费的工具，并推荐最简单的改进路径。" },
+    "services.diagnoseList": { en: "Configure existing software · Choose an off-the-shelf tool · Scope a focused custom fix", zh: "配置现有软件 · 选择成熟工具 · 规划小范围定制方案" },
+    "services.build": { en: "Website & Lead Capture", zh: "网站与潜客收集" },
+    "services.buildBody": { en: "Mobile-first websites built around calls, quote requests, booking, trust, speed, basic analytics, and practical local-search foundations.", zh: "以电话、报价请求、预约、信任、速度、基础分析和实用本地搜索基础为核心的移动优先网站。" },
+    "services.buildList": { en: "Clear mobile actions · Useful forms · Fast, maintainable handoff", zh: "清晰的移动端操作 · 实用表单 · 快速且易维护的交付" },
+    "services.automate": { en: "Workflow Automation & AI", zh: "流程自动化与 AI" },
+    "services.automateBody": { en: "Connect forms, CRM, email, documents, notifications, reporting, and lightweight apps. Predictable work uses rules; AI is reserved for interpretation or generation.", zh: "连接表单、CRM、邮件、文档、通知、报表和轻量应用。可预测任务使用规则，只有解释或生成内容时才使用 AI。" },
+    "services.automateList": { en: "Lead routing · Follow-up reminders · Intake, documents, and reporting", zh: "潜客分配 · 跟进提醒 · 客户信息、文档与报表" },
+    "services.scope": { en: "Projects are scoped after the Systems Checkup.", zh: "项目范围将在系统检查后确定。" },
 
-const TEXT = {
-  "ui.chooseLanguage": {
-    en: "Choose your language",
-    zh: "请选择语言"
-  },
-  "ui.chooseLanguageBody": {
-    en: "Pick English or 中文 before you enter. You can switch again anytime from the top-left corner.",
-    zh: "进入前请选择 English 或 中文。进入网站后，你也可以随时在左上角切换。"
-  },
-  "ui.english": {
-    en: "English",
-    zh: "English"
-  },
-  "ui.chinese": {
-    en: "中文",
-    zh: "中文"
-  },
-  "ui.languageShortEn": {
-    en: "EN",
-    zh: "EN"
-  },
-  "ui.languageShortZh": {
-    en: "中文",
-    zh: "中文"
-  },
-  "ui.languageSwitch": {
-    en: "Language switcher",
-    zh: "语言切换"
-  },
-  "nav.intro": { en: "Intro", zh: "首页" },
-  "nav.services": { en: "Services", zh: "服务" },
-  "nav.demos": { en: "Demos", zh: "作品" },
-  "nav.process": { en: "Process", zh: "流程" },
-  "nav.thinking": { en: "Thinking", zh: "智能体思考" },
-  "nav.publication": { en: "Publication", zh: "论文" },
-  "nav.about": { en: "About", zh: "关于" },
-  "nav.booking": { en: "Free Audit", zh: "免费诊断" },
-  "nav.contact": { en: "Contact", zh: "联系" },
-  "nav.menu": { en: "Menu", zh: "菜单" },
-  "nav.menuAria": { en: "Toggle navigation", zh: "切换导航" },
-  "nav.mainAria": { en: "Main navigation", zh: "主导航" },
-  "site.roleLabel": { en: "AI workflow builder", zh: "AI 流程搭建" },
-  "site.roleTagline": {
-    en: "Custom AI agents, small web apps, and fast Vercel launches.",
-    zh: "定制 AI 智能体、小型 Web 应用，以及快速 Vercel 上线。"
-  },
-  "site.hiringStatus": {
-    en: "Available for custom AI agent builds, web app design, and Vercel launches.",
-    zh: "可承接定制 AI 智能体、Web 应用设计与 Vercel 上线部署。"
-  },
-  "footer.line": {
-    en: "AI demos, service packages, and contact.",
-    zh: "AI 作品、服务方案与联系入口。"
-  },
-  "footer.contact": { en: "Contact", zh: "联系" },
-  "footer.links": { en: "Links", zh: "链接" },
-  "footer.services": { en: "Services", zh: "服务" },
-  "footer.demos": { en: "Demos", zh: "作品" },
-  "footer.process": { en: "Process", zh: "流程" },
-  "footer.thinking": { en: "Thinking", zh: "思考" },
-  "footer.publication": { en: "Publication", zh: "论文" },
-  "footer.audit": { en: "Free Audit", zh: "免费诊断" },
-  "footer.privacy": { en: "Privacy", zh: "隐私" },
-  "footer.terms": { en: "Terms", zh: "条款" },
-  "button.resume": { en: "Resume", zh: "简历" },
-  "button.tryGenPromptly": { en: "Try GenPromptly", zh: "试用 GenPromptly" },
-  "button.subscribeStripe": { en: "Subscribe with Stripe", zh: "通过 Stripe 订阅" },
-  "button.manageBilling": { en: "Manage Billing", zh: "管理账单" },
-  "product.noteLiveOnly": {
-    en: 'The live app URL is in <span class="inline-path">assets/js/site-config.js</span>. Billing links can be added later.',
-    zh: '在线应用链接写在 <span class="inline-path">assets/js/site-config.js</span> 里，账单链接后续可再补充。'
-  },
-  "product.noteBilling": {
-    en: 'Live app and billing URLs are in <span class="inline-path">assets/js/site-config.js</span>.',
-    zh: '在线应用与账单链接都写在 <span class="inline-path">assets/js/site-config.js</span> 里。'
-  },
-  "booking.cta": {
-    en: "Book the free 15-min AI workflow audit",
-    zh: "预约免费 15 分钟 AI 流程诊断"
-  },
-  "booking.support": {
-    en: "Use the embedded Google Appointment Schedule to pick a time, and use the direct link if you want to open it in a separate tab.",
-    zh: "可直接使用嵌入的 Google 预约日历选时间；如果你想单独打开，也可以使用直达链接。"
-  },
-  "home.title": {
-    en: "Kairui Bi | AI Workflow Builder for Founders, Creators, and Small Businesses",
-    zh: "Kairui Bi | 面向创业者、创作者与小团队的 AI 流程搭建"
-  },
-  "home.description": {
-    en: "Kairui Bi builds custom AI agents, small web apps, and fast Vercel launches for practical workflows.",
-    zh: "Kairui Bi 为真实业务流程搭建定制 AI 智能体、小型 Web 应用与快速 Vercel 上线方案。"
-  },
-  "home.heroEyebrow": { en: "AI Workflow Services / Kairui Bi", zh: "AI 流程服务 / Kairui Bi" },
-  "home.heroKicker": { en: "N8N / AI AGENTS / GITHUB / VERCEL", zh: "N8N / AI 智能体 / GITHUB / VERCEL" },
-  "home.heroTitle": { en: "Custom AI agents. Compact web apps.", zh: "定制 AI 智能体。小而精的 Web 应用。" },
-  "home.heroSubtitle": {
-    en: "I help founders, creators, and small businesses turn repetitive research, follow-up, and content work into practical AI workflows.",
-    zh: "我帮助创业者、创作者和小团队，把重复的调研、跟进与内容工作，整理成真正能落地的 AI 流程。"
-  },
-  "home.heroDescription": {
-    en: "Built with n8n or focused GitHub + Vercel apps. Small scope, clear function, clean launch.",
-    zh: "可用 n8n 搭建，也可做聚焦型 GitHub + Vercel Web 应用。范围小、功能清楚、上线干净。"
-  },
-  "home.heroPrimary": { en: "Book a free 15-min AI workflow audit", zh: "预约免费 15 分钟 AI 流程诊断" },
-  "home.heroSecondary": { en: "View services", zh: "查看服务" },
-  "home.heroProof1": { en: "n8n workflows", zh: "n8n 工作流" },
-  "home.heroProof2": { en: "GitHub + Vercel", zh: "GitHub + Vercel" },
-  "home.heroProof3": { en: "Human review", zh: "人工复核" },
-  "home.heroProof4": { en: "Fast launch", zh: "快速上线" },
-  "home.heroScroll": { en: "Services, demos, publication, contact.", zh: "服务、作品、论文与联系入口。" },
-  "home.featuredLabel": { en: "Featured visual", zh: "重点展示" },
-  "home.featuredCaption": {
-    en: "Real Science World map asset from the 2nd-place hackathon build.",
-    zh: "来自二等奖黑客松作品的真实 Science World 地图素材。"
-  },
-  "home.stageMini1Label": { en: "n8n agents", zh: "n8n 智能体" },
-  "home.stageMini1Body": { en: "Custom automations for real tasks.", zh: "围绕真实任务搭建定制自动化。" },
-  "home.founderRole": { en: "AI workflow builder", zh: "AI 流程搭建" },
-  "home.stageMini2Label": { en: "Build style", zh: "搭建方式" },
-  "home.stageMini2Body": { en: "Compact tools, clear inputs, usable outputs.", zh: "工具紧凑、输入清楚、输出可直接使用。" },
-  "home.servicesEyebrow": { en: "Services", zh: "服务" },
-  "home.servicesHeading": { en: "What I offer.", zh: "我提供什么。" },
-  "home.servicesIntro": {
-    en: "Custom AI agent builds through n8n, plus focused GitHub + Vercel web app design and installation.",
-    zh: "通过 n8n 搭建定制 AI 智能体，也承接聚焦型 GitHub + Vercel Web 应用设计与部署。"
-  },
-  "home.approachLabel": { en: "Approach", zh: "方法" },
-  "home.approachBody": { en: "One job. Small scope. Clean launch.", zh: "一个任务，小范围，干净上线。" },
-  "home.serviceFocusLabel": { en: "Service focus", zh: "服务重点" },
-  "home.serviceFocusPill": { en: "Practical", zh: "务实" },
-  "home.serviceFocusTitle": { en: "Build only what is needed.", zh: "只做真正需要的部分。" },
-  "home.serviceFocusBody": {
-    en: "I start with one repetitive task, one useful output, and one clean deployment path.",
-    zh: "我会先从一个重复任务、一个有用输出，以及一条清楚的部署路径开始。"
-  },
-  "home.serviceFocusPrimary": { en: "View service packages", zh: "查看服务方案" },
-  "home.serviceFocusSecondary": { en: "Start by email", zh: "先发邮件沟通" },
-  "home.demosEyebrow": { en: "Demos", zh: "作品" },
-  "home.demosHeading": { en: "What I build.", zh: "我做什么。" },
-  "home.demosIntro": { en: "Service packages first. Live examples below.", zh: "先看服务方案，再看实际作品。" },
-  "home.exampleLabel": { en: "Example builds", zh: "示例作品" },
-  "home.exampleBody": { en: "These demos show the kind of tools, workflows, and product surfaces I can ship.", zh: "这些作品展示了我能设计、搭建并上线的工具、流程和产品界面。" },
-  "service.card1.label": { en: "Service 01", zh: "服务 01" },
-  "service.card1.title": { en: "Custom n8n AI agent", zh: "定制 n8n AI 智能体" },
-  "service.card1.body": { en: "Build one custom AI agent around a real task.", zh: "围绕一个真实任务，搭建一套定制 AI 智能体。" },
-  "service.card1.li1": { en: "Map the trigger and output.", zh: "先梳理触发点与输出结果。" },
-  "service.card1.li2": { en: "Connect forms, sheets, email, or APIs.", zh: "连接表单、表格、邮件或 API。" },
-  "service.card1.li3": { en: "Keep review in the loop.", zh: "保留人工复核环节。" },
-  "service.card1.note": { en: "Best for: follow-up, research, summaries, and ops.", zh: "适合：跟进、调研、摘要与运营流程。" },
-  "service.card2.label": { en: "Service 02", zh: "服务 02" },
-  "service.card2.title": { en: "Local web app design", zh: "本地 Web 应用设计" },
-  "service.card2.body": { en: "Design a focused web app around one workflow.", zh: "围绕一条清晰流程，设计一个聚焦型 Web 应用。" },
-  "service.card2.li1": { en: "Build the UI around one clear job.", zh: "让界面只服务于一个清楚任务。" },
-  "service.card2.li2": { en: "Keep the scope small and usable.", zh: "控制范围，让产品真正可用。" },
-  "service.card2.li3": { en: "Ship a clean GitHub handoff.", zh: "提供干净的 GitHub 交付。" },
-  "service.card2.note": { en: "Best for: internal tools, demos, and AI utilities.", zh: "适合：内部工具、Demo 与 AI 小应用。" },
-  "service.card3.label": { en: "Service 03", zh: "服务 03" },
-  "service.card3.title": { en: "GitHub + Vercel install", zh: "GitHub + Vercel 部署安装" },
-  "service.card3.body": { en: "Set up, deploy, and hand off the app cleanly.", zh: "把应用搭好、部署好，并完成清晰交付。" },
-  "service.card3.li1": { en: "Prepare the repo, env, and deploy flow.", zh: "整理仓库、环境变量与部署流程。" },
-  "service.card3.li2": { en: "Launch on Vercel with simple updates.", zh: "在 Vercel 上线，并保持后续更新简单。" },
-  "service.card3.li3": { en: "Keep the local setup easy to maintain.", zh: "让本地环境便于维护。" },
-  "service.card3.note": { en: "Best for: founders, creators, and small teams shipping fast.", zh: "适合：创业者、创作者与需要快速上线的小团队。" },
-  "home.processEyebrow": { en: "Process", zh: "流程" },
-  "home.processHeading": { en: "How a build usually moves.", zh: "一个项目通常怎么推进。" },
-  "home.processIntro": {
-    en: "I keep the work small, visible, and launchable so a useful result arrives fast without creating a giant AI mess.",
-    zh: "我会把项目控制在小范围、可见进度、可上线的节奏里，让结果尽快可用，而不是做成一个失控的 AI 大工程。"
-  },
-  "home.processNoteLabel": { en: "Working style", zh: "合作方式" },
-  "home.processNotePill": { en: "Small scope", zh: "小范围" },
-  "home.processNoteTitle": { en: "Audit first. Build second. Launch cleanly.", zh: "先诊断，再搭建，最后干净上线。" },
-  "home.processNoteBody": {
-    en: "The goal is not to automate everything. The goal is to find one repetitive task, shape one reliable output, and make the handoff easy to maintain.",
-    zh: "目标不是把一切都自动化，而是先找准一个重复任务，做出一个可靠输出，并让后续维护和交接都足够轻松。"
-  },
-  "home.processPrimary": { en: "Book the audit", zh: "预约诊断" },
-  "home.processSecondary": { en: "See example builds", zh: "查看示例作品" },
-  "home.processStep1Label": { en: "Step 01", zh: "步骤 01" },
-  "home.processStep1Title": { en: "Map the task", zh: "先把任务画清楚" },
-  "home.processStep1Body": {
-    en: "We isolate the trigger, the decision point, and the output that actually matters.",
-    zh: "先拆出触发点、关键判断点，以及真正重要的输出结果。"
-  },
-  "home.processStep2Label": { en: "Step 02", zh: "步骤 02" },
-  "home.processStep2Title": { en: "Build the smallest useful system", zh: "搭建最小但有用的系统" },
-  "home.processStep2Body": {
-    en: "That might be an n8n workflow, a compact web app, or a GitHub + Vercel install around one job.",
-    zh: "这个系统可以是一个 n8n 工作流、一个小而清晰的 Web 工具，或一套围绕单一任务的 GitHub + Vercel 部署。"
-  },
-  "home.processStep3Label": { en: "Step 03", zh: "步骤 03" },
-  "home.processStep3Title": { en: "Keep review visible", zh: "把复核留在台面上" },
-  "home.processStep3Body": {
-    en: "The result should stay easy to inspect, edit, and trust after handoff.",
-    zh: "最终结果必须在交付后依然方便检查、修改，并且值得信任。"
-  },
-  "home.thinkingEyebrow": { en: "AI Agent Thinking", zh: "AI 智能体思考" },
-  "home.thinkingHeading": { en: "How I think about agents.", zh: "我如何理解智能体。" },
-  "home.thinkingIntro": { en: "I treat agents as scoped workflow systems, not vague magic.", zh: "我把智能体看成有边界的流程系统，而不是模糊的魔法。" },
-  "home.thinking1Title": { en: "One job first", zh: "先把一件事做好" },
-  "home.thinking1Body": { en: "Good agents should do one clear job well.", zh: "好的智能体，应该先把一个明确任务做扎实。" },
-  "home.thinking2Title": { en: "Human review stays visible", zh: "人工复核必须可见" },
-  "home.thinking2Body": { en: "Outputs should stay easy to check, edit, and trust.", zh: "输出必须方便检查、修改，也更容易建立信任。" },
-  "home.thinking3Title": { en: "Context matters", zh: "上下文很重要" },
-  "home.thinking3Body": { en: "Useful systems turn scattered information into usable context.", zh: "有用的系统会把分散信息整理成可用上下文。" },
-  "home.thinking4Title": { en: "Launch small", zh: "从小规模上线" },
-  "home.thinking4Body": { en: "Small, usable systems beat oversized AI promises.", zh: "小而可用的系统，比夸大的 AI 承诺更有价值。" },
-  "home.publicationEyebrow": { en: "Publication", zh: "论文" },
-  "home.publicationHeading": { en: "Research and publication.", zh: "研究与论文。" },
-  "home.publicationIntro": { en: "I also have a Proc. SPIE publication comparing CNN models and a Swin Transformer for facial expression recognition.", zh: "我还有一篇 Proc. SPIE 论文，比较了多种 CNN 模型与 Swin Transformer 在表情识别上的表现。" },
-  "home.paperLabel": { en: "Paper", zh: "论文" },
-  "home.paperTitle": { en: "Facial expression recognition model comparison.", zh: "表情识别模型对比研究。" },
-  "home.paperBody": { en: "MobileNetV2, VGG-16, ResNet, and Swin Transformer compared on FER2013.", zh: "在 FER2013 数据集上比较 MobileNetV2、VGG-16、ResNet 与 Swin Transformer。" },
-  "home.paperLi1": { en: "Published in Proceedings of SPIE.", zh: "发表于 Proceedings of SPIE。" },
-  "home.paperLi2": { en: "CNN vs transformer tradeoffs.", zh: "比较 CNN 与 Transformer 的取舍。" },
-  "home.paperLi3": { en: "Useful research foundation.", zh: "也是我后续实践的研究基础。" },
-  "home.readMoreLabel": { en: "Read more", zh: "继续阅读" },
-  "home.fullPagePill": { en: "Full page", zh: "详情页" },
-  "home.publicationBody": { en: "Open the full publication page for the abstract, method, and related demo.", zh: "可打开完整论文页面，查看摘要、方法和相关 Demo。" },
-  "home.viewPublication": { en: "View publication", zh: "查看论文" },
-  "home.readSPIE": { en: "Read at SPIE", zh: "前往 SPIE" },
-  "home.aboutEyebrow": { en: "About", zh: "关于" },
-  "home.aboutHeading": { en: "Background and fit.", zh: "背景与适配方向。" },
-  "home.aboutIntro": { en: "I focus on practical AI systems, usable interfaces, and clear output.", zh: "我关注的是实用 AI 系统、可用界面，以及清楚的输出结构。" },
-  "home.profileLabel": { en: "Profile", zh: "定位" },
-  "home.focusPill": { en: "Focus", zh: "重点" },
-  "home.profileTitle": { en: "AI agents, product demos, and web tools.", zh: "AI 智能体、产品 Demo 与 Web 工具。" },
-  "home.profileLi1": { en: "AI-agent workflows for research, meeting prep, and content automation.", zh: "为调研、会议准备与内容自动化搭建 AI 智能体流程。" },
-  "home.profileLi2": { en: "Small interfaces that explain the workflow clearly.", zh: "通过小而清楚的界面，把流程解释清楚。" },
-  "home.profileLi3": { en: "Best fit: AI products, tooling, and user-facing utilities.", zh: "最适合：AI 产品、工具类系统与面向用户的小应用。" },
-  "home.backgroundLabel": { en: "Background", zh: "背景" },
-  "home.studyPill": { en: "Study", zh: "学习" },
-  "home.backgroundLi1": { en: "IB student focused on AI agents and data science.", zh: "IB 学生，关注 AI 智能体与数据科学。" },
-  "home.backgroundLi2": { en: "AP Physics C tutor at Compass Point Educators since January 2025.", zh: "自 2025 年 1 月起，在 Compass Point Educators 担任 AP Physics C 导师。" },
-  "home.backgroundLi3": { en: "IB student with additional data processing study at Neoschool.", zh: "同时在 Neoschool 进行数据处理相关学习。" },
-  "home.backgroundLi4": { en: "Builder of demos that turn AI ideas into practical workflows.", zh: "持续搭建能把 AI 想法落成实际流程的 Demo。" },
-  "home.contactEyebrow": { en: "Contact", zh: "联系" },
-  "home.contactHeading": { en: "Contact and booking.", zh: "联系与预约。" },
-  "home.contactIntro": { en: "Start with a short audit or send the workflow idea by email.", zh: "你可以先预约一次简短诊断，或直接把流程想法发邮件给我。" },
-  "home.contactStart": { en: "Start here", zh: "从这里开始" },
-  "home.contactFree": { en: "Free 15 min", zh: "免费 15 分钟" },
-  "home.contactEmail": { en: "Email", zh: "邮箱" },
-  "home.contactLocation": { en: "Location", zh: "地点" },
-  "home.contactStatus": { en: "Status", zh: "状态" },
-  "home.contactPrimary": { en: "Book a free 15-min AI workflow audit", zh: "预约免费 15 分钟 AI 流程诊断" },
-  "home.contactSecondary": { en: "Email workflow details", zh: "邮件发送流程需求" },
-  "home.riskBanner": { en: "Low-risk workflows only: no sensitive customer data, no password sharing, and review stays in the loop.", zh: "仅承接低风险流程：不接触敏感客户数据、不共享密码，并保留人工复核环节。" },
-  "home.fitTitle": { en: "Good first fit", zh: "适合先聊的方向" },
-  "home.fitBody": { en: "Research, pre-call prep, follow-up, summaries, and simple AI utilities.", zh: "调研、会前准备、跟进、摘要，以及简单 AI 工具。" },
-  "home.auditTitle": { en: "What the audit covers", zh: "诊断会聊什么" },
-  "home.auditBody": { en: "We map one task and decide if automation is worth building.", zh: "我们会一起拆解一个任务，并判断它值不值得自动化。" },
-  "home.bookingLabel": { en: "Booking", zh: "预约" },
-  "home.googleMeet": { en: "Google Meet", zh: "Google Meet" },
-  "home.bookingTitle": { en: "Use the booking page for the scheduler.", zh: "使用预约页面查看时间表。" },
-  "home.bookingBody": { en: "The booking page uses your Google Appointment Schedule embed, with a direct fallback link.", zh: "预约页面已经接入 Google 预约日历，也保留了直达链接作为备用。" },
-  "home.bookingPrimary": { en: "Open booking page", zh: "打开预约页" },
-  "home.bookingSecondary": { en: "Review services", zh: "回看服务" },
-  "home.bookingLi1": { en: "Free 15-minute workflow audit.", zh: "免费 15 分钟流程诊断。" },
-  "home.bookingLi2": { en: "One repetitive process mapped into a clear next step.", zh: "把一个重复流程拆成清楚的下一步。" },
-  "home.bookingLi3": { en: "Low-risk scope with human review still in the loop.", zh: "保持低风险范围，并保留人工复核。" },
-  "booking.title": { en: "Book a Free 15-min AI Workflow Audit | Kairui Bi", zh: "预约免费 15 分钟 AI 流程诊断 | Kairui Bi" },
-  "booking.description": { en: "Book a free 15-minute AI workflow audit with Kairui Bi for research, follow-up, and content automation ideas.", zh: "预约 Kairui Bi 的免费 15 分钟 AI 流程诊断，讨论调研、跟进与内容自动化想法。" },
-  "booking.label": { en: "Booking", zh: "预约" },
-  "booking.titleBody": { en: "Book a free 15-min AI workflow audit.", zh: "预约一次免费 15 分钟 AI 流程诊断。" },
-  "booking.body": { en: "Pick a time below. If the embed does not load on your device, open the booking page in a new tab or email me directly.", zh: "请直接在下方选择时间。如果你的设备无法加载嵌入日历，可以新开标签页预约，或直接发邮件给我。" },
-  "booking.newTab": { en: "Open booking in a new tab", zh: "在新标签页打开预约" },
-  "booking.emailInstead": { en: "Email instead", zh: "改用邮件联系" },
-  "projects.title": { en: "Projects | Kairui Bi", zh: "项目作品 | Kairui Bi" },
-  "projects.description": { en: "Selected AI workflow and product projects from Kairui Bi.", zh: "Kairui Bi 的精选 AI 流程与产品项目作品。" },
-  "projects.eyebrow": { en: "Projects", zh: "项目" },
-  "projects.heading": { en: "Selected workflow and product work.", zh: "精选流程与产品作品。" },
-  "projects.intro": { en: "Practical AI systems with clear jobs and usable outputs.", zh: "实用的 AI 系统，任务清楚，输出可用。" },
-  "projects.liveDemo": { en: "Live demo", zh: "在线 Demo" },
-  "projects.liveBody": { en: "StagePulse Map is a no-login venue feedback app built in 6 hours with Vercel, Supabase, and Elastic.", zh: "StagePulse Map 是一个无需登录的场馆反馈应用，用 6 小时完成，技术栈为 Vercel、Supabase 和 Elastic。" },
-  "projects.demoList": { en: "Demo list", zh: "作品列表" },
-  "projects.demoHeading": { en: "Service packages and project examples.", zh: "服务方案与项目示例。" },
-  "projects.demoIntro": { en: "Service cards first. Example projects below.", zh: "先看服务卡片，再看具体项目。" },
-  "projects.exampleLabel": { en: "Example builds", zh: "示例作品" },
-  "projects.exampleBody": { en: "These demos show the kind of products and workflow systems I can design, build, and launch.", zh: "这些作品展示了我能设计、搭建并上线的产品与流程系统。" },
-  "gallery.title": { en: "Demo Gallery | Kairui Bi", zh: "作品展示 | Kairui Bi" },
-  "gallery.description": { en: "Compact AI demos and service packages from Kairui Bi.", zh: "Kairui Bi 的紧凑型 AI 作品与服务方案。" },
-  "gallery.eyebrow": { en: "Demo gallery", zh: "作品展示" },
-  "gallery.heading": { en: "Compact demos. Clear links.", zh: "作品简洁，链接清楚。" },
-  "gallery.intro": { en: "Service packages first. Live builds below.", zh: "先看服务方案，再看在线作品。" },
-  "gallery.featured": { en: "Featured", zh: "重点项目" },
-  "gallery.featuredBody": { en: "StagePulse Map won 2nd place at Vancouver HackerRivals and turns interior space into live feedback.", zh: "StagePulse Map 在 Vancouver HackerRivals 获得第二名，把室内空间变成实时反馈层。" },
-  "gallery.openStagePulse": { en: "Open StagePulse Map", zh: "打开 StagePulse Map" },
-  "gallery.viewHomepageDemos": { en: "View homepage demos", zh: "查看主页作品" },
-  "gallery.allDemos": { en: "All demos", zh: "全部作品" },
-  "gallery.allHeading": { en: "Service packages and demo builds.", zh: "服务方案与 Demo 作品。" },
-  "gallery.allIntro": { en: "Short service cards first. Live examples below.", zh: "先看精简服务卡片，再看在线示例。" },
-  "gallery.exampleLabel": { en: "Example builds", zh: "示例作品" },
-  "gallery.exampleBody": { en: "These demos show the kind of products and workflow systems I can design, build, and launch.", zh: "这些作品展示了我能设计、搭建并上线的产品与流程系统。" },
-  "publication.title": { en: "Publication | Kairui Bi", zh: "论文 | Kairui Bi" },
-  "publication.description": { en: "Research publication by Kairui Bi on facial expression recognition.", zh: "Kairui Bi 关于表情识别的研究论文。" },
-  "publication.heroEyebrow": { en: "Publication / Research", zh: "论文 / 研究" },
-  "publication.heroKicker": { en: "Computer vision / FER2013 / Proc. SPIE", zh: "计算机视觉 / FER2013 / Proc. SPIE" },
-  "publication.heroTitle": { en: "A comparative study on facial expression recognition using MobileNetV2, VGG-16, ResNet and Swin Transformer", zh: "基于 MobileNetV2、VGG-16、ResNet 与 Swin Transformer 的表情识别对比研究" },
-  "publication.heroSubtitle": { en: "Published in Proceedings of SPIE Volume 13545.", zh: "发表于 Proceedings of SPIE 第 13545 卷。" },
-  "publication.heroDescription": { en: "CNN facial-expression models compared with a Swin Transformer on FER2013.", zh: "在 FER2013 数据集上，对 CNN 表情识别模型与 Swin Transformer 进行了比较。" },
-  "publication.readSPIE": { en: "Read at SPIE", zh: "前往 SPIE" },
-  "publication.backPortfolio": { en: "Back to portfolio", zh: "返回作品集" },
-  "publication.openPhosphene": { en: "Open phosphene demo", zh: "打开磷光点 Demo" },
-  "publication.detailsLabel": { en: "Paper details", zh: "论文信息" },
-  "publication.detailLi1": { en: "Published: 3 March 2025.", zh: "发表时间：2025 年 3 月 3 日。" },
-  "publication.detailLi2": { en: "Proceedings Volume 13545, ICANCT 2024.", zh: "Proceedings 第 13545 卷，ICANCT 2024。" },
-  "publication.detailLi3": { en: "Conference context: Wuhan, China.", zh: "会议地点：中国武汉。" },
-  "publication.detailLi4": { en: "DOI: 10.1117/12.3060400.", zh: "DOI：10.1117/12.3060400。" },
-  "publication.signalLabel": { en: "Research signal", zh: "研究要点" },
-  "publication.signalPill": { en: "Model comparison", zh: "模型对比" },
-  "publication.datasetLabel": { en: "Dataset", zh: "数据集" },
-  "publication.datasetBody": { en: "FER2013, 48x48 images, 7 emotion classes, and augmentation.", zh: "FER2013，48x48 图像，7 类情绪，并包含数据增强。" },
-  "publication.evalLabel": { en: "Evaluation", zh: "评估指标" },
-  "publication.evalBody": { en: "Accuracy, F1, precision, recall, loss, and confusion matrices.", zh: "准确率、F1、精确率、召回率、损失和混淆矩阵。" },
-  "publication.fitLabel": { en: "Why it fits here", zh: "为何放在这里" },
-  "publication.fitBody": { en: "It connects research discipline with practical AI systems and interfaces.", zh: "它把研究训练和实际 AI 系统、界面搭建联系了起来。" },
-  "publication.glanceEyebrow": { en: "At a glance", zh: "快速概览" },
-  "publication.glanceHeading": { en: "Short paper summary.", zh: "论文简述。" },
-  "publication.glanceIntro": { en: "CNN backbones and a transformer compared under one FER setup.", zh: "在同一套 FER 实验设置下，对比 CNN 主干与 Transformer。" },
-  "publication.metric1": { en: "model families across CNN and transformer approaches", zh: "覆盖 CNN 与 Transformer 的模型家族" },
-  "publication.metric2": { en: "FER2013 emotion categories", zh: "FER2013 情绪类别" },
-  "publication.metric3": { en: "input image size", zh: "输入图像尺寸" },
-  "publication.metric4": { en: "training epochs with evaluation visuals", zh: "训练轮次与评估可视化" },
-  "publication.summaryLabel": { en: "Summary", zh: "摘要" },
-  "publication.summaryPill": { en: "Paper overview", zh: "论文概览" },
-  "publication.summaryBody": { en: "This paper compares CNN local-feature extractors with a Swin Transformer's global-feature approach.", zh: "这篇论文比较了 CNN 的局部特征提取方式与 Swin Transformer 的全局特征方法。" },
-  "publication.methodLabel": { en: "Method", zh: "方法" },
-  "publication.methodPill": { en: "Evaluation setup", zh: "评估设置" },
-  "publication.methodLi1": { en: "Pretrained MobileNetV2, VGG-16, ResNet, and Swin Transformer models.", zh: "使用预训练的 MobileNetV2、VGG-16、ResNet 与 Swin Transformer 模型。" },
-  "publication.methodLi2": { en: "FER2013 benchmark with 48x48 images across 7 classes.", zh: "FER2013 基准数据集，48x48 图像，7 个类别。" },
-  "publication.methodLi3": { en: "20+ training epochs with augmentation and visual review.", zh: "20 轮以上训练，并结合数据增强与可视化复核。" },
-  "publication.methodLi4": { en: "Accuracy, F1, precision, recall, loss, and confusion matrices.", zh: "评估包括准确率、F1、精确率、召回率、损失和混淆矩阵。" },
-  "publication.relatedEyebrow": { en: "Related demo", zh: "相关 Demo" },
-  "publication.relatedHeading": { en: "A live experiment extending the site's vision work.", zh: "一个延伸视觉研究方向的在线实验。" },
-  "publication.relatedIntro": { en: "The portfolio also includes a browser-based Phosphene Vision Simulator built with Pulse2Percept.", zh: "作品集中还包含一个基于 Pulse2Percept 的浏览器版磷光点视觉模拟器。" },
-  "publication.demoLabel": { en: "Phosphene demo", zh: "磷光点 Demo" },
-  "publication.demoPill": { en: "Live experiment", zh: "在线实验" },
-  "publication.demoBody": { en: "This web demo lets users upload a JPG or PNG and generate AlphaAMS, ArgusII, and PRIMA simulations.", zh: "这个网页 Demo 允许用户上传 JPG 或 PNG，生成 AlphaAMS、ArgusII 与 PRIMA 模拟结果。" },
-  "publication.demoLi1": { en: "Lightweight browser demo for comparing prosthetic vision outputs.", zh: "轻量级浏览器 Demo，用于比较义眼视觉输出。" },
-  "publication.demoLi2": { en: "Upload guidance: keep files under 50 KB and avoid sensitive images.", zh: "上传建议：文件小于 50 KB，避免敏感图像。" },
-  "publication.demoLi3": { en: "Shows scientific and assistive-tech interaction design.", zh: "展示了科研与辅助科技交互设计能力。" },
-  "publication.openLiveDemo": { en: "Open live demo", zh: "打开在线 Demo" },
-  "publication.contextLabel": { en: "Portfolio context", zh: "作品集语境" },
-  "publication.contextPill": { en: "Why it belongs here", zh: "为什么放在这里" },
-  "publication.contextBody": { en: "The publication and simulator show research-informed computer vision, interface clarity, and practical demo building.", zh: "这篇论文与模拟器一起展示了我在研究驱动的计算机视觉、界面清晰度以及实用 Demo 搭建上的能力。" },
-  "publication.backDemoPortfolio": { en: "Back to demo portfolio", zh: "返回作品集" },
-  "gen.title": { en: "GenPromptly | Kairui Bi", zh: "GenPromptly | Kairui Bi" },
-  "gen.description": { en: "GenPromptly is a prompt-refinement project by Kairui Bi for turning rough prompts into clearer instructions.", zh: "GenPromptly 是 Kairui Bi 的提示词优化项目，用于把粗糙输入整理成更清楚的指令。" },
-  "gen.heroEyebrow": { en: "Project detail", zh: "项目详情" },
-  "gen.heroKicker": { en: "Prompt refinement / Product thinking / Structured output", zh: "提示词优化 / 产品思路 / 结构化输出" },
-  "gen.heroSubtitle": { en: "A narrow prompt-refinement product inside the broader portfolio.", zh: "这是作品集里一个聚焦提示词优化的小产品。" },
-  "gen.heroDescription": { en: "GenPromptly turns rough prompt drafts into clearer, reusable instructions without extra complexity.", zh: "GenPromptly 能把粗糙的提示词草稿整理成更清楚、可复用的指令，同时不增加额外复杂度。" },
-  "gen.backDemos": { en: "Back to demos", zh: "返回作品" },
-  "gen.productAccess": { en: "Product access", zh: "产品入口" },
-  "gen.liveLabel": { en: "Live product", zh: "在线产品" },
-  "gen.liveBody": { en: 'The live web app is available at <a class="back-link" href="https://genpromptly.app/" target="_blank" rel="noopener noreferrer">GenPromptly.app</a>.', zh: '在线版本可直接访问 <a class="back-link" href="https://genpromptly.app/" target="_blank" rel="noopener noreferrer">GenPromptly.app</a>。' },
-  "gen.liveLi1": { en: "Shows product framing.", zh: "展示产品化思路。" },
-  "gen.liveLi2": { en: "Turns vague requests into structured prompts.", zh: "把模糊需求整理成结构化提示词。" },
-  "gen.liveLi3": { en: "Adds interface discipline to the portfolio.", zh: "也让作品集具备更完整的产品界面表达。" },
-  "gen.overviewEyebrow": { en: "Overview", zh: "概览" },
-  "gen.overviewHeading": { en: "A practical product for clearer prompts.", zh: "一个让提示词更清楚的实用产品。" },
-  "gen.overviewIntro": { en: "One clear job: improve a prompt without adding complexity.", zh: "它只做一件清楚的事：在不增加复杂度的前提下优化提示词。" },
-  "gen.card1Title": { en: "Start rough", zh: "从粗稿开始" },
-  "gen.card1Body": { en: "GenPromptly starts from rough input.", zh: "GenPromptly 从粗糙输入开始处理。" },
-  "gen.card2Title": { en: "Add structure", zh: "补足结构" },
-  "gen.card2Body": { en: "It sharpens objective, tone, and boundaries.", zh: "它会把目标、语气与边界整理清楚。" },
-  "gen.card3Title": { en: "Keep it reusable", zh: "保留复用性" },
-  "gen.card3Body": { en: "The result is easier to save, adapt, and reuse.", zh: "结果更容易保存、调整与重复使用。" },
-  "gen.card4Title": { en: "Stay focused", zh: "保持聚焦" },
-  "gen.card4Body": { en: "The interface stays tool-like and focused.", zh: "界面保持工具感和聚焦感。" },
-  "gen.exampleEyebrow": { en: "Example", zh: "示例" },
-  "gen.exampleHeading": { en: "Input becomes easier to trust.", zh: "输入会变得更值得信任。" },
-  "gen.exampleIntro": { en: "The value is clarity, not volume.", zh: "它的价值在于清晰，而不是堆砌文字。" },
-  "gen.beforeLabel": { en: "Before", zh: "优化前" },
-  "gen.beforePill": { en: "Draft", zh: "草稿" },
-  "gen.beforeBody": { en: "help me write a prompt for product feedback and make it organized", zh: "帮我写一个关于产品反馈的 prompt，并且整理得更清楚" },
-  "gen.afterLabel": { en: "After", zh: "优化后" },
-  "gen.afterPill": { en: "Refined", zh: "整理后" },
-  "gen.afterBody": { en: "Ask users for product feedback in three parts: what worked, what felt unclear, and what to improve first.", zh: "请从三个部分收集产品反馈：哪些地方有效、哪些地方不清楚、以及最应该优先改进什么。" },
-  "gen.accessEyebrow": { en: "Access and billing", zh: "入口与计费" },
-  "gen.accessHeading": { en: "Ready for live links.", zh: "已为在线链接做好准备。" },
-  "gen.accessIntro": { en: "The CTA area uses configuration values, so access can change without layout edits.", zh: "这个 CTA 区域读取配置值，因此未来更换入口时不需要重改版式。" },
-  "gen.accessTitle": { en: "Product access", zh: "产品入口" },
-  "gen.accessBody": { en: 'The live app is already reachable at <a class="back-link" href="https://genpromptly.app/" target="_blank" rel="noopener noreferrer">GenPromptly.app</a>. Billing links can be added later.', zh: '在线应用已可通过 <a class="back-link" href="https://genpromptly.app/" target="_blank" rel="noopener noreferrer">GenPromptly.app</a> 访问，账单链接后续可再补充。' },
-  "gen.contextTitle": { en: "Portfolio context", zh: "作品集语境" },
-  "gen.contextBody": { en: "GenPromptly sits inside the broader proof-of-work story instead of defining the whole site.", zh: "GenPromptly 是整个作品集能力证明中的一部分，而不是网站唯一主题。" },
-  "demo.whatItDoes": { en: "What it does", zh: "它做什么" },
-  "demo.bestFor": { en: "Best for", zh: "适合场景" }
-};
+    "system.eyebrow": { en: "Combined service", zh: "组合服务" },
+    "system.title": { en: "From new inquiry to organized follow-up.", zh: "从新咨询到有序跟进。" },
+    "system.body": { en: "A Lead-to-Job System connects the website and everyday tools around one outcome: fewer missed opportunities and a workflow the owner can understand.", zh: "潜客到订单系统把网站和日常工具连接起来，目标只有一个：减少遗漏，让业主看得懂整个流程。" },
+    "system.website": { en: "Website / Ad / Phone", zh: "网站 / 广告 / 电话" },
+    "system.capture": { en: "Lead capture", zh: "潜客收集" },
+    "system.qualify": { en: "Qualification", zh: "需求筛选" },
+    "system.book": { en: "Booking", zh: "预约" },
+    "system.estimate": { en: "Estimate", zh: "报价" },
+    "system.follow": { en: "Follow-up", zh: "跟进" },
+    "system.job": { en: "Job", zh: "订单" },
+    "system.review": { en: "Review / Reporting", zh: "评价 / 报表" },
+    "system.callout": { en: "This is a custom service, not another monthly software product.", zh: "这是定制服务，不是又一个按月收费的软件产品。" },
 
-const DEMO_TEXT = {
-  "stagepulse-map": {
-    status: { en: "2nd place at HackerRivals", zh: "HackerRivals 第二名" },
-    impact: {
-      en: "Built in 6 hours at Science World and won 2nd place at Vancouver HackerRivals.",
-      zh: "在 Science World 用 6 小时完成，并获得 Vancouver HackerRivals 第二名。"
-    },
-    tags: {
-      en: ["Hackathon", "No login", "Live map"],
-      zh: ["黑客松", "无需登录", "实时地图"]
-    },
-    output: {
-      en: "A live venue map for location-based comments, votes, and moderated interior feedback.",
-      zh: "一个可在室内空间上发表评论、投票，并进行内容审核的实时场馆地图。"
-    },
-    bestFor: {
-      en: "Events, campuses, malls, museums, and any building that needs interior feedback.",
-      zh: "适合活动现场、校园、商场、博物馆，以及任何需要室内反馈的建筑。"
-    },
-    actionLabel: { en: "Open live app", zh: "打开在线应用" },
-    extraActionLabel: { en: "HackerRivals", zh: "HackerRivals" },
-    imageAlt: {
-      en: "StagePulse Map using the real Science World level map from the hackathon demo.",
-      zh: "StagePulse Map 使用黑客松作品中的真实 Science World 楼层地图。"
+    "industries.eyebrow": { en: "Industries", zh: "行业" },
+    "industries.title": { en: "Focused on businesses with repeated inquiries and handoffs.", zh: "专注于有重复咨询与交接流程的企业。" },
+    "industries.body": { en: "Home services are the primary focus today, with room for other Canadian local businesses that share similar lead and admin workflows.", zh: "目前主要服务家居服务行业，也欢迎有类似潜客与行政流程的加拿大本地企业。" },
+    "industries.home": { en: "Home Services", zh: "家居服务" },
+    "industries.homeBody": { en: "Websites and lead workflows for HVAC, plumbing, electrical, roofing, restoration, landscaping, and renovation businesses.", zh: "为暖通、管道、电气、屋顶、修复、园林和装修企业提供网站与潜客流程。" },
+    "industries.restaurant": { en: "Restaurants", zh: "餐饮" },
+    "industries.restaurantBody": { en: "Better menu and contact experiences, reservations, customer inquiries, review requests, basic reporting, and repetitive admin.", zh: "改善菜单与联系体验、预约、顾客咨询、评价请求、基础报表和重复行政工作。" },
+    "industries.other": { en: "Other Local Services", zh: "其他本地服务" },
+    "industries.otherBody": { en: "If your business handles recurring inquiries, bookings, estimates, follow-up, or administrative handoffs, it may be a fit.", zh: "如果你的企业经常处理咨询、预约、报价、跟进或行政交接，也可能适合。" },
+    "industries.contractors": { en: "See the contractor page", zh: "查看承包商专页" },
+
+    "examples.eyebrow": { en: "Results / Examples", zh: "成果 / 示例" },
+    "examples.title": { en: "Real builder proof, clearly separated from demos.", zh: "真实能力证明，与演示场景明确区分。" },
+    "examples.body": { en: "Local-business case studies will be added only when there is real client permission and measurable evidence.", zh: "只有获得真实客户许可并有可衡量证据后，才会加入本地企业案例。" },
+    "examples.demoLabel": { en: "Demo · No client results claimed", zh: "演示 · 不代表真实客户成果" },
+    "examples.plumbing": { en: "Plumbing Lead Follow-up", zh: "管道服务潜客跟进" },
+    "examples.plumbingBody": { en: "A quote request is captured, routed by service area, acknowledged, assigned, and kept visible until the estimate is followed up.", zh: "报价请求被收集后按服务区域分配、自动确认、指派负责人，并持续显示直到完成报价跟进。" },
+    "examples.restaurant": { en: "Restaurant Inquiry & Review Flow", zh: "餐厅咨询与评价流程" },
+    "examples.restaurantBody": { en: "Customer inquiries are organized, reservation questions reach the right person, and review requests are queued after a completed visit.", zh: "顾客咨询得到整理，预约问题交给正确负责人，并在到店完成后安排评价邀请。" },
+    "examples.proof": { en: "Builder proof", zh: "搭建能力证明" },
+    "examples.stage": { en: "StagePulse Map", zh: "StagePulse Map" },
+    "examples.stageBody": { en: "Built in six hours at Science World and awarded 2nd place at Vancouver HackerRivals. Proof that I can scope and ship working software quickly—not a local-business case study.", zh: "在 Science World 六小时内完成，并获 Vancouver HackerRivals 二等奖。它证明我能快速确定范围并交付可用软件，但不是本地企业案例。" },
+    "examples.spie": { en: "Published technical work", zh: "已发表技术研究" },
+    "examples.spieBody": { en: "A Proceedings of SPIE publication comparing facial-expression recognition models. Evidence of technical depth, kept secondary to business outcomes.", zh: "一篇发表于 Proceedings of SPIE 的表情识别模型比较论文，用于证明技术深度，但不会盖过业务成果。" },
+    "examples.openStage": { en: "Open StagePulse", zh: "打开 StagePulse" },
+    "examples.readPaper": { en: "View publication", zh: "查看论文" },
+
+    "process.eyebrow": { en: "How I work", zh: "合作方式" },
+    "process.title": { en: "Show me how the work moves.", zh: "先让我看看工作如何流动。" },
+    "process.body": { en: "The goal is not to automate everything. It is to remove one specific bottleneck while keeping the system understandable.", zh: "目标不是把一切自动化，而是在系统仍然易懂的前提下消除一个具体瓶颈。" },
+    "process.1": { en: "Diagnose the workflow", zh: "诊断流程" },
+    "process.1Body": { en: "Map the trigger, people, tools, decisions, and handoffs around one real process.", zh: "围绕一条真实流程梳理触发点、人员、工具、决策与交接。" },
+    "process.2": { en: "Prescribe the simplest useful fix", zh: "提出最简单有效的方案" },
+    "process.2Body": { en: "Improve existing software first. Recommend a new product or custom build only when it earns its place.", zh: "先改善现有软件，只有确有必要时才推荐新产品或定制开发。" },
+    "process.3": { en: "Build and connect it", zh: "搭建并连接" },
+    "process.3Body": { en: "Create the website flow, integration, automation, or lightweight app with review points visible.", zh: "搭建网站流程、集成、自动化或轻量应用，并保留清晰复核点。" },
+    "process.4": { en: "Measure and hand it off", zh: "衡量并交付" },
+    "process.4Body": { en: "Test the system, document how it works, and make ownership clear after launch.", zh: "测试系统、记录使用方式，并明确上线后的维护责任。" },
+
+    "faq.eyebrow": { en: "FAQ", zh: "常见问题" },
+    "faq.title": { en: "Questions local owners actually ask.", zh: "本地企业主真正会问的问题。" },
+    "faq.q1": { en: "Do I need to know anything about AI?", zh: "我需要懂 AI 吗？" },
+    "faq.a1": { en: "No. We start with the business problem and only use AI when it is useful. Many good fixes are a clearer website, better software setup, or straightforward automation.", zh: "不需要。我们从业务问题开始，只在真正有用时使用 AI。很多好方案只是更清晰的网站、更合理的软件配置或简单自动化。" },
+    "faq.q2": { en: "Can you work with the software we already use?", zh: "你能使用我们现有的软件吗？" },
+    "faq.a2": { en: "Usually, yes. Integration and better configuration come before replacement. The checkup identifies what should stay, what should connect, and what is creating unnecessary work.", zh: "通常可以。集成和优化配置优先于替换。系统检查会明确哪些工具应该保留、哪些需要连接、哪些正在制造不必要的工作。" },
+    "faq.q3": { en: "Do you replace our CRM or accounting system?", zh: "你会替换我们的 CRM 或会计系统吗？" },
+    "faq.a3": { en: "Not by default. Core systems should be replaced only for a clear reason. I can improve the inputs, handoffs, reminders, and reporting around them.", zh: "默认不会。只有理由充分时才应替换核心系统。我可以改善它们周围的输入、交接、提醒和报表。" },
+    "faq.q4": { en: "What kinds of tasks can be automated?", zh: "哪些任务可以自动化？" },
+    "faq.a4": { en: "Lead routing, acknowledgements, reminders, status updates, document handling, customer intake, notifications, and routine reporting are common starting points.", zh: "潜客分配、自动确认、提醒、状态更新、文档处理、客户信息收集、通知和常规报表都是常见起点。" },
+    "faq.q5": { en: "Can you rebuild an existing website?", zh: "你能改造现有网站吗？" },
+    "faq.a5": { en: "Yes. The first step is deciding whether the current site needs a focused conversion improvement or a full rebuild.", zh: "可以。第一步是判断现有网站只需针对转化做改进，还是确实需要完整重建。" },
+    "faq.q6": { en: "How long does a small project take?", zh: "小型项目需要多久？" },
+    "faq.a6": { en: "Timing depends on access, integrations, and scope. After the checkup, you receive a defined proposal and timeline before work begins.", zh: "时间取决于访问权限、集成和范围。系统检查后，你会在开工前收到明确的方案和时间表。" },
+    "faq.q7": { en: "What happens after launch?", zh: "上线后怎么办？" },
+    "faq.a7": { en: "The system is tested, documented, and handed off. Ongoing support can be scoped when the workflow needs monitoring or continued improvement.", zh: "系统会经过测试、记录并完成交付。如果流程需要监控或持续改进，可以另行确定支持范围。" },
+    "faq.q8": { en: "How do you handle sensitive business data?", zh: "你如何处理敏感业务数据？" },
+    "faq.a8": { en: "Data access is minimized, credentials are not placed in public code, and sensitive workflows are reviewed before implementation. Any specific compliance requirement must be identified during scoping.", zh: "尽量减少数据访问，不把凭据放进公开代码，并在实施前审查敏感流程。任何特定合规要求都需要在确定范围时说明。" },
+
+    "form.eyebrow": { en: "Not ready to book?", zh: "还没准备好预约？" },
+    "form.title": { en: "Tell me one process you want to improve.", zh: "告诉我一个你想改善的流程。" },
+    "form.body": { en: "Share the short version. I will reply with the most useful next step, even if that means recommending an existing tool instead of a custom build.", zh: "简单描述即可。我会回复最有用的下一步，即使答案是建议使用现有工具而不是定制开发。" },
+    "form.name": { en: "Name", zh: "姓名" },
+    "form.business": { en: "Business name", zh: "企业名称" },
+    "form.email": { en: "Email", zh: "电子邮箱" },
+    "form.phone": { en: "Phone (optional)", zh: "电话（选填）" },
+    "form.website": { en: "Website (optional)", zh: "网站（选填）" },
+    "form.industry": { en: "Industry", zh: "行业" },
+    "form.industryPlaceholder": { en: "Select an industry", zh: "请选择行业" },
+    "form.homeServices": { en: "Home services / contractors", zh: "家居服务 / 承包商" },
+    "form.restaurant": { en: "Restaurant / hospitality", zh: "餐饮 / 酒店" },
+    "form.professional": { en: "Professional services", zh: "专业服务" },
+    "form.other": { en: "Other local service", zh: "其他本地服务" },
+    "form.process": { en: "What is one process you want to improve?", zh: "你最想改善的一个流程是什么？" },
+    "form.contact": { en: "Preferred contact method", zh: "偏好的联系方式" },
+    "form.emailMethod": { en: "Email", zh: "电子邮件" },
+    "form.phoneMethod": { en: "Phone", zh: "电话" },
+    "form.eitherMethod": { en: "Either", zh: "均可" },
+    "form.submit": { en: "Send my workflow", zh: "提交我的流程" },
+    "form.sending": { en: "Sending…", zh: "发送中…" },
+    "form.successTitle": { en: "Thanks—your workflow is on its way.", zh: "谢谢，你的流程信息已发送。" },
+    "form.successBody": { en: "I will review it and reply with a practical next step. You can also book the free Systems Checkup now.", zh: "我会查看并回复一个实用的下一步。你也可以现在预约免费系统检查。" },
+    "form.error": { en: "The form could not send right now. Your entries are still here—use the email option below.", zh: "表单暂时无法发送。你填写的内容仍在，请使用下方电子邮件选项。" },
+    "form.unconfigured": { en: "Online form delivery is being configured. You can still send these details by email.", zh: "在线表单正在配置中，你仍可通过电子邮件发送这些信息。" },
+    "form.emailFallback": { en: "Email these details", zh: "通过邮件发送这些信息" },
+
+    "about.eyebrow": { en: "About", zh: "关于" },
+    "about.title": { en: "One builder, one accountable handoff.", zh: "一位搭建者，一次负责到底的交付。" },
+    "about.body": { en: "I’m Kairui Bi, a BC-based builder working across practical automation and lightweight web software. I prefer small systems that solve a measurable problem over large technology projects that are hard to maintain.", zh: "我是 Kairui Bi，一名常驻卑诗省、专注实用自动化与轻量网站软件的搭建者。我更喜欢解决可衡量问题的小系统，而不是难以维护的大型技术项目。" },
+    "about.proof": { en: "My technical background includes published computer-vision research and a 2nd-place HackerRivals build. Those are proof that I can ship and understand complex systems—not substitutes for local-business results.", zh: "我的技术背景包括已发表的计算机视觉研究和 HackerRivals 二等奖作品。它们证明我能交付并理解复杂系统，但不会被包装成本地企业成果。" },
+    "about.final": { en: "Show me one workflow that wastes your time.", zh: "告诉我一个正在浪费你时间的流程。" },
+
+    "booking.title": { en: "Book a Free Systems Checkup | Kairui Bi", zh: "预约免费系统检查 | Kairui Bi" },
+    "booking.description": { en: "Book a free 15-minute Systems Checkup with Kairui Bi for a Canadian local-business website or workflow.", zh: "预约与 Kairui Bi 的免费 15 分钟系统检查，讨论加拿大本地企业的网站或工作流程。" },
+    "booking.eyebrow": { en: "Free 15-minute fit check", zh: "免费 15 分钟匹配检查" },
+    "booking.heading": { en: "Start with the workflow, not the software.", zh: "从工作流程开始，而不是从软件开始。" },
+    "booking.body": { en: "Bring one process that feels slow, manual, or easy to lose track of. We will decide whether the next step is a website change, better configuration, an existing product, an integration, or a custom system.", zh: "带来一个缓慢、手工或容易失去跟踪的流程。我们会判断下一步应是网站改进、配置优化、现有产品、系统集成还是定制方案。" },
+    "booking.expect1": { en: "One real workflow discussed", zh: "讨论一条真实流程" },
+    "booking.expect2": { en: "No obligation to use AI", zh: "无需预设必须使用 AI" },
+    "booking.expect3": { en: "A clear next step if there is a fit", zh: "若适合合作，明确下一步" },
+    "booking.open": { en: "Open scheduler in a new tab", zh: "在新标签页打开预约" },
+    "booking.email": { en: "Email instead", zh: "改用电子邮件" },
+
+    "contractor.title": { en: "Contractor Websites & Lead Follow-up Systems | Kairui Bi", zh: "承包商网站与潜客跟进系统 | Kairui Bi" },
+    "contractor.description": { en: "Websites and simple lead follow-up systems for Canadian contractors, built by Kairui Bi.", zh: "Kairui Bi 为加拿大承包商搭建网站与简单潜客跟进系统。" },
+    "contractor.eyebrow": { en: "For Canadian contractors", zh: "面向加拿大承包商" },
+    "contractor.hero": { en: "Turn more contractor inquiries into organized follow-up.", zh: "把更多承包商咨询转化为有序跟进。" },
+    "contractor.heroBody": { en: "I build websites and simple systems for Canadian contractors so new inquiries are captured, routed, followed up, and easy to review.", zh: "我为加拿大承包商搭建网站和简单系统，让新咨询得到收集、分配、跟进并便于查看。" },
+    "contractor.capture": { en: "01 · Capture", zh: "01 · 收集" },
+    "contractor.captureBody": { en: "Calls and quote requests arrive with useful job details.", zh: "电话和报价请求会附带有用的工作详情。" },
+    "contractor.route": { en: "02 · Route", zh: "02 · 分配" },
+    "contractor.routeBody": { en: "Service area, urgency, scheduling, and dispatch context stay together.", zh: "服务区域、紧急程度、排期和派工信息保持统一。" },
+    "contractor.follow": { en: "03 · Follow up", zh: "03 · 跟进" },
+    "contractor.followBody": { en: "Open estimates, invoices, and review requests remain visible.", zh: "未完成的报价、发票和评价邀请始终可见。" },
+    "contractor.painEyebrow": { en: "Calls · Quotes · Estimates", zh: "电话 · 报价请求 · 报价" },
+    "contractor.painTitle": { en: "A missed call should not become a missed job.", zh: "漏接一个电话，不该等于错过一份订单。" },
+    "contractor.pain1": { en: "Quote requests arrive without the job details needed to respond.", zh: "报价请求没有包含回复所需的工作详情。" },
+    "contractor.pain2": { en: "Calls, forms, and messages are tracked in different places.", zh: "电话、表单和消息分散在不同地方。" },
+    "contractor.pain3": { en: "Estimates are sent, but follow-up depends on someone remembering.", zh: "报价已经发出，但跟进完全依赖人工记忆。" },
+    "contractor.before": { en: "Before", zh: "改进前" },
+    "contractor.after": { en: "After", zh: "改进后" },
+    "contractor.change": { en: "Workflow change", zh: "流程改进" },
+    "contractor.visible": { en: "Make the handoff visible.", zh: "让每次交接清晰可见。" },
+    "contractor.beforeBody": { en: "Missed call → note on paper → details re-entered → estimate sent → follow-up uncertain", zh: "漏接电话 → 纸上记录 → 重复录入 → 发送报价 → 跟进不确定" },
+    "contractor.afterBody": { en: "Inquiry captured → service area checked → job details routed → estimate tracked → reminder queued", zh: "收集咨询 → 检查服务区域 → 分配工作详情 → 跟踪报价 → 安排提醒" },
+    "contractor.helpTitle": { en: "Three ways I can help", zh: "我可以从三个方面帮助你" },
+    "contractor.help1": { en: "A website built around calls and quote requests", zh: "围绕电话和报价请求设计的网站" },
+    "contractor.help1Body": { en: "Clear service areas, mobile contact actions, useful job-detail forms, trust signals, and fast pages.", zh: "清晰服务区域、移动联系操作、实用工作详情表单、信任信息和快速页面。" },
+    "contractor.help2": { en: "Organized inquiry and dispatch handoffs", zh: "有序的咨询与派工交接" },
+    "contractor.help2Body": { en: "Route calls and forms to the right person with consistent job details, status, and scheduling context.", zh: "把电话和表单交给正确负责人，并保持工作详情、状态和排期信息一致。" },
+    "contractor.help3": { en: "Estimate and follow-up visibility", zh: "报价与跟进可见性" },
+    "contractor.help3Body": { en: "Keep estimates, reminders, invoices, and review requests visible without replacing your core systems by default.", zh: "让报价、提醒、发票和评价邀请保持可见，同时默认不替换你的核心系统。" },
+    "contractor.demoTitle": { en: "Demo: Plumbing Lead Follow-up", zh: "演示：管道服务潜客跟进" },
+    "contractor.demoBody": { en: "This example uses dummy data. It demonstrates the workflow, not a client result.", zh: "此示例使用虚拟数据，用于展示流程，并非客户成果。" },
+    "contractor.step1": { en: "Customer submits address, issue, urgency, and preferred time.", zh: "客户提交地址、问题、紧急程度和偏好时间。" },
+    "contractor.step2": { en: "The system checks the service area and alerts the dispatcher.", zh: "系统检查服务区域并提醒调度人员。" },
+    "contractor.step3": { en: "Job details stay together through scheduling and estimate preparation.", zh: "工作详情在排期和报价准备过程中保持统一。" },
+    "contractor.step4": { en: "If the estimate is still open, a follow-up reminder appears.", zh: "如果报价仍未结束，系统会显示跟进提醒。" },
+    "contractor.faqTitle": { en: "Contractor questions", zh: "承包商常见问题" },
+    "contractor.faq1": { en: "Do I need a new CRM?", zh: "我需要新的 CRM 吗？" },
+    "contractor.faq1a": { en: "Usually not. The first goal is to make your existing website, inbox, scheduling, CRM, or job software work together more clearly.", zh: "通常不需要。第一目标是让你现有的网站、收件箱、排期、CRM 或工作管理软件更清晰地协同。" },
+    "contractor.faq2": { en: "Can this work for emergency or after-hours calls?", zh: "这适用于紧急或非工作时间电话吗？" },
+    "contractor.faq2a": { en: "The intake and alerting flow can distinguish urgency and route information, but it should support—not replace—your real emergency response process.", zh: "信息收集与提醒流程可以区分紧急程度并分配信息，但它应支持而不是替代真实的紧急响应流程。" },
+    "contractor.faq3": { en: "Can you show exact ROI?", zh: "你能展示准确的投资回报吗？" },
+    "contractor.faq3a": { en: "Not before measuring your current workflow. We first define what is being missed or repeated, then agree on practical measures for the project.", zh: "在衡量现有流程前不能。我们会先明确哪些工作被遗漏或重复，再共同确定项目的实际衡量方式。" },
+
+    "privacy.settings": { en: "Privacy choices", zh: "隐私选择" },
+    "consent.title": { en: "Your privacy choices", zh: "你的隐私选择" },
+    "consent.body": { en: "This site works without optional tracking. If configured later, analytics helps improve the site and marketing measurement helps assess ads. Nothing optional loads until you choose.", zh: "本网站无需可选追踪也能正常运行。若日后配置，分析用于改善网站，营销衡量用于评估广告。在你选择前不会加载任何可选追踪。" },
+    "consent.analytics": { en: "Analytics", zh: "分析" },
+    "consent.analyticsBody": { en: "Measure visits and on-site actions.", zh: "衡量访问与站内操作。" },
+    "consent.marketing": { en: "Marketing", zh: "营销" },
+    "consent.marketingBody": { en: "Measure ad campaigns and future retargeting.", zh: "衡量广告活动和未来再营销。" },
+    "consent.accept": { en: "Save choices", zh: "保存选择" },
+    "consent.decline": { en: "Decline optional", zh: "拒绝可选追踪" },
+    "consent.privacy": { en: "Read privacy policy", zh: "阅读隐私政策" },
+
+    "footer.tagline": { en: "Websites, lead capture, and practical automation for Canadian local businesses.", zh: "为加拿大本地企业提供网站、潜客收集与实用自动化。" },
+    "footer.based": { en: "Based in BC · Serving Canada", zh: "常驻卑诗省 · 服务加拿大" },
+    "footer.explore": { en: "Explore", zh: "浏览" },
+    "footer.contact": { en: "Contact", zh: "联系" },
+    "footer.contractors": { en: "For contractors", zh: "承包商专页" },
+    "footer.projects": { en: "Builder proof", zh: "搭建能力证明" },
+    "footer.privacy": { en: "Privacy", zh: "隐私" },
+    "footer.terms": { en: "Terms", zh: "条款" }
+  };
+
+  function readStorage(key) {
+    try {
+      return window.localStorage.getItem(key);
+    } catch {
+      return null;
     }
-  },
-  "ai-digest": {
-    title: { en: "Daily AI digest system", zh: "每日 AI 摘要系统" },
-    status: { en: "Founder-ready research brief", zh: "适合创始人的研究简报" },
-    impact: {
-      en: "One brief replaces a messy morning of scanning tabs and feeds.",
-      zh: "一份简报，替代早上到处刷标签页和信息流的混乱过程。"
-    },
-    tags: {
-      en: ["n8n", "Daily email", "Research workflow"],
-      zh: ["n8n", "每日邮件", "研究流程"]
-    },
-    output: {
-      en: "A daily email with links and the top takeaways.",
-      zh: "每天发送一封带链接和重点结论的摘要邮件。"
-    },
-    bestFor: {
-      en: "Founders and small teams that want signal without doomscrolling.",
-      zh: "适合想获得高质量信息、又不想不停刷内容的创业者和小团队。"
+  }
+
+  function writeStorage(key, value) {
+    try {
+      window.localStorage.setItem(key, value);
+    } catch {
+      // The site remains usable when storage is unavailable.
     }
-  },
-  "sales-copilot": {
-    title: { en: "Pre-call brief system", zh: "会前简报系统" },
-    status: { en: "Meeting-ready research", zh: "面向会议的调研简报" },
-    impact: {
-      en: "It turns fragmented research into one fast review step.",
-      zh: "它能把零散调研压缩成一次快速可读的会前复核。"
-    },
-    tags: {
-      en: ["Research", "Pre-call prep", "Client briefs"],
-      zh: ["调研", "会前准备", "客户简报"]
-    },
-    output: {
-      en: "A pre-call brief with background and talking points.",
-      zh: "输出一份包含背景信息与沟通重点的会前简报。"
-    },
-    bestFor: {
-      en: "Founders, agencies, and sales teams with recurring calls.",
-      zh: "适合创业者、代理团队，以及经常开客户电话会议的销售团队。"
+  }
+
+  function getText(key, fallback) {
+    return TEXT[key]?.[language] || TEXT[key]?.en || fallback || key;
+  }
+
+  function getSiteDepth() {
+    const parts = decodeURIComponent(window.location.pathname).replaceAll("\\", "/").split("/").filter(Boolean);
+    const repoIndex = parts.findIndex((part) => part.toLowerCase() === "kairuibi.com");
+    const siteParts = repoIndex >= 0 ? parts.slice(repoIndex + 1) : parts;
+    if (!siteParts.length) return 0;
+    const last = siteParts[siteParts.length - 1];
+    return /\.[a-z0-9]+$/i.test(last) ? Math.max(siteParts.length - 1, 0) : siteParts.length;
+  }
+
+  const prefix = "../".repeat(getSiteDepth());
+  const resolvePath = (path) => {
+    if (!path || /^(https?:|mailto:|tel:|#)/i.test(path)) return path;
+    return `${prefix}${path}`;
+  };
+
+  function escapeHtml(value) {
+    return String(value || "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  class SiteNavbar extends HTMLElement {
+    connectedCallback() {
+      this.classList.add("site-navbar");
+      this.render();
     }
-  },
-  "asmr-generator": {
-    title: { en: "Weekly content workflow", zh: "每周内容工作流" },
-    status: { en: "Content automation", zh: "内容自动化" },
-    impact: {
-      en: "It cuts context switching across planning, assets, and publishing.",
-      zh: "它减少了在选题、素材和发布之间频繁切换的成本。"
-    },
-    tags: {
-      en: ["n8n", "Content drafting", "Publishing flow"],
-      zh: ["n8n", "内容草稿", "发布流程"]
-    },
-    output: {
-      en: "A repeatable workflow for draft-ready weekly content.",
-      zh: "一个可重复执行的每周内容草稿生产流程。"
-    },
-    bestFor: {
-      en: "Creators and small brands publishing on a schedule.",
-      zh: "适合按固定节奏发布内容的创作者和小品牌。"
-    }
-  },
-  "precall-briefing": {
-    title: { en: "Client onboarding handoff", zh: "客户 onboarding 交接包" },
-    status: { en: "Meeting preparation", zh: "会议准备" },
-    impact: {
-      en: "It reduces repeated explanations before the first meeting.",
-      zh: "它能减少首次会议前反复解释背景的成本。"
-    },
-    tags: {
-      en: ["Onboarding", "Expectation setting", "Workflow messaging"],
-      zh: ["Onboarding", "预期管理", "流程沟通"]
-    },
-    output: {
-      en: "A cleaner handoff with clearer next steps.",
-      zh: "交接更干净，下一步更清楚。"
-    },
-    bestFor: {
-      en: "Consultants, agencies, and founder-led teams.",
-      zh: "适合顾问、代理机构和创始人主导的小团队。"
-    }
-  },
-  "phosphene-simulator": {
-    title: { en: "Interactive research demo", zh: "交互式研究 Demo" },
-    status: { en: "Accessible vision demo", zh: "辅助视觉 Demo" },
-    impact: {
-      en: "It turns a hard concept into something people can test and discuss.",
-      zh: "它把抽象概念变成了用户可以亲自测试和讨论的体验。"
-    },
-    tags: {
-      en: ["Pulse2Percept", "Assistive tech", "Vision simulation"],
-      zh: ["Pulse2Percept", "辅助科技", "视觉模拟"]
-    },
-    output: {
-      en: "A browser demo for explaining a specialized research concept.",
-      zh: "一个用浏览器解释专业研究概念的交互式 Demo。"
-    },
-    bestFor: {
-      en: "Researchers, educators, and technical product teams.",
-      zh: "适合研究者、教育者和技术产品团队。"
-    },
-    actionLabel: { en: "Open live demo", zh: "打开在线 Demo" }
-  },
-  genpromptly: {
-    impact: {
-      en: "It shows product thinking around a focused AI workflow.",
-      zh: "它展示了围绕聚焦型 AI 流程进行产品化思考的能力。"
-    },
-    tags: {
-      en: ["Prompt design", "Product UI", "Structured output"],
-      zh: ["提示词设计", "产品界面", "结构化输出"]
-    },
-    output: {
-      en: "A lightweight product for cleaner prompt drafting and reuse.",
-      zh: "一个帮助提示词起草与复用更清楚的小产品。"
-    },
-    bestFor: {
-      en: "Small teams and solo builders who want repeatable prompt quality.",
-      zh: "适合希望稳定提升提示词质量的小团队与独立开发者。"
-    },
-    actionLabel: { en: "Open GenPromptly.app", zh: "打开 GenPromptly.app" }
-  }
-};
 
-function getText(key, fallback = "", lang = currentLanguage) {
-  const entry = TEXT[key];
-  if (!entry) {
-    return fallback;
-  }
+    render() {
+      const links = config.navigation.map((item) =>
+        `<a class="nav-link" href="${escapeHtml(resolvePath(item.href))}" data-i18n="nav.${item.key}">${escapeHtml(getText(`nav.${item.key}`, item.label))}</a>`
+      ).join("");
 
-  return entry[lang] || entry[DEFAULT_LANGUAGE] || fallback;
-}
-
-function getLocalizedDemoValue(demo, field) {
-  const entry = DEMO_TEXT[demo.key]?.[field];
-  if (!entry) {
-    return demo[field];
-  }
-
-  return entry[currentLanguage] || entry[DEFAULT_LANGUAGE] || demo[field];
-}
-
-function escapeHtml(value = "") {
-  return value
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;");
-}
-
-function resolveSitePath(path = "") {
-  if (!path) {
-    return "";
-  }
-
-  if (/^(?:[a-z]+:|#|\/\/)/i.test(path)) {
-    return path;
-  }
-
-  return `${sitePrefix}${path}`;
-}
-
-function renderLanguageSwitch() {
-  return `
-    <div class="language-switch" aria-label="${escapeHtml(getText("ui.languageSwitch", "Language switcher"))}">
-      <button class="language-chip${currentLanguage === "en" ? " is-active" : ""}" type="button" data-set-language="en">${escapeHtml(
-        getText("ui.languageShortEn", "EN")
-      )}</button>
-      <button class="language-chip${currentLanguage === "zh" ? " is-active" : ""}" type="button" data-set-language="zh">${escapeHtml(
-        getText("ui.languageShortZh", "中文")
-      )}</button>
-    </div>
-  `;
-}
-
-function buildButton({ label, href, variant = "", disabledMessage = "", external = false }) {
-  const className = ["btn", variant].filter(Boolean).join(" ");
-
-  if (href) {
-    const externalAttrs = external ? ' target="_blank" rel="noopener noreferrer"' : "";
-    const resolvedHref = external ? href : resolveSitePath(href);
-    return `<a class="${className}" href="${escapeHtml(resolvedHref)}"${externalAttrs}>${escapeHtml(label)}</a>`;
-  }
-
-  return `<span class="${className} is-disabled" role="link" aria-disabled="true" title="${escapeHtml(
-    disabledMessage
-  )}">${escapeHtml(label)}</span>`;
-}
-
-function renderSocialLinks() {
-  if (!siteConfig.socialLinks.length) {
-    return "";
-  }
-
-  return siteConfig.socialLinks
-    .map(
-      (link) =>
-        `<a href="${escapeHtml(link.href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(
-          link.label
-        )}</a>`
-    )
-    .join("");
-}
-
-function renderNav(current = "") {
-  const links = siteConfig.portfolioNav
-    .map((item) => {
-      const activeClass = item.key === current ? " is-active" : "";
-      return `<a class="nav-link${activeClass}" href="${escapeHtml(resolveSitePath(item.href))}" data-section-link="${escapeHtml(
-        item.key
-      )}">${escapeHtml(getText(`nav.${item.key}`, item.label))}</a>`;
-    })
-    .join("");
-  const linkedInButton = siteConfig.linkedInUrl
-    ? buildButton({
-        label: "LinkedIn",
-        href: siteConfig.linkedInUrl,
-        variant: "btn-primary",
-        external: true
-      })
-    : "";
-
-  return `
-    <header class="site-header">
-      <div class="container header-inner">
-        <div class="header-start">
-          ${renderLanguageSwitch()}
-          <a class="brand-link" href="${resolveSitePath(siteConfig.routes.home)}">
-            <span class="brand-mark">KB</span>
-            <span class="brand-copy">
-              <span class="brand-name">${siteConfig.ownerName}</span>
-              <span class="brand-tag">${escapeHtml(getText("site.roleLabel", siteConfig.roleLabel))}</span>
-            </span>
-          </a>
-        </div>
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-label="${escapeHtml(
-          getText("nav.menuAria", "Toggle navigation")
-        )}">${escapeHtml(getText("nav.menu", "Menu"))}</button>
-        <nav class="site-nav" aria-label="${escapeHtml(getText("nav.mainAria", "Main navigation"))}">
-          ${links}
-          ${linkedInButton}
-        </nav>
-      </div>
-    </header>
-  `;
-}
-
-function renderFooter() {
-  const socialLinks = renderSocialLinks();
-  const linkedInFooterLink = siteConfig.linkedInUrl
-    ? `<a href="${escapeHtml(siteConfig.linkedInUrl)}" target="_blank" rel="noopener noreferrer">LinkedIn</a>`
-    : "";
-  const resumeButton = buildButton({
-    label: getText("button.resume", "Resume"),
-    href: siteConfig.resumeUrl,
-    variant: "btn",
-    disabledMessage: siteConfig.resumePlaceholder
-  });
-
-  return `
-    <footer class="site-footer">
-      <div class="container footer-inner">
-        <div class="footer-panel reveal">
-        <div class="footer-grid">
-          <div>
-              <p class="footer-brand">${siteConfig.ownerName}</p>
-              <p class="footer-small">${escapeHtml(getText("site.roleTagline", siteConfig.roleTagline))}</p>
-              <p class="footer-small">${escapeHtml(getText("footer.line", "AI demos, service packages, and contact."))}</p>
-              <p class="footer-small">${escapeHtml(getText("site.hiringStatus", siteConfig.hiringStatus))}</p>
-            </div>
-            <div>
-              <p class="footer-brand">${escapeHtml(getText("footer.contact", "Contact"))}</p>
-              <p class="footer-small"><a data-contact-link href="#"></a></p>
-              <p class="footer-small"><span data-location></span></p>
-            </div>
-            <div>
-              <p class="footer-brand">${escapeHtml(getText("footer.links", "Links"))}</p>
-              <div class="footer-links">
-                <a href="${resolveSitePath(`${siteConfig.routes.home}#services`)}">${escapeHtml(getText("footer.services", "Services"))}</a>
-                <a href="${resolveSitePath(`${siteConfig.routes.home}#demos`)}">${escapeHtml(getText("footer.demos", "Demos"))}</a>
-                <a href="${resolveSitePath(`${siteConfig.routes.home}#process`)}">${escapeHtml(getText("footer.process", "Process"))}</a>
-                <a href="${resolveSitePath(`${siteConfig.routes.home}#thinking`)}">${escapeHtml(getText("footer.thinking", "Thinking"))}</a>
-                <a href="${resolveSitePath(`${siteConfig.routes.home}#publication`)}">${escapeHtml(getText("footer.publication", "Publication"))}</a>
-                <a href="${resolveSitePath(`${siteConfig.routes.home}#booking`)}">${escapeHtml(getText("footer.audit", "Free Audit"))}</a>
-                ${linkedInFooterLink}
-                <a href="${resolveSitePath(siteConfig.routes.genpromptly)}">GenPromptly</a>
-                <a href="${resolveSitePath(siteConfig.routes.privacy)}">${escapeHtml(getText("footer.privacy", "Privacy"))}</a>
-                <a href="${resolveSitePath(siteConfig.routes.terms)}">${escapeHtml(getText("footer.terms", "Terms"))}</a>
+      this.innerHTML = `
+        <a class="skip-link" href="#main-content">${language === "zh" ? "跳到主要内容" : "Skip to main content"}</a>
+        <header class="site-header">
+          <div class="container header-inner">
+            <div class="header-start">
+              <div class="language-switch" aria-label="${language === "zh" ? "语言选择" : "Language selection"}">
+                <button type="button" data-language="en" class="language-chip ${language === "en" ? "is-active" : ""}">EN</button>
+                <button type="button" data-language="zh" class="language-chip ${language === "zh" ? "is-active" : ""}">中文</button>
               </div>
+              <a class="brand-link" href="${escapeHtml(resolvePath(config.routes.home))}" aria-label="Kairui Bi home">
+                <span class="brand-mark" aria-hidden="true">KB</span>
+                <span class="brand-copy"><span class="brand-name">Kairui Bi</span><span class="brand-tag">${escapeHtml(language === "zh" ? "加拿大本地企业系统搭建者" : config.roleLabel)}</span></span>
+              </a>
             </div>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" data-i18n="nav.menu">${escapeHtml(getText("nav.menu", "Menu"))}</button>
+            <nav class="site-nav" id="site-menu" aria-label="${language === "zh" ? "主导航" : "Main navigation"}">
+              ${links}
+              <a class="btn btn-primary btn-nav" href="${escapeHtml(resolvePath(config.routes.booking))}" data-i18n="nav.book" data-track-cta="nav-book">${escapeHtml(getText("nav.book", "Book a Checkup"))}</a>
+            </nav>
           </div>
-          <div class="footer-actions">
-            ${resumeButton}
-            ${socialLinks ? `<div class="social-links">${socialLinks}</div>` : ""}
-          </div>
-        </div>
-      </div>
-    </footer>
-  `;
-}
+        </header>`;
 
-function renderProductActions(mode = "full") {
-  const actions = [];
-
-  if (mode === "full") {
-    actions.push(
-      buildButton({
-        label: getText("button.tryGenPromptly", "Try GenPromptly"),
-        href: siteConfig.genPromptly.tryUrl,
-        variant: "btn-primary",
-        disabledMessage: siteConfig.genPromptly.tryPlaceholder
-      })
-    );
-  }
-
-  if (siteConfig.genPromptly.subscribeUrl) {
-    actions.push(
-      buildButton({
-        label: getText("button.subscribeStripe", "Subscribe with Stripe"),
-        href: siteConfig.genPromptly.subscribeUrl
-      })
-    );
-  }
-
-  if (siteConfig.genPromptly.manageBillingUrl) {
-    actions.push(
-      buildButton({
-        label: getText("button.manageBilling", "Manage Billing"),
-        href: siteConfig.genPromptly.manageBillingUrl,
-        variant: "btn-ghost"
-      })
-    );
-  }
-
-  const note = siteConfig.genPromptly.subscribeUrl || siteConfig.genPromptly.manageBillingUrl
-    ? getText("product.noteBilling")
-    : getText("product.noteLiveOnly");
-
-  return `
-    <div class="cta-row">
-      <div class="button-row">${actions.join("")}</div>
-      <p class="integration-note">${note}</p>
-    </div>
-  `;
-}
-
-class SiteNavbar extends HTMLElement {
-  connectedCallback() {
-    this.refresh();
-  }
-
-  refresh() {
-    this.dataset.ready = "true";
-    this.classList.add("site-navbar");
-    this.innerHTML = renderNav(this.getAttribute("current") || "");
-
-    const toggle = this.querySelector(".nav-toggle");
-    toggle?.addEventListener("click", () => {
-      const isOpen = this.classList.toggle("is-open");
-      toggle.setAttribute("aria-expanded", String(isOpen));
-    });
-
-    this.querySelectorAll(".site-nav a").forEach((link) => {
-      link.addEventListener("click", () => {
-        this.classList.remove("is-open");
+      const toggle = this.querySelector(".nav-toggle");
+      const menu = this.querySelector(".site-menu");
+      toggle?.addEventListener("click", () => {
+        const open = toggle.getAttribute("aria-expanded") === "true";
+        toggle.setAttribute("aria-expanded", String(!open));
+        this.classList.toggle("is-open", !open);
+      });
+      this.querySelectorAll(".site-nav a").forEach((link) => link.addEventListener("click", () => {
         toggle?.setAttribute("aria-expanded", "false");
+        this.classList.remove("is-open");
+      }));
+      this.querySelectorAll("[data-language]").forEach((button) => button.addEventListener("click", () => setLanguage(button.dataset.language)));
+    }
+  }
+
+  class SiteFooter extends HTMLElement {
+    connectedCallback() {
+      this.render();
+    }
+
+    render() {
+      const year = new Date().getFullYear();
+      this.innerHTML = `
+        <footer class="site-footer">
+          <div class="footer-grid">
+            <div class="footer-brand-block">
+              <a class="brand footer-brand" href="${escapeHtml(resolvePath(config.routes.home))}"><span class="brand-mark">KB</span><span><strong>Kairui Bi</strong></span></a>
+              <p data-i18n="footer.tagline">${escapeHtml(getText("footer.tagline"))}</p>
+              <p class="footer-location" data-i18n="footer.based">${escapeHtml(getText("footer.based"))}</p>
+            </div>
+            <div><strong data-i18n="footer.explore">${escapeHtml(getText("footer.explore"))}</strong><a href="${escapeHtml(resolvePath("index.html#services"))}" data-i18n="nav.services">${escapeHtml(getText("nav.services"))}</a><a href="${escapeHtml(resolvePath("index.html#industries"))}" data-i18n="nav.industries">${escapeHtml(getText("nav.industries"))}</a><a href="${escapeHtml(resolvePath(config.routes.contractors))}" data-i18n="footer.contractors">${escapeHtml(getText("footer.contractors"))}</a><a href="${escapeHtml(resolvePath(config.routes.projects))}" data-i18n="footer.projects">${escapeHtml(getText("footer.projects"))}</a></div>
+            <div><strong data-i18n="footer.contact">${escapeHtml(getText("footer.contact"))}</strong><a href="mailto:${escapeHtml(config.contactEmail)}">${escapeHtml(config.contactEmail)}</a><a href="${escapeHtml(config.linkedinUrl)}" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="${escapeHtml(resolvePath(config.routes.booking))}" data-i18n="nav.book">${escapeHtml(getText("nav.book"))}</a></div>
+            <div><strong>Legal</strong><a href="${escapeHtml(resolvePath(config.routes.privacy))}" data-i18n="footer.privacy">${escapeHtml(getText("footer.privacy"))}</a><a href="${escapeHtml(resolvePath(config.routes.terms))}" data-i18n="footer.terms">${escapeHtml(getText("footer.terms"))}</a><button class="footer-link-button" type="button" data-open-privacy data-i18n="privacy.settings">${escapeHtml(getText("privacy.settings"))}</button></div>
+          </div>
+          <div class="footer-bottom"><span>© ${year} Kairui Bi</span><span>kairuibi.com</span></div>
+        </footer>`;
+      this.querySelector("[data-open-privacy]")?.addEventListener("click", () => openConsent(true));
+    }
+  }
+
+  customElements.define("site-navbar", SiteNavbar);
+  customElements.define("site-footer", SiteFooter);
+
+  function applyTranslations() {
+    document.documentElement.lang = language === "zh" ? "zh-Hans" : "en";
+    document.querySelectorAll("[data-i18n]").forEach((element) => {
+      const key = element.dataset.i18n;
+      if (TEXT[key]) element.textContent = getText(key, element.textContent);
+    });
+    document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
+      const key = element.dataset.i18nPlaceholder;
+      if (TEXT[key]) element.setAttribute("placeholder", getText(key));
+    });
+    const titleKey = document.body?.dataset.i18nTitle;
+    const descriptionKey = document.body?.dataset.i18nDescription;
+    if (titleKey && TEXT[titleKey]) document.title = getText(titleKey);
+    if (descriptionKey && TEXT[descriptionKey]) document.querySelector('meta[name="description"]')?.setAttribute("content", getText(descriptionKey));
+    document.querySelectorAll("[data-current-language]").forEach((input) => { input.value = language; });
+  }
+
+  function setLanguage(next) {
+    if (!SUPPORTED_LANGUAGES.has(next) || next === language) return;
+    language = next;
+    writeStorage(LANGUAGE_KEY, language);
+    document.querySelectorAll("site-navbar, site-footer").forEach((component) => component.render?.());
+    applyTranslations();
+    refreshFormConfiguration();
+    refreshConsentCopy();
+    document.dispatchEvent(new CustomEvent("site:refresh"));
+  }
+
+  function captureCampaign() {
+    const params = new URLSearchParams(window.location.search);
+    const stored = (() => {
+      try { return JSON.parse(window.sessionStorage.getItem(CAMPAIGN_KEY) || "{}"); } catch { return {}; }
+    })();
+    ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"].forEach((key) => {
+      if (params.get(key)) stored[key] = params.get(key).slice(0, 200);
+    });
+    if (!stored.utm_source) stored.utm_source = config.campaignDefaults?.source || "website";
+    if (!stored.utm_medium) stored.utm_medium = config.campaignDefaults?.medium || "organic";
+    try { window.sessionStorage.setItem(CAMPAIGN_KEY, JSON.stringify(stored)); } catch { /* optional storage */ }
+    return stored;
+  }
+
+  const campaign = captureCampaign();
+
+  function campaignUrl(url) {
+    try {
+      const parsed = new URL(url, window.location.href);
+      Object.entries(campaign).forEach(([key, value]) => value && parsed.searchParams.set(key, value));
+      return parsed.toString();
+    } catch {
+      return url;
+    }
+  }
+
+  function applySiteTokens() {
+    document.querySelectorAll("[data-booking-link]").forEach((link) => {
+      link.href = campaignUrl(config.booking.publicUrl);
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+    });
+    document.querySelectorAll("[data-booking-embed]").forEach((frame) => { frame.src = config.booking.embedUrl; });
+    document.querySelectorAll("[data-contact-link]").forEach((link) => { link.href = `mailto:${config.contactEmail}`; link.textContent = config.contactEmail; });
+    document.querySelectorAll("[data-linkedin]").forEach((link) => { link.href = config.linkedinUrl; });
+    document.querySelectorAll("[data-location]").forEach((element) => { element.textContent = config.location; });
+  }
+
+  function getConsent() {
+    try { return JSON.parse(readStorage(CONSENT_KEY) || "null"); } catch { return null; }
+  }
+
+  function saveConsent(value) {
+    writeStorage(CONSENT_KEY, JSON.stringify({ analytics: Boolean(value.analytics), marketing: Boolean(value.marketing), updatedAt: new Date().toISOString() }));
+    activateTrackers();
+  }
+
+  function hasConfiguredTrackers() {
+    return Boolean(config.analytics?.gaMeasurementId || config.analytics?.metaPixelId);
+  }
+
+  function buildConsentDialog() {
+    if (document.querySelector("[data-consent-dialog]")) return;
+    const dialog = document.createElement("div");
+    dialog.className = "consent-shell";
+    dialog.dataset.consentDialog = "";
+    dialog.hidden = true;
+    document.body.appendChild(dialog);
+    refreshConsentCopy();
+  }
+
+  function refreshConsentCopy() {
+    const dialog = document.querySelector("[data-consent-dialog]");
+    if (!dialog) return;
+    const consent = getConsent() || { analytics: false, marketing: false };
+    dialog.innerHTML = `<div class="consent-card" role="dialog" aria-modal="true" aria-labelledby="consent-title"><div><span class="eyebrow" data-i18n="privacy.settings">${escapeHtml(getText("privacy.settings"))}</span><h2 id="consent-title" data-i18n="consent.title">${escapeHtml(getText("consent.title"))}</h2><p data-i18n="consent.body">${escapeHtml(getText("consent.body"))}</p></div><div class="consent-options"><label><input type="checkbox" name="analytics" ${consent.analytics ? "checked" : ""}><span><strong data-i18n="consent.analytics">${escapeHtml(getText("consent.analytics"))}</strong><small data-i18n="consent.analyticsBody">${escapeHtml(getText("consent.analyticsBody"))}</small></span></label><label><input type="checkbox" name="marketing" ${consent.marketing ? "checked" : ""}><span><strong data-i18n="consent.marketing">${escapeHtml(getText("consent.marketing"))}</strong><small data-i18n="consent.marketingBody">${escapeHtml(getText("consent.marketingBody"))}</small></span></label></div><div class="consent-actions"><button class="btn btn-primary" type="button" data-consent-save data-i18n="consent.accept">${escapeHtml(getText("consent.accept"))}</button><button class="btn" type="button" data-consent-decline data-i18n="consent.decline">${escapeHtml(getText("consent.decline"))}</button><a href="${escapeHtml(resolvePath(config.routes.privacy))}" data-i18n="consent.privacy">${escapeHtml(getText("consent.privacy"))}</a></div></div>`;
+    dialog.querySelector("[data-consent-save]")?.addEventListener("click", () => {
+      saveConsent({ analytics: dialog.querySelector('[name="analytics"]')?.checked, marketing: dialog.querySelector('[name="marketing"]')?.checked });
+      dialog.hidden = true;
+    });
+    dialog.querySelector("[data-consent-decline]")?.addEventListener("click", () => { saveConsent({ analytics: false, marketing: false }); dialog.hidden = true; });
+  }
+
+  function openConsent(force) {
+    buildConsentDialog();
+    const dialog = document.querySelector("[data-consent-dialog]");
+    if (dialog && (force || (hasConfiguredTrackers() && !getConsent()))) dialog.hidden = false;
+  }
+
+  function activateTrackers() {
+    const consent = getConsent();
+    if (!consent) return;
+    if (consent.analytics && config.analytics?.gaMeasurementId && !window.__kbGaLoaded) {
+      window.__kbGaLoaded = true;
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      window.gtag("js", new Date());
+      window.gtag("config", config.analytics.gaMeasurementId, { anonymize_ip: true });
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(config.analytics.gaMeasurementId)}`;
+      document.head.appendChild(script);
+    }
+    if (consent.marketing && config.analytics?.metaPixelId && !window.__kbMetaLoaded) {
+      window.__kbMetaLoaded = true;
+      window.fbq = window.fbq || function () { window.fbq.callMethod ? window.fbq.callMethod.apply(window.fbq, arguments) : window.fbq.queue.push(arguments); };
+      window.fbq.queue = window.fbq.queue || [];
+      window.fbq.loaded = true;
+      window.fbq.version = "2.0";
+      window.fbq("init", config.analytics.metaPixelId);
+      window.fbq("track", "PageView");
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = "https://connect.facebook.net/en_US/fbevents.js";
+      document.head.appendChild(script);
+    }
+  }
+
+  function trackEvent(name, properties) {
+    const consent = getConsent();
+    if (consent?.analytics && typeof window.gtag === "function") window.gtag("event", name, properties || {});
+    if (consent?.marketing && typeof window.fbq === "function") window.fbq("trackCustom", name, properties || {});
+  }
+
+  function fillFormMetadata(form) {
+    const values = { ...campaign, page_path: window.location.pathname, referrer: document.referrer, language };
+    Object.entries(values).forEach(([name, value]) => {
+      const input = form.elements.namedItem(name);
+      if (input) input.value = value || "";
+    });
+  }
+
+  function buildMailto(form) {
+    const data = new FormData(form);
+    const lines = [];
+    for (const [key, value] of data.entries()) {
+      if (!key.startsWith("_") && value) lines.push(`${key}: ${value}`);
+    }
+    const subject = encodeURIComponent(`Systems Checkup inquiry — ${data.get("business_name") || data.get("name") || "website lead"}`);
+    return `mailto:${config.contactEmail}?subject=${subject}&body=${encodeURIComponent(lines.join("\n"))}`;
+  }
+
+  function refreshFormConfiguration() {
+    document.querySelectorAll("[data-lead-form]").forEach((form) => {
+      fillFormMetadata(form);
+      const configured = /^https:\/\/formspree\.io\/f\/[a-z0-9]+$/i.test(config.leadForm?.endpoint || "");
+      const note = form.parentElement?.querySelector("[data-form-config-note]");
+      const fallback = form.parentElement?.querySelector("[data-form-email-fallback]");
+      if (configured) {
+        form.action = config.leadForm.endpoint;
+        if (note) note.hidden = true;
+      } else {
+        form.action = `mailto:${config.contactEmail}`;
+        if (note) { note.hidden = false; note.textContent = getText("form.unconfigured"); }
+      }
+      if (fallback) { fallback.textContent = getText("form.emailFallback"); fallback.href = buildMailto(form); }
+    });
+  }
+
+  function setupForms() {
+    document.querySelectorAll("[data-lead-form]").forEach((form) => {
+      const wrapper = form.closest("[data-form-wrapper]") || form.parentElement;
+      const success = wrapper?.querySelector("[data-form-success]");
+      const error = wrapper?.querySelector("[data-form-error]");
+      const fallback = wrapper?.querySelector("[data-form-email-fallback]");
+      const submit = form.querySelector('[type="submit"]');
+      form.addEventListener("input", () => {
+        if (!leadFormStarted) { leadFormStarted = true; trackEvent("lead_form_start", { page_path: window.location.pathname }); }
+        if (fallback) fallback.href = buildMailto(form);
       });
-    });
-
-    this.querySelectorAll("[data-set-language]").forEach((button) => {
-      button.addEventListener("click", () => {
-        setActiveLanguage(button.getAttribute("data-set-language") || DEFAULT_LANGUAGE);
-      });
-    });
-  }
-}
-
-class SiteFooter extends HTMLElement {
-  connectedCallback() {
-    this.refresh();
-  }
-
-  refresh() {
-    this.dataset.ready = "true";
-    this.innerHTML = renderFooter();
-  }
-}
-
-function renderDemoVisual(demo) {
-  if (demo.visualType === "stagepulse") {
-    const levels = currentLanguage === "zh" ? ["一层", "二层", "OMNIMAX"] : ["Level 1", "Level 2", "OMNIMAX"];
-    const zones = [
-      { name: currentLanguage === "zh" ? "主舞台" : "Main Stage", style: "left:18%;top:32%;" },
-      { name: currentLanguage === "zh" ? "展位区" : "Booths", style: "left:62%;top:28%;" },
-      { name: currentLanguage === "zh" ? "餐饮区" : "Food", style: "left:42%;top:68%;" },
-      { name: currentLanguage === "zh" ? "新展位" : "New Booth", style: "left:74%;top:58%;" }
-    ];
-
-    return `
-      <div class="stagepulse-visual">
-        <div class="stagepulse-shell">
-          <div class="stagepulse-toolbar">
-            <span class="stagepulse-brand">StagePulse Map</span>
-            <span class="stagepulse-live">Live</span>
-          </div>
-          <div class="stagepulse-pill-row">
-            ${levels
-              .map((level, index) => `<span class="stagepulse-pill${index === 0 ? " is-active" : ""}">${escapeHtml(level)}</span>`)
-              .join("")}
-          </div>
-          <div class="stagepulse-map">
-            ${zones
-              .map(
-                (zone, index) => `
-                  <button class="stagepulse-point point-${index + 1}" type="button" style="${zone.style}" aria-label="${escapeHtml(
-                    zone.name
-                  )}">
-                    <span>${escapeHtml(zone.name)}</span>
-                  </button>
-                `
-              )
-              .join("")}
-            <div class="stagepulse-bubble">
-              <strong>${escapeHtml(currentLanguage === "zh" ? "新展位" : "New Booth")}</strong>
-              <p>${escapeHtml(currentLanguage === "zh" ? "一键创建展位并发布反馈。" : "One tap to create a booth and post feedback.")}</p>
-            </div>
-          </div>
-        </div>
-        <div class="stagepulse-side">
-          <article class="stagepulse-stat">
-            <span class="detail-label">${escapeHtml(currentLanguage === "zh" ? "无需登录" : "No login")}</span>
-            <strong>${escapeHtml(currentLanguage === "zh" ? "投票、评论、创建展位" : "Vote, comment, add booths")}</strong>
-            <p>${escapeHtml(currentLanguage === "zh" ? "为活动现场的快速互动而设计，几秒内即可上手。" : "Built for fast event interaction in under 5 seconds.")}</p>
-          </article>
-          <article class="stagepulse-stat">
-            <span class="detail-label">${escapeHtml(currentLanguage === "zh" ? "实时技术栈" : "Live stack")}</span>
-            <strong>Vercel + Supabase + Elastic</strong>
-            <p>${escapeHtml(currentLanguage === "zh" ? "24 小时实时数据，加上 Elastic 审核与可搜索评论。" : "24-hour live data plus Elastic moderation and search-ready comments.")}</p>
-          </article>
-        </div>
-        <p class="stagepulse-note">${escapeHtml(currentLanguage === "zh" ? "这是一层适用于 Science World，也可泛化到其他建筑的室内评论层。" : "A venue comment layer that works for Science World now and any building later.")}</p>
-      </div>
-    `;
-  }
-
-  if (demo.visualType === "digest") {
-    const [workflow, emailOne, emailTwo] = demo.images || [];
-
-    return `
-      <div class="digest-visual">
-        <div class="digest-primary">
-          <img src="${escapeHtml(resolveSitePath(workflow?.src || demo.image))}" alt="${escapeHtml(
-            workflow?.alt || demo.imageAlt
-          )}" />
-        </div>
-        <div class="digest-secondary">
-          ${[emailOne, emailTwo]
-            .filter(Boolean)
-            .map(
-              (image, index) => `
-                <figure class="digest-email-card digest-email-${index + 1}">
-                  <img src="${escapeHtml(resolveSitePath(image.src))}" alt="${escapeHtml(image.alt || demo.imageAlt)}" />
-                </figure>
-              `
-            )
-            .join("")}
-        </div>
-        <p class="digest-note">${escapeHtml(currentLanguage === "zh" ? "把 YouTube、播客等来源的 AI 信息整理成一封紧凑邮件。" : "Daily AI signal from YouTube, podcasts, and other sources, sent as a compact email.")}</p>
-      </div>
-    `;
-  }
-
-  if (demo.visualType === "genpromptly") {
-    const skills = [
-      "Workflow Spec",
-      "Email Pack",
-      "Marketing Variants",
-      "Video Script",
-      "Image to Prompt",
-      "Compliance Review"
-    ];
-
-    return `
-      <div class="promptly-visual">
-        <div class="promptly-surface">
-          <div class="promptly-header">
-            <div>
-              <span class="promptly-brand">GenPromptly</span>
-              <p>${escapeHtml(currentLanguage === "zh" ? "让提示词更清楚、更结构化，也更容易复核。" : "Makes prompts clearer, structured, and easier to review.")}</p>
-            </div>
-            <div class="promptly-actions">
-              <span class="promptly-btn is-primary">${escapeHtml(currentLanguage === "zh" ? "免费开始" : "Start Free")}</span>
-              <span class="promptly-btn">${escapeHtml(currentLanguage === "zh" ? "查看价格" : "View Pricing")}</span>
-              <span class="promptly-btn">${escapeHtml(currentLanguage === "zh" ? "登录" : "Sign In")}</span>
-              <span class="promptly-btn">${escapeHtml(currentLanguage === "zh" ? "创建提示词" : "Create Prompt")}</span>
-            </div>
-          </div>
-          <div class="promptly-block">
-            <span class="promptly-label">${escapeHtml(currentLanguage === "zh" ? "适合谁" : "Who It Is For")}</span>
-            <p>${escapeHtml(currentLanguage === "zh" ? "适合需要稳定提示词质量的团队。" : "For teams that need repeatable prompt quality.")}</p>
-          </div>
-          <div class="promptly-skill-grid">
-            ${skills
-              .map(
-                (skill) => `
-                  <article class="promptly-skill-card">
-                    <strong>${escapeHtml(skill)}</strong>
-                    <p>${escapeHtml(currentLanguage === "zh" ? "为实际提示词流程提供更清楚的结构。" : "Sharper structure for a practical prompt workflow.")}</p>
-                  </article>
-                `
-              )
-              .join("")}
-          </div>
-          <div class="promptly-footer">
-            <span class="promptly-plan">${escapeHtml(currentLanguage === "zh" ? "可直接试用，在线入口为 GenPromptly.app。" : "Free to try, with live access at GenPromptly.app.")}</span>
-          </div>
-        </div>
-      </div>
-    `;
-  }
-
-  if (demo.visualType === "phosphene") {
-    const devices = [
-      { label: "AlphaAMS", note: "coarse prosthetic field" },
-      { label: "ArgusII", note: "retinal implant output" },
-      { label: "PRIMA", note: "central vision simulation" }
-    ];
-
-    return `
-      <div class="phosphene-visual">
-        <div class="phosphene-grid">
-          ${devices
-            .map(
-              (device, index) => `
-                <article class="phosphene-device device-${index + 1}">
-                  <span class="detail-label">Mode ${String(index + 1).padStart(2, "0")}</span>
-                  <strong>${escapeHtml(device.label)}</strong>
-                  <p>${escapeHtml(device.note)}</p>
-                </article>
-              `
-            )
-            .join("")}
-        </div>
-        <p class="phosphene-note">${escapeHtml(currentLanguage === "zh" ? "上传小于 50 KB 的 JPG 或 PNG，用来比较不同植入模拟结果。" : "Upload a JPG or PNG under 50 KB to compare simulated implant outputs.")}</p>
-      </div>
-    `;
-  }
-
-  return `<img src="${escapeHtml(resolveSitePath(demo.image))}" alt="${escapeHtml(getLocalizedDemoValue(demo, "imageAlt") || demo.imageAlt)}" />`;
-}
-
-function renderDemoCards() {
-  return siteConfig.demos
-    .map(
-      (demo, index) => `
-        <article class="demo-card reveal${index === 0 ? " is-featured" : ""}" style="--reveal-delay:${index * 120}ms">
-          <div class="demo-frame${demo.visualType ? " is-generated" : ""}">
-            ${renderDemoVisual(demo)}
-            <div class="demo-visual-meta">
-              <span class="demo-visual-status">${escapeHtml(getLocalizedDemoValue(demo, "status") || getLocalizedDemoValue(demo, "title") || demo.status || demo.title)}</span>
-            </div>
-          </div>
-          <div class="demo-copy">
-            <div class="demo-heading">
-              <h3>${escapeHtml(getLocalizedDemoValue(demo, "title") || demo.title)}</h3>
-              <p class="demo-summary">${escapeHtml(getLocalizedDemoValue(demo, "impact") || demo.impact)}</p>
-            </div>
-            <div class="demo-chip-row">
-              ${(getLocalizedDemoValue(demo, "tags") || demo.tags || [])
-                .map((tag) => `<span class="demo-chip">${escapeHtml(tag)}</span>`)
-                .join("")}
-            </div>
-            <div class="demo-list">
-              <div class="demo-detail">
-                <span class="detail-label">${escapeHtml(getText("demo.whatItDoes", "What it does"))}</span>
-                <p>${escapeHtml(getLocalizedDemoValue(demo, "output") || demo.output || demo.workflow || demo.flow || "")}</p>
-              </div>
-              <div class="demo-detail is-output">
-                <span class="detail-label">${escapeHtml(getText("demo.bestFor", "Best for"))}</span>
-                <p>${escapeHtml(getLocalizedDemoValue(demo, "bestFor") || demo.bestFor || demo.stack || "")}</p>
-              </div>
-            </div>
-            ${
-              demo.actionUrl || demo.extraActionUrl
-                ? `<div class="button-row compact-row demo-actions">
-                    ${
-                      demo.actionUrl
-                        ? buildButton({
-                            label: getLocalizedDemoValue(demo, "actionLabel") || demo.actionLabel || "Open",
-                            href: demo.actionUrl,
-                            variant: "btn-primary",
-                            external: Boolean(demo.actionExternal)
-                          })
-                        : ""
-                    }
-                    ${
-                      demo.extraActionUrl
-                        ? buildButton({
-                            label: getLocalizedDemoValue(demo, "extraActionLabel") || demo.extraActionLabel || "More",
-                            href: demo.extraActionUrl,
-                            external: Boolean(demo.extraActionExternal)
-                          })
-                        : ""
-                    }
-                  </div>`
-                : ""
-            }
-          </div>
-        </article>
-      `
-    )
-    .join("");
-}
-
-function applySiteTokens() {
-  const bookingUrl = siteConfig.booking?.publicUrl || resolveSitePath(siteConfig.routes.booking);
-  const bookingLabel = getText("booking.cta", siteConfig.booking?.ctaLabel || "Book time");
-  const bookingEmbedUrl = siteConfig.booking?.embedUrl || bookingUrl;
-  const bookingSupportCopy = getText("booking.support", siteConfig.booking?.supportCopy || "");
-
-  document.querySelectorAll("[data-contact-link]").forEach((element) => {
-    if (element instanceof HTMLAnchorElement) {
-      element.href = `mailto:${siteConfig.contactEmail}`;
-      element.textContent = siteConfig.contactEmail;
-    }
-  });
-
-  document.querySelectorAll("[data-contact-button]").forEach((element) => {
-    if (element instanceof HTMLAnchorElement) {
-      element.href = `mailto:${siteConfig.contactEmail}`;
-    }
-  });
-
-  document.querySelectorAll("[data-location]").forEach((element) => {
-    element.textContent = siteConfig.location;
-  });
-
-  document.querySelectorAll("[data-year]").forEach((element) => {
-    element.textContent = String(new Date().getFullYear());
-  });
-
-  document.querySelectorAll("[data-social-links]").forEach((element) => {
-    const markup = renderSocialLinks();
-    if (!markup) {
-      element.closest("[data-hide-if-empty]")?.classList.add("hide");
-      return;
-    }
-    element.innerHTML = markup;
-  });
-
-  document.querySelectorAll("[data-product-actions]").forEach((element) => {
-    const mode = element.getAttribute("data-product-actions") || "full";
-    element.innerHTML = renderProductActions(mode);
-  });
-
-  document.querySelectorAll("[data-resume-button]").forEach((element) => {
-    element.innerHTML = buildButton({
-      label: getText("button.resume", "Resume"),
-      href: siteConfig.resumeUrl,
-      disabledMessage: siteConfig.resumePlaceholder
-    });
-  });
-
-  document.querySelectorAll("[data-linkedin-button]").forEach((element) => {
-    if (!siteConfig.linkedInUrl) {
-      element.remove();
-      return;
-    }
-
-    element.innerHTML = buildButton({
-      label: "LinkedIn",
-      href: siteConfig.linkedInUrl,
-      variant: element.getAttribute("data-variant") || "",
-      external: true
-    });
-  });
-
-  document.querySelectorAll("[data-booking-link]").forEach((element) => {
-    if (element instanceof HTMLAnchorElement) {
-      element.href = bookingUrl;
-      element.textContent = element.dataset.labelKey
-        ? getText(element.dataset.labelKey, element.dataset.label || bookingLabel)
-        : element.dataset.label || bookingLabel;
-      element.target = "_blank";
-      element.rel = "noopener noreferrer";
-    }
-  });
-
-  document.querySelectorAll("[data-booking-label]").forEach((element) => {
-    element.textContent = bookingLabel;
-  });
-
-  document.querySelectorAll("[data-booking-support]").forEach((element) => {
-    element.textContent = bookingSupportCopy;
-  });
-
-  document.querySelectorAll("[data-booking-embed]").forEach((element) => {
-    if (element instanceof HTMLIFrameElement) {
-      element.src = bookingEmbedUrl;
-    }
-  });
-
-  document.querySelectorAll("[data-hiring-status]").forEach((element) => {
-    element.textContent = getText("site.hiringStatus", siteConfig.hiringStatus);
-  });
-
-  document.querySelectorAll("[data-role-tagline]").forEach((element) => {
-    element.textContent = getText("site.roleTagline", siteConfig.roleTagline);
-  });
-
-  document.querySelectorAll("[data-demo-grid]").forEach((element) => {
-    element.innerHTML = renderDemoCards();
-  });
-}
-
-function applyPageTranslations() {
-  document.documentElement.lang = currentLanguage === "zh" ? "zh-CN" : "en";
-
-  const titleKey = document.body?.dataset.i18nTitle;
-  if (titleKey) {
-    document.title = getText(titleKey, document.title);
-  }
-
-  const descriptionKey = document.body?.dataset.i18nDescription;
-  const descriptionMeta = document.querySelector('meta[name="description"]');
-  if (descriptionKey && descriptionMeta) {
-    descriptionMeta.setAttribute("content", getText(descriptionKey, descriptionMeta.getAttribute("content") || ""));
-  }
-
-  document.querySelectorAll("[data-i18n]").forEach((element) => {
-    const key = element.getAttribute("data-i18n");
-    if (!key) {
-      return;
-    }
-
-    element.textContent = getText(key, element.textContent.trim());
-  });
-
-  document.querySelectorAll("[data-i18n-html]").forEach((element) => {
-    const key = element.getAttribute("data-i18n-html");
-    if (!key) {
-      return;
-    }
-
-    element.innerHTML = getText(key, element.innerHTML);
-  });
-}
-
-function refreshLocalizedUi() {
-  document.body?.classList.add("has-reveal");
-  document.querySelectorAll("site-navbar").forEach((element) => element.refresh?.());
-  document.querySelectorAll("site-footer").forEach((element) => element.refresh?.());
-  applySiteTokens();
-  applyPageTranslations();
-  setupSectionObserver();
-  setupRevealObserver();
-  document.dispatchEvent(new Event("site:refresh"));
-}
-
-function setActiveLanguage(language) {
-  if (!SUPPORTED_LANGUAGES.has(language)) {
-    return;
-  }
-
-  currentLanguage = language;
-
-  try {
-    window.localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
-  } catch {
-    // Ignore storage failures and still switch the UI in memory.
-  }
-
-  refreshLocalizedUi();
-}
-
-function setupSectionObserver() {
-  const links = Array.from(document.querySelectorAll("[data-section-link]"));
-  const sections = Array.from(document.querySelectorAll("[data-section]"));
-
-  if (!links.length || !sections.length || !("IntersectionObserver" in window)) {
-    return;
-  }
-
-  const linkBySection = new Map(
-    links.map((link) => [link.getAttribute("data-section-link"), link])
-  );
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) {
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        fillFormMetadata(form);
+        if (!form.reportValidity()) return;
+        const endpoint = config.leadForm?.endpoint || "";
+        if (!/^https:\/\/formspree\.io\/f\/[a-z0-9]+$/i.test(endpoint)) {
+          if (error) { error.hidden = false; error.textContent = getText("form.unconfigured"); }
+          if (fallback) { fallback.href = buildMailto(form); fallback.focus(); }
           return;
         }
-
-        links.forEach((link) => link.classList.remove("is-active"));
-        linkBySection.get(entry.target.id)?.classList.add("is-active");
-      });
-    },
-    { rootMargin: "-40% 0px -45% 0px", threshold: 0.05 }
-  );
-
-  sections.forEach((section) => observer.observe(section));
-}
-
-function setupRevealObserver() {
-  const items = Array.from(document.querySelectorAll(".reveal"));
-  if (!items.length) {
-    return;
-  }
-
-  if (!("IntersectionObserver" in window)) {
-    items.forEach((item) => item.classList.add("is-visible"));
-    return;
-  }
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) {
-          return;
+        if (submit) { submit.disabled = true; submit.textContent = getText("form.sending"); }
+        if (error) error.hidden = true;
+        try {
+          const response = await fetch(endpoint, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } });
+          if (!response.ok) throw new Error("Submission failed");
+          trackEvent("lead_form_submit", { page_path: window.location.pathname, industry: form.elements.industry?.value || "" });
+          form.hidden = true;
+          wrapper?.querySelector("[data-form-config-note]")?.setAttribute("hidden", "");
+          if (success) { success.hidden = false; success.focus(); }
+        } catch {
+          if (error) { error.hidden = false; error.textContent = getText("form.error"); }
+          if (fallback) fallback.href = buildMailto(form);
+        } finally {
+          if (submit) { submit.disabled = false; submit.textContent = getText("form.submit"); }
         }
-
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
       });
-    },
-    { threshold: 0.16 }
-  );
+    });
+    refreshFormConfiguration();
+  }
 
-  items.forEach((item) => observer.observe(item));
-}
+  function setupTracking() {
+    document.addEventListener("click", (event) => {
+      const link = event.target.closest("a");
+      if (!link) return;
+      if (link.matches('[data-track-cta], a[href*="booking.html"], [data-booking-link]')) {
+        trackEvent("cta_click", { label: link.textContent.trim().slice(0, 100), location: link.dataset.trackCta || "link", page_path: window.location.pathname });
+      }
+      if (link.hasAttribute("data-booking-link")) trackEvent("scheduler_open", { page_path: window.location.pathname });
+    });
+    if (document.body?.dataset.page === "booking") trackEvent("booking_page_visit", { page_path: window.location.pathname });
+  }
 
-customElements.define("site-navbar", SiteNavbar);
-customElements.define("site-footer", SiteFooter);
+  function setupReveal() {
+    const items = document.querySelectorAll("[data-reveal]");
+    if (!items.length || window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
+      items.forEach((item) => item.classList.add("is-visible"));
+      return;
+    }
+    const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
+      if (entry.isIntersecting) { entry.target.classList.add("is-visible"); observer.unobserve(entry.target); }
+    }), { threshold: 0.12 });
+    items.forEach((item) => observer.observe(item));
+  }
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", () => {
-    document.body?.classList.add("has-reveal");
+  function init() {
+    applyTranslations();
     applySiteTokens();
-    applyPageTranslations();
-    setupSectionObserver();
-    setupRevealObserver();
-  });
-} else {
-  document.body?.classList.add("has-reveal");
-  applySiteTokens();
-  applyPageTranslations();
-  setupSectionObserver();
-  setupRevealObserver();
-}
+    setupForms();
+    setupTracking();
+    setupReveal();
+    buildConsentDialog();
+    activateTrackers();
+    openConsent(false);
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
