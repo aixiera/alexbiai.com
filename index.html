@@ -51,8 +51,8 @@
           {
             "@type": "FAQPage",
             "mainEntity": [
-              { "@type": "Question", "name": "Do I need to know anything about AI?", "acceptedAnswer": { "@type": "Answer", "text": "No. We start with the business problem and only use AI when it is useful." } },
-              { "@type": "Question", "name": "Can you work with the software we already use?", "acceptedAnswer": { "@type": "Answer", "text": "Usually, yes. Integration and better configuration come before replacement." } },
+              { "@type": "Question", "name": "Where can AI help in my business?", "acceptedAnswer": { "@type": "Answer", "text": "Useful starting points include sorting intake, extracting information, drafting routine responses, and directing exceptions to a person." } },
+              { "@type": "Question", "name": "Can you connect the tools we already use?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The checkup identifies what should stay, what should connect, and where a clearer handoff can save time." } },
               { "@type": "Question", "name": "Can you rebuild an existing website?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The first step is deciding whether the current site needs a focused conversion improvement or a full rebuild." } }
             ]
           }
@@ -71,8 +71,8 @@
             <h1 class="hero-title" id="hero-title" data-i18n="home.heroTitle" data-variable-proximity data-from-settings="'wght' 520" data-to-settings="'wght' 760" data-radius="170" data-falloff="gaussian">Websites and automations that help Canadian local businesses win more work and waste less time.</h1>
             <p class="hero-subtitle" data-i18n="home.heroBody">I design local-business websites, connect the tools you already use, and automate repetitive lead and admin workflows. Built and handed off by Kairui Bi.</p>
             <div class="hero-cta-row">
-              <a class="btn btn-primary" href="booking.html" data-i18n="cta.checkup15" data-track-cta="hero-checkup">Book a free 15-min Systems Checkup</a>
-              <a class="btn" href="#lead-system" data-i18n="cta.workflow" data-track-cta="hero-workflow">See how a lead workflow works</a>
+              <a class="btn btn-primary" href="booking.html" data-i18n="cta.checkup15" data-track-cta="hero-checkup">Book a Free 15-Min Systems Checkup</a>
+              <a class="btn" href="#examples" data-i18n="cta.workflow" data-track-cta="hero-workflow">See working demos</a>
             </div>
             <div class="hero-proof" aria-label="Working principles">
               <span class="signal-chip" data-i18n="trust.one">One-person builder</span>
@@ -91,56 +91,38 @@
                 </div>
                 <canvas class="hero-cosmos-canvas" data-home-cosmos-canvas></canvas>
                 <div class="hero-cosmos-overlay">
-                  <div class="hero-sequence-bar"><span class="hero-sequence-label" data-i18n="workflow.visualLabel">Lead workflow</span><div class="hero-sequence-track"><span class="hero-sequence-node is-active" data-sequence-step data-i18n="workflow.capture">Capture</span><span class="hero-sequence-node" data-sequence-step data-i18n="workflow.route">Route</span><span class="hero-sequence-node" data-sequence-step data-i18n="workflow.followShort">Follow up</span></div></div>
-                  <div class="hero-orbit-row"><span class="hero-orbit-chip" data-i18n="workflow.websiteCall">Website / call / ad</span><span class="hero-orbit-chip" data-i18n="workflow.ownerAlert">Owner alert</span><span class="hero-orbit-chip" data-i18n="workflow.estimateReminder">Estimate reminder</span></div>
-                  <div class="hero-readout-grid"><article class="hero-readout is-active" data-sequence-panel><strong>Sequence 01</strong><p data-i18n="workflow.sequence1">Every inquiry enters one organized intake.</p></article><article class="hero-readout" data-sequence-panel><strong>Sequence 02</strong><p data-i18n="workflow.sequence2">The right person sees the details and next action.</p></article><article class="hero-readout" data-sequence-panel><strong>Sequence 03</strong><p data-i18n="workflow.sequence3">Estimates stay visible until follow-up is complete.</p></article></div>
+                  <div class="hero-sequence-bar"><span class="hero-sequence-label" data-i18n="workflow.visualLabel">Lead desk · sample data</span><div class="hero-sequence-track"><span class="hero-sequence-node is-active" data-sequence-step data-i18n="workflow.capture">Triage</span><span class="hero-sequence-node" data-sequence-step data-i18n="workflow.route">Assign</span><span class="hero-sequence-node" data-sequence-step data-i18n="workflow.followShort">Recover</span></div></div>
+                  <div class="hero-orbit-row"><span class="hero-orbit-chip is-urgent" data-i18n="workflow.websiteCall">Missed call</span><span class="hero-orbit-chip" data-i18n="workflow.ownerAlert">Unassigned quote</span><span class="hero-orbit-chip" data-i18n="workflow.estimateReminder">Estimate due</span></div>
+                  <div class="hero-readout-grid"><article class="hero-readout is-active" data-sequence-panel><strong data-i18n="workflow.readout1">Priority lead</strong><p data-i18n="workflow.sequence1">Emergency call waiting eight minutes for a response.</p></article><article class="hero-readout" data-sequence-panel><strong data-i18n="workflow.readout2">Owner action</strong><p data-i18n="workflow.sequence2">Quote request needs a postal code before assignment.</p></article><article class="hero-readout" data-sequence-panel><strong data-i18n="workflow.readout3">Due today</strong><p data-i18n="workflow.sequence3">HVAC estimate is ready for a follow-up call.</p></article></div>
                 </div>
               </div>
               <div class="hero-card-cluster">
-                <article class="stage-primary workflow-card" aria-label="Example lead workflow">
-                  <div class="workflow-card-head"><span data-i18n="workflow.example">Example system</span><strong data-i18n="workflow.leadJob">Lead to job</strong></div>
+                <article class="stage-primary workflow-card lead-desk-card" aria-label="Illustrative lead desk with sample data">
+                  <div class="workflow-card-head"><span data-i18n="workflow.example">Illustrative lead desk · sample data</span><strong data-i18n="workflow.leadJob">Today’s follow-up</strong></div>
                   <ol class="workflow-list">
-                    <li><span>01</span><strong data-i18n="workflow.inquiry">New inquiry</strong><small data-i18n="workflow.inquiryNote">Website, phone, or ad</small></li>
-                    <li><span>02</span><strong data-i18n="workflow.captured">Captured</strong><small data-i18n="workflow.capturedNote">Details organized once</small></li>
-                    <li><span>03</span><strong data-i18n="workflow.alerted">Owner alerted</strong><small data-i18n="workflow.alertedNote">The right person sees it</small></li>
-                    <li><span>04</span><strong data-i18n="workflow.followup">Estimate &amp; follow-up</strong><small data-i18n="workflow.followupNote">Nothing quietly disappears</small></li>
+                    <li class="lead-row is-urgent"><span>8m</span><strong data-i18n="workflow.inquiry">Emergency leak · missed call</strong><small data-i18n="workflow.inquiryNote">Call back now · service area confirmed</small></li>
+                    <li class="lead-row is-warning"><span>23m</span><strong data-i18n="workflow.captured">Deck quote · details incomplete</strong><small data-i18n="workflow.capturedNote">Request postal code and budget range</small></li>
+                    <li class="lead-row"><span>2d</span><strong data-i18n="workflow.alerted">HVAC estimate · awaiting reply</strong><small data-i18n="workflow.alertedNote">Follow up today · owner assigned</small></li>
+                    <li class="lead-row"><span>NEW</span><strong data-i18n="workflow.followup">Restaurant event inquiry</strong><small data-i18n="workflow.followupNote">Assign manager · requested date included</small></li>
                   </ol>
-                  <p class="workflow-note" data-i18n="workflow.note">Start with the business problem. Use AI only when it helps.</p>
+                  <p class="workflow-note" data-i18n="workflow.note">Every row shows the pain, owner, age, and next action.</p>
                 </article>
-                <div class="stage-stack" aria-hidden="true"><article class="stage-mini"><span class="detail-label" data-i18n="workflow.websiteCall">Website / call / ad</span><strong data-i18n="workflow.inquiry">New inquiry</strong></article><article class="stage-mini"><span class="detail-label" data-i18n="workflow.ownerAlert">Owner alert</span><strong data-i18n="workflow.ready">Ready for action</strong></article><article class="stage-mini"><span class="detail-label" data-i18n="workflow.followShort">Follow up</span><strong data-i18n="workflow.nothingLost">Nothing lost</strong></article></div>
+                <div class="stage-stack" aria-hidden="true"><article class="stage-mini status-danger"><span class="detail-label" data-i18n="workflow.websiteCall">Missed call</span><strong data-i18n="workflow.inquiryCount">3 waiting</strong></article><article class="stage-mini status-warning"><span class="detail-label" data-i18n="workflow.ownerAlert">Owner action</span><strong data-i18n="workflow.ready">2 at risk</strong></article><article class="stage-mini status-due"><span class="detail-label" data-i18n="workflow.followShort">Follow-up</span><strong data-i18n="workflow.nothingLost">4 due today</strong></article></div>
               </div>
             </div>
           </div>
         </section>
       </div>
 
-      <section class="section section-white section-story" aria-labelledby="pain-title" data-scroll-stage data-story-index="01">
-        <div class="container">
-          <header class="section-header" data-reveal>
-            <span class="eyebrow" data-i18n="pain.eyebrow">Problem recognition</span>
-            <h2 class="section-title" id="pain-title" data-i18n="pain.title">Where does work fall through the cracks?</h2>
-            <p class="section-intro" data-i18n="pain.body">The best first project is usually hiding inside a small, repeated frustration.</p>
-          </header>
-          <div class="problem-grid">
-            <article class="problem-card" data-reveal><span>01</span><p data-i18n="pain.1">A quote request sits in an inbox while the day gets busy.</p></article>
-            <article class="problem-card" data-reveal><span>02</span><p data-i18n="pain.2">Lead details are copied by hand into a spreadsheet or CRM.</p></article>
-            <article class="problem-card" data-reveal><span>03</span><p data-i18n="pain.3">The website makes calling or requesting a quote difficult on mobile.</p></article>
-            <article class="problem-card" data-reveal><span>04</span><p data-i18n="pain.4">Estimates and bookings live in different tools with inconsistent follow-up.</p></article>
-            <article class="problem-card" data-reveal><span>05</span><p data-i18n="pain.5">Employees repeat the same data entry and status updates.</p></article>
-            <article class="problem-card" data-reveal><span>06</span><p data-i18n="pain.6">You are unsure which AI tools are actually worth paying for.</p></article>
-          </div>
-        </div>
-      </section>
-
       <section class="section section-light section-story" id="services" aria-labelledby="services-title" data-scroll-stage data-story-index="02">
         <div class="container">
           <header class="section-header" data-reveal>
             <span class="eyebrow" data-i18n="services.eyebrow">Services</span>
             <h2 class="section-title" id="services-title" data-i18n="services.title">Diagnose first. Build what helps.</h2>
-            <p class="section-intro" data-i18n="services.body">The goal is not to sell more software. It is to fix one clear operational problem with the simplest useful approach.</p>
+            <p class="section-intro" data-i18n="services.body">One clear operational problem becomes a focused plan, build, and measurable handoff.</p>
           </header>
           <div class="service-grid">
-            <article class="service-card" data-reveal><span class="card-number">01</span><h3 data-i18n="services.diagnose">Digital Systems Checkup</h3><p data-i18n="services.diagnoseBody">Map one real workflow, find the bottleneck, review the tools you already pay for, and recommend the simplest path forward.</p><p class="card-detail" data-i18n="services.diagnoseList">Configure existing software · Choose an off-the-shelf tool · Scope a focused custom fix</p></article>
+            <article class="service-card" data-reveal><span class="card-number">01</span><h3 data-i18n="services.diagnose">Digital Systems Checkup</h3><p data-i18n="services.diagnoseBody">Map one real workflow, find the bottleneck, review the tools you already pay for, and recommend the simplest path forward.</p><p class="card-detail" data-i18n="services.diagnoseList">Configure existing tools · Choose a ready-made option · Scope a focused custom fix</p></article>
             <article class="service-card" data-reveal><span class="card-number">02</span><h3 data-i18n="services.build">Website &amp; Lead Capture</h3><p data-i18n="services.buildBody">Mobile-first websites built around calls, quote requests, booking, trust, speed, basic analytics, and practical local-search foundations.</p><p class="card-detail" data-i18n="services.buildList">Clear mobile actions · Useful forms · Fast, maintainable handoff</p></article>
             <article class="service-card" data-reveal><span class="card-number">03</span><h3 data-i18n="services.automate">Workflow Automation &amp; AI</h3><p data-i18n="services.automateBody">Connect forms, CRM, email, documents, notifications, reporting, and lightweight apps. Predictable work uses rules; AI is reserved for interpretation or generation.</p><p class="card-detail" data-i18n="services.automateList">Lead routing · Follow-up reminders · Intake, documents, and reporting</p></article>
           </div>
@@ -148,31 +130,10 @@
         </div>
       </section>
 
-      <section class="section section-dark section-story" id="lead-system" aria-labelledby="system-title" data-scroll-stage data-story-index="03">
-        <div class="container system-layout">
-          <div class="system-copy" data-reveal>
-            <span class="eyebrow" data-i18n="system.eyebrow">Combined service</span>
-            <h2 class="section-title" id="system-title" data-i18n="system.title">From new inquiry to organized follow-up.</h2>
-            <p class="section-intro" data-i18n="system.body">A Lead-to-Job System connects the website and everyday tools around one outcome: fewer missed opportunities and a workflow the owner can understand.</p>
-            <p class="system-callout" data-i18n="system.callout">This is a custom service, not another monthly software product.</p>
-          </div>
-          <div class="lead-flow" aria-label="Lead-to-Job System workflow" data-reveal>
-            <div class="flow-step"><span>01</span><strong data-i18n="system.website">Website / Ad / Phone</strong></div>
-            <div class="flow-step"><span>02</span><strong data-i18n="system.capture">Lead capture</strong></div>
-            <div class="flow-step"><span>03</span><strong data-i18n="system.qualify">Qualification</strong></div>
-            <div class="flow-step"><span>04</span><strong data-i18n="system.book">Booking</strong></div>
-            <div class="flow-step"><span>05</span><strong data-i18n="system.estimate">Estimate</strong></div>
-            <div class="flow-step"><span>06</span><strong data-i18n="system.follow">Follow-up</strong></div>
-            <div class="flow-step"><span>07</span><strong data-i18n="system.job">Job</strong></div>
-            <div class="flow-step"><span>08</span><strong data-i18n="system.review">Review / Reporting</strong></div>
-          </div>
-        </div>
-      </section>
-
       <section class="section section-white section-story" id="industries" aria-labelledby="industries-title" data-scroll-stage data-story-index="04">
         <div class="container">
           <header class="section-header" data-reveal>
-            <span class="eyebrow" data-i18n="industries.eyebrow">Industries</span>
+            <span class="eyebrow" data-i18n="industries.eyebrow">My niche · Industries</span>
             <h2 class="section-title" id="industries-title" data-i18n="industries.title">Focused on businesses with repeated inquiries and handoffs.</h2>
             <p class="section-intro" data-i18n="industries.body">Home services are the primary focus today, with room for other Canadian local businesses that share similar lead and admin workflows.</p>
           </header>
@@ -196,24 +157,8 @@
             <article class="example-card" data-reveal><span class="example-label" data-i18n="examples.demoLabel">Demo · No client results claimed</span><h3 data-i18n="examples.restaurant">Restaurant Inquiry &amp; Review Flow</h3><p data-i18n="examples.restaurantBody">Customer inquiries are organized, reservation questions reach the right person, and review requests are queued after a completed visit.</p></article>
           </div>
           <div class="proof-grid">
-            <article class="proof-card" data-reveal><img src="images/stagepulse-proof.jpg" width="1200" height="604" loading="lazy" alt="StagePulse Map interface using the Science World level map" /><div class="proof-copy"><span class="example-label" data-i18n="examples.proof">Builder proof</span><h3 data-i18n="examples.stage">StagePulse Map</h3><p data-i18n="examples.stageBody">Built in six hours at Science World and awarded 2nd place at Vancouver HackerRivals. Proof that I can scope and ship working software quickly—not a local-business case study.</p><a class="text-link" href="https://stage-pulse-map.vercel.app/" target="_blank" rel="noopener noreferrer" data-i18n="examples.openStage">Open StagePulse</a></div></article>
+            <article class="proof-card" data-reveal><img src="images/stagepulse-proof.jpg" width="1200" height="604" loading="lazy" alt="StagePulse Map interface using the Science World level map" /><div class="proof-copy"><span class="example-label" data-i18n="examples.proof">Builder proof</span><h3 data-i18n="examples.stage">StagePulse Map</h3><p data-i18n="examples.stageBody">Built in six hours at Science World and awarded 2nd place at Vancouver HackerRivals. It demonstrates fast scoping, interface design, and delivery under a tight deadline.</p><a class="text-link" href="https://stage-pulse-map.vercel.app/" target="_blank" rel="noopener noreferrer" data-i18n="examples.openStage">Open StagePulse</a></div></article>
             <article class="proof-card" data-reveal><img src="images/phosphene-proof.jpg" width="1200" height="675" loading="lazy" alt="Interactive phosphene vision simulator interface" /><div class="proof-copy"><span class="example-label" data-i18n="examples.proof">Builder proof</span><h3 data-i18n="examples.spie">Published technical work</h3><p data-i18n="examples.spieBody">A Proceedings of SPIE publication comparing facial-expression recognition models. Evidence of technical depth, kept secondary to business outcomes.</p><a class="text-link" href="publications.html" data-i18n="examples.readPaper">View publication</a></div></article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section-white section-story" id="process" aria-labelledby="process-title" data-scroll-stage data-story-index="06">
-        <div class="container">
-          <header class="section-header" data-reveal>
-            <span class="eyebrow" data-i18n="process.eyebrow">How I work</span>
-            <h2 class="section-title" id="process-title" data-i18n="process.title">Show me how the work moves.</h2>
-            <p class="section-intro" data-i18n="process.body">The goal is not to automate everything. It is to remove one specific bottleneck while keeping the system understandable.</p>
-          </header>
-          <div class="process-grid">
-            <article class="process-card" data-reveal><span>01</span><h3 data-i18n="process.1">Diagnose the workflow</h3><p data-i18n="process.1Body">Map the trigger, people, tools, decisions, and handoffs around one real process.</p></article>
-            <article class="process-card" data-reveal><span>02</span><h3 data-i18n="process.2">Prescribe the simplest useful fix</h3><p data-i18n="process.2Body">Improve existing software first. Recommend a new product or custom build only when it earns its place.</p></article>
-            <article class="process-card" data-reveal><span>03</span><h3 data-i18n="process.3">Build and connect it</h3><p data-i18n="process.3Body">Create the website flow, integration, automation, or lightweight app with review points visible.</p></article>
-            <article class="process-card" data-reveal><span>04</span><h3 data-i18n="process.4">Measure and hand it off</h3><p data-i18n="process.4Body">Test the system, document how it works, and make ownership clear after launch.</p></article>
           </div>
         </div>
       </section>
@@ -222,26 +167,29 @@
         <div class="container">
           <header class="section-header is-centered" data-reveal><span class="eyebrow" data-i18n="faq.eyebrow">FAQ</span><h2 class="section-title" id="faq-title" data-i18n="faq.title">Questions local owners actually ask.</h2></header>
           <div class="faq-list">
-            <details data-reveal><summary data-i18n="faq.q1">Do I need to know anything about AI?</summary><p data-i18n="faq.a1">No. We start with the business problem and only use AI when it is useful. Many good fixes are a clearer website, better software setup, or straightforward automation.</p></details>
-            <details data-reveal><summary data-i18n="faq.q2">Can you work with the software we already use?</summary><p data-i18n="faq.a2">Usually, yes. Integration and better configuration come before replacement. The checkup identifies what should stay, what should connect, and what is creating unnecessary work.</p></details>
-            <details data-reveal><summary data-i18n="faq.q3">Do you replace our CRM or accounting system?</summary><p data-i18n="faq.a3">Not by default. Core systems should be replaced only for a clear reason. I can improve the inputs, handoffs, reminders, and reporting around them.</p></details>
+            <details data-reveal><summary data-i18n="faq.q1">Where can AI help in my business?</summary><p data-i18n="faq.a1">Useful starting points include sorting intake, extracting information, drafting routine responses, and directing exceptions to a person.</p></details>
+            <details data-reveal><summary data-i18n="faq.q2">Can you connect the tools we already use?</summary><p data-i18n="faq.a2">Yes. The checkup identifies what should stay, what should connect, and where a clearer handoff can save time.</p></details>
+            <details data-reveal><summary data-i18n="faq.q3">How can you improve our CRM or accounting workflow?</summary><p data-i18n="faq.a3">I can improve intake, data handoffs, reminders, and reporting around your core business systems.</p></details>
             <details data-reveal><summary data-i18n="faq.q4">What kinds of tasks can be automated?</summary><p data-i18n="faq.a4">Lead routing, acknowledgements, reminders, status updates, document handling, customer intake, notifications, and routine reporting are common starting points.</p></details>
             <details data-reveal><summary data-i18n="faq.q5">Can you rebuild an existing website?</summary><p data-i18n="faq.a5">Yes. The first step is deciding whether the current site needs a focused conversion improvement or a full rebuild.</p></details>
             <details data-reveal><summary data-i18n="faq.q6">How long does a small project take?</summary><p data-i18n="faq.a6">Timing depends on access, integrations, and scope. After the checkup, you receive a defined proposal and timeline before work begins.</p></details>
             <details data-reveal><summary data-i18n="faq.q7">What happens after launch?</summary><p data-i18n="faq.a7">The system is tested, documented, and handed off. Ongoing support can be scoped when the workflow needs monitoring or continued improvement.</p></details>
-            <details data-reveal><summary data-i18n="faq.q8">How do you handle sensitive business data?</summary><p data-i18n="faq.a8">Data access is minimized, credentials are not placed in public code, and sensitive workflows are reviewed before implementation. Any specific compliance requirement must be identified during scoping.</p></details>
+            <details data-reveal><summary data-i18n="faq.q8">How do you handle sensitive business data?</summary><p data-i18n="faq.a8">Access stays limited to the agreed need, credentials stay outside public code, and sensitive workflows receive a dedicated review during scoping.</p></details>
           </div>
         </div>
       </section>
 
       <section class="section section-white section-story" id="contact" aria-labelledby="form-title" data-scroll-stage data-story-index="08">
         <div class="container form-section-layout">
-          <header class="section-header" data-reveal><span class="eyebrow" data-i18n="form.eyebrow">Not ready to book?</span><h2 class="section-title" id="form-title" data-i18n="form.title">Tell me one process you want to improve.</h2><p class="section-intro" data-i18n="form.body">Share the short version. I will reply with the most useful next step, even if that means recommending an existing tool instead of a custom build.</p></header>
+          <header class="section-header" data-reveal><span class="eyebrow" data-i18n="form.eyebrow">Prefer to write first?</span><h2 class="section-title" id="form-title" data-i18n="form.title">Tell me one process you want to improve.</h2><p class="section-intro" data-i18n="form.body">Share the short version. I will identify the clearest next step and reply with a focused recommendation.</p></header>
           <div class="lead-form-card" data-form-wrapper data-reveal>
             <p class="form-status" data-form-config-note hidden></p>
-            <form class="lead-form" method="post" action="mailto:bia446635@gmail.com" enctype="text/plain" data-lead-form>
-              <div class="honeypot" aria-hidden="true"><label>Leave this field empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label></div>
-              <input type="hidden" name="subject" value="New Systems Checkup inquiry" />
+            <form class="lead-form" method="post" action="https://formsubmit.co/bia446635@gmail.com" data-lead-form>
+              <div class="honeypot" aria-hidden="true"><label>Leave this field empty<input type="text" name="_honey" tabindex="-1" autocomplete="off" /></label></div>
+              <input type="hidden" name="_subject" value="New Systems Checkup inquiry" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_next" value="https://kairuibi.com/#contact" />
+              <input type="hidden" name="_url" value="https://kairuibi.com/#contact" />
               <input type="hidden" name="language" data-current-language value="en" />
               <input type="hidden" name="page_path" /><input type="hidden" name="referrer" />
               <input type="hidden" name="utm_source" /><input type="hidden" name="utm_medium" /><input type="hidden" name="utm_campaign" /><input type="hidden" name="utm_term" /><input type="hidden" name="utm_content" />
@@ -256,10 +204,11 @@
                 <fieldset class="field field-full"><legend data-i18n="form.contact">Preferred contact method</legend><div class="radio-row"><label><input type="radio" name="preferred_contact" value="email" required /><span data-i18n="form.emailMethod">Email</span></label><label><input type="radio" name="preferred_contact" value="phone" /><span data-i18n="form.phoneMethod">Phone</span></label><label><input type="radio" name="preferred_contact" value="either" /><span data-i18n="form.eitherMethod">Either</span></label></div></fieldset>
               </div>
               <div class="button-row"><button class="btn btn-primary" type="submit" data-i18n="form.submit">Send my workflow</button><a class="form-email-fallback" href="mailto:bia446635@gmail.com" data-form-email-fallback data-i18n="form.emailFallback">Email these details</a></div>
+              <label class="form-consent"><input type="checkbox" name="contact_consent" value="yes" required /><span data-i18n="form.consentLead">I agree that Kairui may use these details to respond to this request.</span> <a href="legal/privacy.html" data-i18n="form.privacyPolicy">Privacy Policy</a></label>
+              <p class="form-record-note" data-i18n="form.recording">Your submission is time-stamped, recorded by the form service, and delivered directly to Kairui.</p>
               <p class="form-status form-error" data-form-error hidden></p>
             </form>
-            <noscript><p class="form-status">JavaScript is unavailable. Email <a href="mailto:bia446635@gmail.com">bia446635@gmail.com</a> or use the form’s email handoff.</p></noscript>
-            <div class="form-success" data-form-success tabindex="-1" hidden><h3 data-i18n="form.successTitle">Thanks—your workflow is on its way.</h3><p data-i18n="form.successBody">I will review it and reply with a practical next step. You can also book the free Systems Checkup now.</p><a class="btn btn-primary" href="booking.html" data-i18n="cta.checkup15">Book a free 15-min Systems Checkup</a></div>
+            <div class="form-success" data-form-success tabindex="-1" hidden><h3 data-i18n="form.successTitle">Thanks—your workflow is on its way.</h3><p data-i18n="form.successBody">I will review it and reply with a practical next step. You can also book the free Systems Checkup now.</p><a class="btn btn-primary" href="booking.html" data-i18n="cta.checkup15">Book a Free 15-Min Systems Checkup</a></div>
           </div>
         </div>
       </section>
@@ -268,7 +217,7 @@
         <div class="container">
           <article class="founder-panel" data-reveal>
             <div class="founder-image"><img src="images/about_selfie.jpg" width="1314" height="1170" loading="lazy" alt="Kairui Bi speaking to camera" /></div>
-            <div class="founder-copy"><span class="eyebrow" data-i18n="about.eyebrow">About</span><h2 class="section-title" id="about-title" data-i18n="about.title">One builder, one accountable handoff.</h2><p data-i18n="about.body">I’m Kairui Bi, a BC-based builder working across practical automation and lightweight web software. I prefer small systems that solve a measurable problem over large technology projects that are hard to maintain.</p><p data-i18n="about.proof">My technical background includes published computer-vision research and a 2nd-place HackerRivals build. Those are proof that I can ship and understand complex systems—not substitutes for local-business results.</p><p class="founder-final" data-i18n="about.final">Show me one workflow that wastes your time.</p><div class="button-row"><a class="btn btn-primary" href="booking.html" data-i18n="cta.checkup15" data-track-cta="about-checkup">Book a free 15-min Systems Checkup</a><a class="btn" data-linkedin href="https://www.linkedin.com/in/kairui-bi-9913ab377/" target="_blank" rel="noopener noreferrer" data-i18n="cta.linkedin">View LinkedIn</a></div></div>
+            <div class="founder-copy"><span class="eyebrow" data-i18n="about.eyebrow">About</span><h2 class="section-title" id="about-title" data-i18n="about.title">One builder, one accountable handoff.</h2><p data-i18n="about.body">I’m Kairui Bi, a BC-based builder focused on practical automation and lightweight web applications. I create focused systems that solve measurable operational problems and stay clear to maintain.</p><p data-i18n="about.proof">My technical background includes published computer-vision research and a 2nd-place HackerRivals build. These projects demonstrate delivery speed, technical depth, and comfort with complex systems.</p><p class="founder-final" data-i18n="about.final">Show me one workflow that wastes your time.</p><div class="button-row"><a class="btn btn-primary" href="booking.html" data-i18n="cta.checkup15" data-track-cta="about-checkup">Book a Free 15-Min Systems Checkup</a><a class="btn" data-linkedin href="https://www.linkedin.com/in/kairui-bi-9913ab377/" target="_blank" rel="noopener noreferrer" data-i18n="cta.linkedin">View LinkedIn</a></div></div>
           </article>
         </div>
       </section>

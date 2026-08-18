@@ -9,7 +9,7 @@ window.siteConfig = {
 
   routes: {
     home: "index.html",
-    contractors: "contractors/",
+    precall: "precall.html",
     booking: "booking.html",
     projects: "projects.html",
     publications: "publications.html",
@@ -19,22 +19,30 @@ window.siteConfig = {
 
   navigation: [
     { key: "services", label: "Services", href: "index.html#services" },
-    { key: "industries", label: "Industries", href: "index.html#industries" },
-    { key: "examples", label: "Results / Examples", href: "index.html#examples" },
-    { key: "process", label: "Process", href: "index.html#process" },
+    { key: "industries", label: "My Niche", href: "index.html#industries" },
+    { key: "examples", label: "Demos", href: "demo_gallery.html" },
+    { key: "precall", label: "Pre-Call", href: "precall.html" },
+    { key: "projects", label: "Projects", href: "projects.html" },
+    { key: "publications", label: "Publication", href: "publications.html" },
     { key: "about", label: "About", href: "index.html#about" }
   ],
+
+  precall: {
+    youtubeUrl: "",
+    videoTitle: "What to expect from your Systems Checkup"
+  },
 
   booking: {
     publicUrl:
       "https://calendar.google.com/calendar/appointments/schedules/AcZssZ0czzh-VaKOKuwnCJw2I0bd0k3KESTbmkJfyQgNnnSI85QNXp9t2lGTQ0showPV_tvt9Vn9-N47",
     embedUrl:
       "https://calendar.google.com/calendar/appointments/schedules/AcZssZ0czzh-VaKOKuwnCJw2I0bd0k3KESTbmkJfyQgNnnSI85QNXp9t2lGTQ0showPV_tvt9Vn9-N47?gv=true",
-    ctaLabel: "Book a free 15-min Systems Checkup"
+    ctaLabel: "Book a Free 15-Min Systems Checkup"
   },
 
   leadForm: {
-    endpoint: "",
+    provider: "formsubmit",
+    endpoint: "https://formsubmit.co/ajax/bia446635@gmail.com",
     subject: "New Systems Checkup inquiry from {{ name }}"
   },
 
