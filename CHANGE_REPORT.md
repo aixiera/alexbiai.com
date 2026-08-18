@@ -8,6 +8,9 @@
 - Reworks the hero workflow into a realistic sample lead desk with missed calls, incomplete quote requests, estimates awaiting replies, owner actions, and due-today follow-up.
 - Fixes the FAQ open-state symbol and removes mojibake from CSS-generated symbols.
 - Labels the industries section “My niche · Industries.”
+- Removes the three summary cards below the illustrative lead desk and tightens the hero height around the remaining workflow panel.
+- Widens and compacts the desktop header so every navigation action remains visible from normal desktop zoom through zoomed-out views; narrower screens keep the menu control.
+- Standardizes visible legal navigation labels as “Privacy Policy” and “Terms of Service.”
 
 ## Booking and Pre-Call journey
 

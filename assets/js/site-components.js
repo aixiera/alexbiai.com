@@ -61,9 +61,6 @@
     "workflow.sequence1": { en: "Emergency call waiting eight minutes for a response.", zh: "紧急来电已等待八分钟回复。" },
     "workflow.sequence2": { en: "Quote request needs a postal code before assignment.", zh: "报价请求需要补充邮编后再分配。" },
     "workflow.sequence3": { en: "HVAC estimate is ready for a follow-up call.", zh: "暖通报价已进入今日回访。" },
-    "workflow.inquiryCount": { en: "3 waiting", zh: "3 条等待中" },
-    "workflow.ready": { en: "2 at risk", zh: "2 条有风险" },
-    "workflow.nothingLost": { en: "4 due today", zh: "4 条今日到期" },
 
     "services.eyebrow": { en: "Services", zh: "服务" },
     "services.title": { en: "Diagnose first. Build what helps.", zh: "先诊断，再搭建真正有用的系统。" },
@@ -353,7 +350,7 @@
     "consent.marketingBody": { en: "Measure ad campaigns and future retargeting.", zh: "衡量广告活动和未来再营销。" },
     "consent.accept": { en: "Save choices", zh: "保存选择" },
     "consent.decline": { en: "Decline optional", zh: "拒绝可选追踪" },
-    "consent.privacy": { en: "Read privacy policy", zh: "阅读隐私政策" },
+    "consent.privacy": { en: "Privacy Policy", zh: "隐私政策" },
 
     "footer.tagline": { en: "Websites, lead capture, and practical automation for Canadian local businesses.", zh: "为加拿大本地企业提供网站、潜客收集与实用自动化。" },
     "footer.based": { en: "Based in BC · Serving Canada", zh: "常驻卑诗省 · 服务加拿大" },
@@ -361,8 +358,8 @@
     "footer.contact": { en: "Contact", zh: "联系" },
     "footer.precall": { en: "Pre-call guide", zh: "通话准备指南" },
     "footer.projects": { en: "Builder proof", zh: "搭建能力证明" },
-    "footer.privacy": { en: "Privacy", zh: "隐私" },
-    "footer.terms": { en: "Terms", zh: "条款" }
+    "footer.privacy": { en: "Privacy Policy", zh: "隐私政策" },
+    "footer.terms": { en: "Terms of Service", zh: "服务条款" }
   };
 
   function readStorage(key) {
