@@ -17,6 +17,7 @@
 
 - Adds `/precall.html` as the required preparation page for booked prospects.
 - Includes a founder-video slot, required operational briefing form, sensitive-data warning, three-item preparation checklist, calendar guidance, and scheduling links.
+- Copies the consulting-versus-implementation explanation and complete scope/payment journey from Booking into Pre-Call, including the 25% kickoff structure and remaining-fee satisfaction commitment.
 - The video slot is configuration-driven through `siteConfig.precall.youtubeUrl`; YouTube's privacy-enhanced player loads only after a visitor clicks play.
 - Expands the booking page with the two engagement paths, five-step diagnosis roadmap, problem-led service options, proposal/SOW process, 25% kickoff payment, remaining 75% after acceptance, and remaining-fee satisfaction commitment.
 - Retires `/contractors/` as a standalone sales page while preserving the URL as a clear, noindex handoff to Booking and Pre-Call.
