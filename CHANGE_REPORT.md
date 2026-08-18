@@ -9,6 +9,7 @@
 - Fixes the FAQ open-state symbol and removes mojibake from CSS-generated symbols.
 - Labels the industries section “My niche · Industries.”
 - Removes the three summary cards below the illustrative lead desk and tightens the hero height around the remaining workflow panel.
+- Removes the covered lower readout layer, uses the unobstructed top sequence for Describe / Proposal / Deliver, and rewrites the lead desk around five concrete HVAC, phone-lead, restaurant-ordering, front-desk, and website-trust pain points.
 - Widens and compacts the desktop header so every navigation action remains visible from normal desktop zoom through zoomed-out views; narrower screens keep the menu control.
 - Standardizes visible legal navigation labels as “Privacy Policy” and “Terms of Service.”
 
