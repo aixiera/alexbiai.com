@@ -12,7 +12,6 @@ window.siteConfig = {
     precall: "precall.html",
     booking: "booking.html",
     projects: "projects.html",
-    publications: "publications.html",
     privacy: "legal/privacy.html",
     terms: "legal/terms.html"
   },
@@ -23,7 +22,6 @@ window.siteConfig = {
     { key: "examples", label: "Demos", href: "demo_gallery.html" },
     { key: "precall", label: "Pre-Call", href: "precall.html" },
     { key: "projects", label: "Projects", href: "projects.html" },
-    { key: "publications", label: "Publication", href: "publications.html" },
     { key: "about", label: "About", href: "index.html#about" }
   ],
 

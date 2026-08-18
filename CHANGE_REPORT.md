@@ -19,7 +19,7 @@
 - The video slot is configuration-driven through `siteConfig.precall.youtubeUrl`; YouTube's privacy-enhanced player loads only after a visitor clicks play.
 - Expands the booking page with the two engagement paths, five-step diagnosis roadmap, problem-led service options, proposal/SOW process, 25% kickoff payment, remaining 75% after acceptance, and remaining-fee satisfaction commitment.
 - Retires `/contractors/` as a standalone sales page while preserving the URL as a clear, noindex handoff to Booking and Pre-Call.
-- Adds direct top-navigation access to Services, My Niche, Demos, Pre-Call, Projects, Publication, About, and Booking.
+- Adds direct top-navigation access to Services, My Niche, Demos, Pre-Call, Projects, About, and Booking.
 
 ## Form delivery and privacy
 
@@ -36,6 +36,10 @@
 - Keeps legal limitations where they are needed to explain payment, privacy, acceptance, and responsibility.
 - Adds the Pre-Call route to the sitemap and removes the retired contractor landing page from indexing.
 - Keeps working demos and builder proof accessible without presenting demonstrations as client results.
+- Removes the standalone publication route from navigation, source files, and the sitemap; the homepage technical-proof card now leads to the phosphene demo.
+- Rebuilds the Demo Gallery with verified local assets: the n8n daily digest workflow and delivered emails, appointment-record automation, customer-question assistant, StagePulse Map, GenPromptly, and the phosphene simulator.
+- Adds direct public-product and source-code links where verified, plus bilingual explanations of each input, workflow, and output.
+- Expands homepage section 04 with five concrete local-business pain points, a three-stage describe/propose/deliver journey, and a clearly qualified planning target of up to 75% less manual lead handling for suitable workflows.
 
 ## Configuration still needed
 
