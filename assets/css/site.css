@@ -4168,6 +4168,23 @@ body.has-reveal .reveal.is-visible {
 .booking-intro-centered::after { display: none; }
 .booking-intro-centered h1 { max-width: none; margin: .3rem 0 .35rem; font-family: "Cormorant Garamond", Georgia, serif; font-size: clamp(2.7rem, 5vw, 4.8rem); line-height: .95; color: var(--sales-gold-deep); }
 .booking-intro-centered p { max-width: 42rem; margin: 0 auto; color: var(--sales-muted); }
+.booking-top-grid { width: min(1100px, 100%); margin: 0 auto 1rem; display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(320px, .92fr); gap: 1rem; align-items: stretch; }
+.booking-intro-side { margin: 0; padding: clamp(1rem, 2vw, 1.6rem); display: flex; flex-direction: column; justify-content: center; border: 1px solid var(--line); background: rgba(255,253,247,.58); clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px)); }
+.booking-intro-side::after { display: none; }
+.booking-intro-side h1 { max-width: none; margin: .25rem 0 .35rem; color: var(--sales-gold-deep); font-family: "Cormorant Garamond", Georgia, serif; font-size: clamp(2.9rem, 5vw, 4.8rem); line-height: .92; }
+.booking-intro-side > p { margin: 0; color: var(--sales-muted); }
+.booking-precall-inline { margin-top: 1rem; padding: .72rem .8rem; align-items: center; }
+.booking-precall-inline strong { font-size: .88rem; }
+.booking-precall-inline span { font-size: .75rem; }
+.booking-precall-inline .btn { min-height: 2.65rem; padding: .55rem .75rem; font-size: .62rem; white-space: nowrap; }
+.booking-mini-summary { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; }
+.booking-mini-summary article { min-height: 7.5rem; padding: .9rem; display: flex; flex-direction: column; justify-content: space-between; clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px)); border: 1px solid rgba(188,150,77,.3); background: linear-gradient(145deg, rgba(255,253,247,.98), rgba(242,225,184,.76)); }
+.booking-mini-summary article:nth-child(2) { background: linear-gradient(145deg, rgba(255,253,247,.98), rgba(231,220,174,.7)); }
+.booking-mini-summary span { color: var(--sales-gold-deep); font-family: "JetBrains Mono", monospace; font-size: .58rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.booking-mini-summary strong { color: var(--sales-gold-deep); font-size: .92rem; line-height: 1.25; }
+.booking-mini-summary small { color: var(--sales-muted); font-size: .7rem; }
+.booking-mini-summary .booking-mini-payment { min-height: 5rem; grid-column: 1 / -1; background: linear-gradient(135deg, rgba(241,216,151,.82), rgba(255,250,232,.96)); }
+.booking-mini-payment strong { font-family: "Cormorant Garamond", Georgia, serif; font-size: clamp(1.4rem, 2.2vw, 2rem); }
 .booking-schedule-top { margin: 0 auto; }
 .appointment-shell-centered { width: min(1100px, 100%); margin: 0 auto; }
 .appointment-shell-centered .booking-fallback { justify-content: center; padding: 0 .75rem .85rem; }
@@ -4184,6 +4201,9 @@ body.has-reveal .reveal.is-visible {
   .booking-payment-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .appointment-embed,
   .appointment-embed iframe { min-height: 720px; height: 720px; }
+  .booking-top-grid { grid-template-columns: 1fr; }
+  .booking-intro-side { text-align: center; }
+  .booking-precall-inline { text-align: left; }
 }
 
 @media (max-width: 640px) {
@@ -4206,6 +4226,11 @@ body.has-reveal .reveal.is-visible {
   .booking-offer-grid-compact .booking-offer-card { min-height: 0; }
   .booking-summary,
   .booking-faq { margin-top: 2.4rem; }
+  .booking-intro-side h1 { font-size: clamp(2.8rem, 15vw, 3.8rem); }
+  .booking-mini-summary { grid-template-columns: 1fr; }
+  .booking-mini-summary .booking-mini-payment { grid-column: auto; }
+  .booking-precall-inline { align-items: stretch; flex-direction: column; }
+  .booking-precall-inline .btn { width: 100%; justify-content: center; }
 }
 
 .precall-page { padding-top: 1.2rem; }

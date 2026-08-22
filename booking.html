@@ -16,11 +16,19 @@
 <body data-page="booking" data-i18n-title="booking.title" data-i18n-description="booking.description">
 <site-navbar></site-navbar>
 <main id="main-content" class="page-main booking-page booking-page-compact"><div class="container">
-  <header class="booking-intro booking-intro-centered">
-    <span class="eyebrow" data-i18n="booking.eyebrow">Free 15-minute fit call</span>
-    <h1 data-i18n="booking.heading">Book your fit call.</h1>
-    <p data-i18n="booking.body">Choose a time below. We will discuss your project and decide whether we fit.</p>
-  </header>
+  <section class="booking-top-grid" aria-labelledby="booking-heading">
+    <header class="booking-intro booking-intro-side">
+      <span class="eyebrow" data-i18n="booking.eyebrow">Free 15-minute fit call</span>
+      <h1 id="booking-heading" data-i18n="booking.heading">Book your fit call.</h1>
+      <p data-i18n="booking.body">Choose a time below. We will discuss your project and decide whether we fit.</p>
+      <div class="booking-precall-banner booking-precall-inline"><div><strong data-i18n="booking.preCallTitle">Already booked?</strong><span data-i18n="booking.preCallBody">Complete the short Pre-Call Guide before we meet.</span></div><a class="btn btn-primary" href="precall.html" data-i18n="booking.preCallButton">Open the Pre-Call Guide</a></div>
+    </header>
+    <aside class="booking-mini-summary" aria-label="Offer and payment summary">
+      <article><span>01</span><strong data-i18n="booking.miniOffer1">Codex / Claude / n8n projects</strong><small data-i18n="booking.miniOffer1Body">Consultation + implementation</small></article>
+      <article><span>02</span><strong data-i18n="booking.miniOffer2">Chatbot + voice receptionist</strong><small data-i18n="booking.miniOffer2Body">Customized for your business</small></article>
+      <article class="booking-mini-payment"><span data-i18n="booking.commitmentEyebrow">Payment commitment</span><strong data-i18n="booking.miniPayment">25% to start · 75% after acceptance</strong></article>
+    </aside>
+  </section>
 
   <section class="booking-schedule-top" aria-labelledby="schedule-title">
     <h2 class="sr-only" id="schedule-title" data-i18n="booking.scheduleTitle">Book your free 15-minute fit call.</h2>

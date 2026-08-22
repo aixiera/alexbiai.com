@@ -17,6 +17,8 @@
 
 - Places the centered Google scheduler directly under a short booking heading so it appears first on phone and laptop.
 - Moves a concise two-offer summary, payment commitment, and booking FAQ below the scheduler.
+- Adds a miniature two-offer/payment summary beside the booking heading while keeping the full cards below the calendar.
+- Duplicates the Pre-Call Guide prompt directly under the booking description for booked visitors.
 - States that the remaining 75% is waived if written acceptance criteria remain unmet after a fair correction opportunity, subject to the signed proposal and listed exclusions.
 - Uses verifiable project criteria and explicitly avoids guaranteeing profit or revenue.
 - Adds responsive two-column/one-column offer and payment layouts plus phone-safe scheduler fallbacks.

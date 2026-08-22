@@ -559,6 +559,11 @@
     ,"booking.expect2": { en: "Written scope and acceptance criteria", zh: "书面范围与验收标准" }
     ,"booking.offersEyebrow": { en: "What I offer", zh: "我的服务" }
     ,"booking.offersTitle": { en: "Two focused services.", zh: "两项聚焦服务。" }
+    ,"booking.miniOffer1": { en: "Codex / Claude / n8n projects", zh: "Codex / Claude / n8n 项目" }
+    ,"booking.miniOffer1Body": { en: "Consultation + implementation", zh: "咨询 + 实施" }
+    ,"booking.miniOffer2": { en: "Chatbot + voice receptionist", zh: "聊天机器人 + 语音接待" }
+    ,"booking.miniOffer2Body": { en: "Customized for your business", zh: "为您的企业定制" }
+    ,"booking.miniPayment": { en: "25% to start · 75% after acceptance", zh: "支付 25% 开始 · 验收后支付 75%" }
     ,"booking.offer1": { en: "Codex / Claude / n8n AI Project Consultation & Implementation", zh: "Codex / Claude / n8n AI 项目咨询与实施" }
     ,"booking.offer1Body": { en: "Plan and build a focused AI project around your workflow.", zh: "围绕您的流程规划并搭建聚焦的 AI 项目。" }
     ,"booking.offer1Item1": { en: "Project and workflow diagnosis", zh: "项目与流程诊断" }
