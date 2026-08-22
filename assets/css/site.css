@@ -3411,11 +3411,10 @@ body.has-reveal .reveal.is-visible {
   }
 }
 
-/* Final three-offer homepage and gallery */
-.offer-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+/* Final two-offer homepage and gallery */
+.offer-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
 .offer-card { min-height: 34rem; padding: clamp(1.25rem, 2.5vw, 2rem); clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 24px 100%, 0 calc(100% - 24px)); border: 1px solid var(--line); background: linear-gradient(145deg, rgba(255,253,247,.98), rgba(247,233,200,.72)); box-shadow: var(--shadow-soft); }
 .offer-card:nth-child(2) { background: linear-gradient(145deg, rgba(255,253,247,.98), rgba(242,225,184,.8)); }
-.offer-card:nth-child(3) { background: linear-gradient(145deg, rgba(255,253,247,.98), rgba(236,224,179,.78)); }
 .offer-card h3 { min-height: 4.5rem; margin: 1.9rem 0 1.4rem; font-size: clamp(1.15rem, 1.6vw, 1.45rem); }
 .offer-card dl, .offer-card dd { margin: 0; }
 .offer-card dl { display: grid; gap: 1rem; }
@@ -3442,7 +3441,7 @@ body.has-reveal .reveal.is-visible {
 .gallery-offer { scroll-margin-top: 7rem; }
 .gallery-two-up { margin-top: 1rem; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
 .system-diagram, .before-after { padding: clamp(1.2rem, 2.6vw, 2rem); clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 22px 100%, 0 calc(100% - 22px)); border: 1px solid var(--line); background: rgba(255,253,247,.82); }
-.system-flow, .restaurant-route { margin: 1.2rem 0; padding: 0; list-style: none; display: grid; gap: .55rem; }
+.system-flow { margin: 1.2rem 0; padding: 0; list-style: none; display: grid; gap: .55rem; }
 .system-flow li { min-height: 2.75rem; padding: .7rem .85rem; display: flex; align-items: center; border-left: 3px solid var(--accent); background: rgba(239,210,139,.28); font-size: .84rem; font-weight: 700; }
 .system-flow.compact { margin-bottom: 0; }
 .before-after > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
@@ -3454,17 +3453,6 @@ body.has-reveal .reveal.is-visible {
 .voice-wave i { width: .6rem; height: 4rem; background: #f5dfa2; animation: voice-pulse 1.4s ease-in-out infinite alternate; }
 .voice-wave i:nth-child(2n) { height: 7rem; animation-delay: -.3s; }.voice-wave i:nth-child(3n) { height: 2.8rem; animation-delay: -.7s; }
 @keyframes voice-pulse { to { transform: scaleY(.42); opacity: .58; } }
-.restaurant-workflow { padding: clamp(1.2rem, 3vw, 2.5rem); clip-path: polygon(0 0, calc(100% - 28px) 0, 100% 28px, 100% 100%, 28px 100%, 0 calc(100% - 28px)); border: 1px solid var(--line); background: rgba(255,253,247,.83); box-shadow: var(--shadow-soft); }
-.restaurant-route { grid-template-columns: repeat(6, minmax(0, 1fr)); }
-.restaurant-route li { min-height: 8rem; padding: .9rem; clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px)); border: 1px solid var(--line); background: linear-gradient(145deg, #fffdf7, #f0dda9); }
-.restaurant-route span { display: block; margin-bottom: 1.2rem; color: var(--sales-gold-deep); font-family: "JetBrains Mono", monospace; font-size: .62rem; }
-.restaurant-route strong { font-size: .83rem; line-height: 1.35; }
-.restaurant-scope { margin-top: 1.2rem; display: grid; grid-template-columns: 1.3fr .7fr; gap: 1rem; }
-.restaurant-scope > * { padding: 1.2rem; border: 1px solid var(--line); background: rgba(255,249,233,.65); }
-.restaurant-scope ul { padding-left: 1.2rem; color: var(--sales-muted); }
-.restaurant-scope li + li { margin-top: .45rem; }
-.restaurant-scope aside strong { display: block; margin: 1rem 0 .6rem; color: var(--sales-gold-deep); font-size: 1.3rem; }
-.restaurant-scope aside p { margin: 0; color: var(--sales-muted); }
 
 @media (max-width: 1180px) {
   .offer-grid { grid-template-columns: 1fr; }
@@ -3472,12 +3460,10 @@ body.has-reveal .reveal.is-visible {
   .offer-card h3 { min-height: 0; }
   .diagnose-grid, .process-roadmap { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .tutorial-layout { grid-template-columns: 1fr; }
-  .restaurant-route { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 @media (max-width: 760px) {
-  .diagnose-grid, .process-roadmap, .gallery-two-up, .restaurant-scope { grid-template-columns: 1fr; }
+  .diagnose-grid, .process-roadmap, .gallery-two-up { grid-template-columns: 1fr; }
   .diagnose-grid li, .process-roadmap li { min-height: 0; }
-  .restaurant-route { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .before-after > div { grid-template-columns: 1fr; }
   .tutorial-video-frame { min-height: 12rem; }
 }
@@ -4152,6 +4138,51 @@ body.has-reveal .reveal.is-visible {
 .booking-detail-header { max-width: 56rem; margin-bottom: 1.4rem; }
 .booking-detail-header h2 { margin: .35rem 0 .7rem; color: var(--sales-gold-deep); font-family: "Cormorant Garamond", Georgia, serif; font-size: clamp(2.45rem, 4.8vw, 4.7rem); line-height: .95; letter-spacing: -.035em; }
 .booking-detail-header p { color: var(--sales-muted); }
+
+.booking-intro-focused { max-width: 62rem; padding-top: clamp(1rem, 2vw, 2rem); padding-bottom: clamp(1rem, 2vw, 2rem); }
+.booking-offers,
+.booking-payment-simple,
+.booking-schedule-section,
+.booking-final-path { margin-top: clamp(2.5rem, 6vw, 5rem); padding-top: clamp(1.8rem, 4vw, 3.25rem); border-top: 1px solid var(--line); }
+.booking-offer-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.booking-offer-card { min-height: 27rem; padding: clamp(1.3rem, 3vw, 2.2rem); clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 24px 100%, 0 calc(100% - 24px)); border: 1px solid rgba(188,150,77,.32); background: linear-gradient(145deg, rgba(255,253,247,.99), rgba(242,225,184,.78)); box-shadow: var(--shadow-soft); }
+.booking-offer-card:nth-child(2) { background: linear-gradient(145deg, rgba(255,253,247,.99), rgba(231,220,174,.72)); }
+.booking-offer-card h3 { margin: 1.25rem 0 .8rem; color: var(--sales-gold-deep); font-size: clamp(1.25rem, 2vw, 1.8rem); line-height: 1.15; }
+.booking-offer-card p { color: var(--sales-muted); line-height: 1.65; }
+.booking-offer-card ul { margin: 1.2rem 0 0; padding: 1rem 0 0 1.2rem; border-top: 1px solid var(--line); }
+.booking-offer-card li + li { margin-top: .65rem; }
+.booking-payment-steps { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .75rem; }
+.booking-payment-steps li { min-height: 11rem; padding: 1.15rem; clip-path: polygon(0 0, calc(100% - 17px) 0, 100% 50%, calc(100% - 17px) 100%, 0 100%, 11px 50%); border: 1px solid rgba(188,150,77,.3); background: linear-gradient(145deg, rgba(255,253,247,.98), rgba(247,233,200,.88)); box-shadow: 0 12px 28px rgba(111,82,27,.08); }
+.booking-payment-steps span { display: block; margin-bottom: 1rem; color: var(--sales-gold-deep); font-family: "JetBrains Mono", monospace; font-size: .68rem; font-weight: 800; letter-spacing: .14em; }
+.booking-payment-steps strong { display: block; margin-bottom: .5rem; }
+.booking-payment-steps small { color: var(--sales-muted); line-height: 1.55; }
+.booking-commitment { padding: clamp(1.4rem, 3.5vw, 2.6rem); }
+.booking-commitment h3 { max-width: 36ch; }
+.booking-commitment > small { display: block; max-width: 78rem; margin-top: .8rem; color: var(--sales-muted); line-height: 1.6; }
+.booking-schedule-section .appointment-shell { margin-top: 1rem; }
+.booking-final-path { margin-bottom: 1rem; }
+
+@media (max-width: 900px) {
+  .booking-payment-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .appointment-embed,
+  .appointment-embed iframe { min-height: 720px; height: 720px; }
+}
+
+@media (max-width: 640px) {
+  .booking-page { width: min(100% - .75rem, var(--max-width)); margin-top: .4rem; padding: 1rem .7rem 1.3rem; }
+  .booking-intro-focused { padding-top: 3.3rem; }
+  .booking-intro h1 { font-size: clamp(2rem, 11vw, 3rem); line-height: 1; }
+  .booking-offer-grid,
+  .booking-payment-steps { grid-template-columns: 1fr; }
+  .booking-offer-card { min-height: 0; padding: 1.25rem; }
+  .booking-payment-steps li { min-height: 0; }
+  .booking-detail-header h2 { font-size: clamp(2.2rem, 12vw, 3.25rem); }
+  .appointment-shell { overflow: visible; clip-path: none; }
+  .appointment-embed { min-height: 760px; overflow: auto; -webkit-overflow-scrolling: touch; }
+  .appointment-embed iframe { min-width: 320px; min-height: 760px; height: 760px; }
+  .booking-fallback { display: grid; grid-template-columns: 1fr; }
+  .booking-fallback .btn { width: 100%; justify-content: center; text-align: center; }
+}
 
 .precall-page { padding-top: 1.2rem; }
 .precall-hero {

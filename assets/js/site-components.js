@@ -23,7 +23,6 @@
     "nav.close": { en: "Close", zh: "关闭" },
 
     "home.title": { en: "Kairui Bi | AI Consulting & Systems Building for BC Businesses", zh: "Kairui Bi | 卑诗省企业 AI 咨询与系统搭建" },
-    "home.description": { en: "AI consulting and systems building for BC businesses: Codex and Claude implementation, customer-service systems, and restaurant digital operations.", zh: "为卑诗省企业提供 AI 咨询与系统搭建，包括 Codex 与 Claude 实施、客户服务系统和餐厅数字化运营。" },
     "home.heroEyebrow": { en: "Kairui Bi · BC, Canada", zh: "Kairui Bi · 加拿大卑诗省" },
     "home.heroTitle": { en: "AI Consulting & Systems Building for BC Businesses.", zh: "面向卑诗省企业的 AI 咨询与系统搭建。" },
     "home.heroBody": { en: "I help businesses choose the right AI tools, build practical customer-service systems, and set up digital operations that actually fit how the business works.", zh: "我帮助企业选择合适的 AI 工具、搭建实用的客户服务系统，并建立真正符合业务运作方式的数字化流程。" },
@@ -40,7 +39,6 @@
     "workflow.inquiryNote": { en: "Choose, configure, connect, or build the right system", zh: "选择、配置、连接或搭建合适系统" },
     "workflow.captured": { en: "AI chat & voice service", zh: "AI 文字与语音客户服务" },
     "workflow.capturedNote": { en: "Answer, qualify, collect, route, and escalate", zh: "回答、筛选、收集、分派与人工升级" },
-    "workflow.alerted": { en: "Restaurant digital operations", zh: "餐厅数字化运营" },
     "workflow.alertedNote": { en: "Ordering, POS workflow, menu updates, and staff handoff", zh: "点餐、POS 流程、菜单更新与员工交接" },
     "workflow.followup": { en: "Front-desk lead · waiting for an answer", zh: "前台潜客 · 等待回复" },
     "workflow.followupNote": { en: "Common questions need a quick live response", zh: "常见问题需要快速实时回复" },
@@ -72,16 +70,10 @@
     "services.custom": { en: "When custom work fits", zh: "适合定制的情况" },
     "services.offer1": { en: "Codex & Claude AI Consulting / Implementation", zh: "Codex 与 Claude AI 咨询 / 实施" },
     "services.offer1Problem": { en: "Your team sees useful AI tools but needs a controlled plan for applying them to real work.", zh: "团队看到了有用的 AI 工具，但需要一套可控方案把它们用于真实工作。" },
-    "services.offer1Deliver": { en: "Workflow diagnosis, Codex or Claude working methods, automation, internal tools, API connections, custom AI websites or web apps, and whole-business AI tool training.", zh: "流程诊断、Codex 或 Claude 工作方法、自动化、内部工具、API 连接、定制 AI 网站或 Web App，以及全企业 AI 工具培训。" },
     "services.offer1Custom": { en: "Custom implementation makes sense when a mature product cannot support the required workflow, controls, or handoff.", zh: "当成熟产品无法支持所需流程、控制或交接时，定制实施才有意义。" },
     "services.offer2": { en: "AI Chat & Voice Customer Service Systems", zh: "AI 文字与语音客户服务系统" },
     "services.offer2Problem": { en: "Customers wait for answers, calls are missed, and useful inquiry details do not reach the right person.", zh: "客户等待回复、来电未接，有用的咨询信息也没有到达正确负责人。" },
     "services.offer2Deliver": { en: "Website assistants, FAQ and knowledge flows, lead qualification, information collection, appointment inquiries, Voice AI reception, routing, and human escalation.", zh: "网站助手、FAQ 与知识流程、潜客筛选、信息收集、预约咨询、Voice AI 接待、分派与人工升级。" },
-    "services.offer2Custom": { en: "Production systems need business-specific CRM, calendar, routing, privacy, escalation, and testing requirements.", zh: "生产系统需要符合企业自身的 CRM、日历、分派、隐私、升级和测试要求。" },
-    "services.offer3": { en: "Restaurant Digital Ordering & Systems Setup", zh: "餐厅数字点餐与系统设置" },
-    "services.offer3Problem": { en: "Ordering, menus, POS, kitchen routing, status updates, and staff handoffs are fragmented or difficult to maintain.", zh: "点餐、菜单、POS、后厨分派、状态更新和员工交接彼此分散或难以维护。" },
-    "services.offer3Deliver": { en: "Platform comparison, online-ordering setup, website Order Online integration, POS workflow guidance, QR menus, staff training, analytics, and optional maintenance.", zh: "平台比较、在线点餐设置、网站点餐入口、POS 流程指导、二维码菜单、员工培训、分析和可选维护。" },
-    "services.offer3Custom": { en: "Established platforms come first; custom work fills a genuine integration or customer-experience gap.", zh: "优先采用成熟平台，定制工作只用于填补真实的集成或客户体验缺口。" },
     "services.scope": { en: "Consulting and implementation are separate. You may take the diagnosis and recommendation without hiring me for the build.", zh: "咨询与实施彼此独立。你可以只获取诊断与建议，无需继续委托我搭建。" },
 
     "diagnose.eyebrow": { en: "Diagnose before building", zh: "先诊断，再搭建" },
@@ -98,21 +90,16 @@
     "examples.body": { en: "The full Demo Gallery shows actual workflow screens, delivered outputs, public products, and technical builds—so you can inspect how I structure inputs, decisions, and handoffs.", zh: "完整演示作品库展示真实流程界面、交付输出、公开产品和技术搭建，让你了解我如何组织输入、决策与交接。" },
     "examples.previewCaption": { en: "Actual workflow screen · n8n automation", zh: "真实流程界面 · n8n 自动化" },
     "examples.previewLabel": { en: "Inside the Demo Gallery", zh: "演示作品库内容" },
-    "examples.previewTitle": { en: "From n8n workflow canvases to usable public products.", zh: "从 n8n 流程画布到可用的公开产品。" },
     "examples.previewBody": { en: "Review the process, interface, and usable output behind each finished screen.", zh: "查看每个最终界面背后的流程、界面设计和可用输出。" },
     "examples.preview1": { en: "Workflow automation", zh: "流程自动化" },
     "examples.preview1Body": { en: "n8n canvases, delivered emails, and appointment records.", zh: "n8n 画布、已交付邮件和预约记录。" },
     "examples.preview2": { en: "Customer interfaces", zh: "客户界面" },
     "examples.preview2Body": { en: "Guided intake, AI-assisted answers, and clear human handoffs.", zh: "引导式信息收集、AI 辅助回答和清晰人工交接。" },
-    "examples.preview3": { en: "Public products", zh: "公开产品" },
-    "examples.preview3Body": { en: "StagePulse Map, GenPromptly, and the phosphene vision simulator.", zh: "StagePulse Map、GenPromptly 和光幻视视觉模拟器。" },
     "examples.openGallery": { en: "Open the Demo Gallery", zh: "打开演示作品库" },
     "examples.openWorkflows": { en: "See n8n workflow builds", zh: "查看 n8n 流程搭建" },
     "examples.demoLabel": { en: "Demo · No client results claimed", zh: "演示 · 不代表真实客户成果" },
     "examples.plumbing": { en: "Plumbing Lead Follow-up", zh: "管道服务潜客跟进" },
     "examples.plumbingBody": { en: "A quote request is captured, routed by service area, acknowledged, assigned, and kept visible until the estimate is followed up.", zh: "报价请求被收集后按服务区域分配、自动确认、指派负责人，并持续显示直到完成报价跟进。" },
-    "examples.restaurant": { en: "Restaurant Inquiry & Review Flow", zh: "餐厅咨询与评价流程" },
-    "examples.restaurantBody": { en: "Customer inquiries are organized, reservation questions reach the right person, and review requests are queued after a completed visit.", zh: "顾客咨询得到整理，预约问题交给正确负责人，并在到店完成后安排评价邀请。" },
     "examples.proof": { en: "Builder proof", zh: "搭建能力证明" },
     "examples.stage": { en: "StagePulse Map", zh: "StagePulse Map" },
     "examples.stageBody": { en: "Built in six hours at Science World and awarded 2nd place at Vancouver HackerRivals. It demonstrates fast scoping, interface design, and delivery under a tight deadline.", zh: "在 Science World 六小时内完成，并获 Vancouver HackerRivals 二等奖，体现了快速范围界定、界面设计和限时交付能力。" },
@@ -127,7 +114,6 @@
     "faq.a1": { en: "Useful starting points include sorting intake, extracting information, drafting routine responses, and directing exceptions to a person.", zh: "常见起点包括整理客户信息、提取资料、起草常规回复，以及把例外情况交给人工处理。" },
     "faq.q2": { en: "Can you connect the tools we already use?", zh: "你能连接我们现有的工具吗？" },
     "faq.a2": { en: "Yes. The checkup identifies what should stay, what should connect, and where a clearer handoff can save time.", zh: "可以。系统检查会明确保留哪些工具、连接哪些环节，以及哪里可以通过更清晰的交接节省时间。" },
-    "faq.q3": { en: "How can you improve our CRM or accounting workflow?", zh: "你如何改善我们的 CRM 或会计流程？" },
     "faq.a3": { en: "I can improve intake, data handoffs, reminders, and reporting around your core business systems.", zh: "我可以改善核心业务系统周围的信息录入、数据交接、提醒和报表。" },
     "faq.q4": { en: "What kinds of tasks can be automated?", zh: "哪些任务可以自动化？" },
     "faq.a4": { en: "Lead routing, acknowledgements, reminders, status updates, document handling, customer intake, notifications, and routine reporting are common starting points.", zh: "潜客分配、自动确认、提醒、状态更新、文档处理、客户信息收集、通知和常规报表都是常见起点。" },
@@ -154,7 +140,6 @@
     "form.industry": { en: "Industry", zh: "行业" },
     "form.industryPlaceholder": { en: "Select an industry", zh: "请选择行业" },
     "form.homeServices": { en: "Home services / contractors", zh: "家居服务 / 承包商" },
-    "form.restaurant": { en: "Restaurant / hospitality", zh: "餐饮 / 酒店" },
     "form.professional": { en: "Professional services", zh: "专业服务" },
     "form.other": { en: "Other local service", zh: "其他本地服务" },
     "form.process": { en: "What is one process you want to improve?", zh: "你最想改善的一个流程是什么？" },
@@ -172,7 +157,6 @@
 
     "about.eyebrow": { en: "About", zh: "关于" },
     "about.title": { en: "One builder, one accountable handoff.", zh: "一位搭建者，一次负责到底的交付。" },
-    "about.body": { en: "I’m Kairui Bi, a BC-based builder focused on practical automation and lightweight web applications. I create focused systems that solve measurable operational problems and stay clear to maintain.", zh: "我是 Kairui Bi，一名常驻卑诗省、专注实用自动化与轻量 Web 应用的搭建者。我打造聚焦的系统，解决可衡量的运营问题，并保持清晰易维护。" },
     "about.proof": { en: "My technical background includes published computer-vision research and a 2nd-place HackerRivals build. These projects demonstrate delivery speed, technical depth, and comfort with complex systems.", zh: "我的技术背景包括已发表的计算机视觉研究和 HackerRivals 二等奖作品。这些项目体现了交付速度、技术深度和处理复杂系统的能力。" },
     "about.final": { en: "Show me one workflow that wastes your time.", zh: "告诉我一个正在浪费你时间的流程。" },
 
@@ -255,7 +239,6 @@
     "gallery.description": { en: "Explore Kairui Bi's n8n workflow automations, customer-intake prototypes, StagePulse Map, GenPromptly, and phosphene vision simulator.", zh: "查看 Kairui Bi 的 n8n 流程自动化、客户信息收集原型、StagePulse Map、GenPromptly 与光幻视模拟器。" },
     "gallery.eyebrow": { en: "Working demos and project proof", zh: "可用演示与项目证明" },
     "gallery.heading": { en: "See the workflow, the interface, and the handoff.", zh: "查看流程、界面与交付方式。" },
-    "gallery.intro": { en: "These are systems I have built or prototyped: n8n automations, customer-facing interfaces, public web products, and technical experiments. Each example shows the input, the work happening in the middle, and the usable output.", zh: "这些是我已经搭建或制作原型的系统：n8n 自动化、客户界面、公开 Web 产品和技术实验。每个案例都展示输入、中间处理过程和可用输出。" },
     "gallery.exploreWorkflows": { en: "Explore workflow builds", zh: "查看流程搭建" },
     "gallery.signal1": { en: "n8n orchestration", zh: "n8n 流程编排" },
     "gallery.signal2": { en: "Responsive interfaces", zh: "响应式界面" },
@@ -324,7 +307,6 @@
 
     // Diagnosis-led contractor journey.
     "contractor.title": { en: "Business Systems Consulting & Implementation for Canadian Contractors | Kairui Bi", zh: "加拿大承包商业务系统咨询与实施 | Kairui Bi" },
-    "contractor.description": { en: "Diagnosis-led websites, CRM, automation, AI reception, and business systems for Canadian contractors and local businesses.", zh: "为加拿大承包商和本地企业提供以诊断为先的网站、CRM、自动化、AI 接待和业务系统服务。" },
     "contractor.eyebrow": { en: "For Canadian contractors and local businesses", zh: "面向加拿大承包商与本地企业" },
     "contractor.hero": { en: "Diagnose the business first. Build only what makes sense.", zh: "先诊断业务，再搭建真正合理的系统。" },
     "contractor.heroBody": { en: "I diagnose how your business currently handles leads, customers, staff workflows, and repetitive admin, then recommend and build the systems that actually make sense.", zh: "我会先诊断你的企业目前如何处理潜客、客户、员工流程和重复行政工作，再推荐并搭建真正合理的系统。" },
@@ -351,18 +333,7 @@
     "contractor.prescribeEyebrow": { en: "What I can prescribe", zh: "我可以提供的解决方案" },
     "contractor.prescribeTitle": { en: "Solutions organized around the business problem.", zh: "围绕业务问题组织解决方案。" },
     "contractor.prescribeBody": { en: "The answer may be a configuration change, an off-the-shelf product, a connected workflow, or a focused custom build. Technology follows the diagnosis.", zh: "答案可能是配置调整、现成产品、连接后的流程或小范围定制开发。技术选择服从业务诊断。" },
-    "contractor.acquire": { en: "Customer acquisition", zh: "客户获取" },
-    "contractor.acquireBody": { en: "Help the right customer find you, understand the offer, and take the next step.", zh: "帮助合适的客户找到你、理解服务并采取下一步行动。" },
-    "contractor.acquire1": { en: "Websites and landing pages", zh: "网站与落地页" },
-    "contractor.acquire2": { en: "Restaurant QR menu and phone-ordering web apps", zh: "餐厅二维码菜单与手机点餐 Web App" },
-    "contractor.acquire3": { en: "Quote-request and lead forms", zh: "报价请求与潜客表单" },
-    "contractor.acquire4": { en: "Booking systems", zh: "预约系统" },
-    "contractor.operations": { en: "Operations", zh: "运营" },
-    "contractor.operationsBody": { en: "Reduce re-entry, unclear ownership, and repetitive internal work.", zh: "减少重复录入、责任不清和重复内部工作。" },
-    "contractor.operations1": { en: "CRM setup or a custom lightweight CRM", zh: "CRM 配置或定制轻量 CRM" },
     "contractor.operations2": { en: "n8n workflows and Claude Code / Codex automations", zh: "n8n 流程与 Claude Code / Codex 自动化" },
-    "contractor.operations3": { en: "Document processing and internal notifications", zh: "文档处理与内部通知" },
-    "contractor.operations4": { en: "Reporting dashboards and database integrations", zh: "报表仪表盘与数据库集成" },
     "contractor.communication": { en: "Customer communication", zh: "客户沟通" },
     "contractor.communicationBody": { en: "Respond consistently while keeping a person available for judgment.", zh: "保持一致响应，同时让人工继续负责判断。" },
     "contractor.communication1": { en: "AI receptionist, website chatbot, or FAQ assistant", zh: "AI 接待员、网站聊天机器人或 FAQ 助手" },
@@ -408,11 +379,8 @@
     "contractor.plumbingDemoBody": { en: "A customer submits the address, issue, urgency, and preferred time. Service area is checked, dispatch is alerted, and an open estimate stays visible for follow-up.", zh: "客户提交地址、问题、紧急程度和偏好时间。系统检查服务区域、提醒调度人员，并持续显示待跟进报价。" },
     "contractor.openWorkflowDemos": { en: "View workflow demos", zh: "查看流程演示" },
     "contractor.solutionConcept": { en: "Solution concept", zh: "方案概念" },
-    "contractor.restaurantDemo": { en: "Restaurant QR ordering web app", zh: "餐厅二维码点餐 Web App" },
-    "contractor.restaurantDemoBody": { en: "A mobile menu and ordering flow designed for an in-store guest who scans a table QR code, reviews items, submits an order, and receives clear status.", zh: "为到店顾客设计的移动菜单与点餐流程：扫描桌面二维码、查看菜品、提交订单并获得清晰状态。" },
     "contractor.askDemo": { en: "Ask for a guided demo", zh: "预约讲解演示" },
     "contractor.phospheneDemo": { en: "Interactive vision simulator", zh: "交互式视觉模拟器" },
-    "contractor.phospheneDemoBody": { en: "A live web application connected to published technical work—evidence of research depth and interactive implementation.", zh: "与已发表技术研究相连的在线 Web 应用，用于证明研究深度和交互实现能力。" },
     "contractor.openPhosphene": { en: "Open live demo", zh: "打开在线演示" },
     "contractor.faqTitle": { en: "Before you book", zh: "预约前常见问题" },
     "contractor.faq1": { en: "What happens in the free 15-minute call?", zh: "免费 15 分钟通话会做什么？" },
@@ -423,7 +391,6 @@
     "contractor.faq3a": { en: "Unless a proposal says otherwise, you approve the scope, receive a proposal or SOW and invoice, pay 25% to begin, then pay the remaining 75% after acceptance. The invoice can provide Stripe, PayPal, or e-transfer instructions.", zh: "除非提案另有约定，你确认范围后会收到提案或工作说明书及发票，支付 25% 后开工，验收后支付剩余 75%。发票可提供 Stripe、PayPal 或电子转账说明。" },
     "contractor.faq4": { en: "What does the satisfaction commitment cover?", zh: "满意承诺涵盖什么？" },
     "contractor.faq4a": { en: "When material issues remain after a reasonable correction opportunity, the remaining 75% is waived. The kickoff amount, approved third-party costs, accepted milestones, and out-of-scope work remain payable. The signed agreement controls.", zh: "在合理修正机会后仍存在实质问题时，剩余 75% 将被免除。启动款、已批准的第三方费用、已验收里程碑和范围外工作仍需支付。最终以签署协议为准。" },
-    "contractor.faq5": { en: "How do you choose between AI, CRM changes, and a custom build?", zh: "你如何在 AI、CRM 调整和定制开发之间做选择？" },
     "contractor.faq5a": { en: "The diagnosis compares the current tools, workflow, expected value, and risk before recommending the most practical path.", zh: "诊断会比较现有工具、工作流程、预期价值和风险，再推荐最实际的路径。" },
     "contractor.faq6": { en: "Can you work with sensitive customer data?", zh: "你能处理敏感客户数据吗？" },
     "contractor.faq6a": { en: "The data flow and risks receive a dedicated review during scoping. Higher-risk or regulated information may call for a different architecture, specialist advice, or an AI-free workflow.", zh: "确定范围时会专门审查数据流和风险。高风险或受监管信息可能需要不同架构、专业意见，或采用无 AI 流程。" },
@@ -455,14 +422,10 @@
     "examples.title": { en: "Inspect the workflow, interface, and handoff.", zh: "查看流程、界面与交接方式。" },
     "examples.body": { en: "The gallery separates working demonstrations, fictional examples, prototypes, and builder proof so you can see exactly what each item represents.", zh: "作品库清楚区分可运行演示、虚构示例、原型和搭建能力证明，让你准确了解每项内容代表什么。" },
     "examples.previewCaption": { en: "Demo · n8n appointment workflow", zh: "演示 · n8n 预约流程" },
-    "examples.previewTitle": { en: "Three business-focused demonstration tracks.", zh: "三条围绕业务的演示路线。" },
-    "examples.previewBody": { en: "See an appointment workflow, customer-service prototypes, a fictional restaurant ordering flow, and lower-page builder proof.", zh: "查看预约流程、客户服务原型、虚构餐厅点餐流程，以及页面下方的搭建能力证明。" },
     "examples.preview1": { en: "Codex & Claude", zh: "Codex 与 Claude" },
     "examples.preview1Body": { en: "Appointment, internal-tool, API, and before/after workflow examples.", zh: "预约、内部工具、API 与流程前后对比示例。" },
     "examples.preview2": { en: "Chat & Voice", zh: "文字与语音 AI" },
     "examples.preview2Body": { en: "Clearly labelled prototypes with information collection and human escalation.", zh: "清楚标注的原型，涵盖信息收集与转人工。" },
-    "examples.preview3": { en: "Restaurant systems", zh: "餐厅系统" },
-    "examples.preview3Body": { en: "A fictional ordering, POS, kitchen, confirmation, and menu-update workflow.", zh: "虚构的点餐、POS、后厨、确认与菜单更新流程。" },
     "examples.openWorkflows": { en: "See the workflow demo", zh: "查看流程演示" },
 
     "process.eyebrow": { en: "Process", zh: "流程" },
@@ -503,20 +466,16 @@
     "faq.a3": { en: "The gallery currently shows clearly labelled prototypes and illustrative workflows. A live deployment is scoped, tested, and approved for each business.", zh: "作品库目前展示的是清楚标注的原型和示意流程。正式上线会针对每家企业单独确定范围、测试并批准。" },
     "faq.q4": { en: "Can you work with our current tools?", zh: "你能与我们现有的工具配合吗？" },
     "faq.a4": { en: "Yes. Diagnosis identifies what should stay, what should connect, and where a platform change or custom build is justified.", zh: "可以。诊断会明确哪些应保留、哪些应连接，以及何时更换平台或定制搭建是合理的。" },
-    "faq.q5": { en: "Can you set up restaurant ordering rather than build it from scratch?", zh: "你可以配置餐厅点餐平台，而不是从头开发吗？" },
     "faq.a5": { en: "Yes. Platform selection, setup, POS and kitchen workflow, menu updates, staff training, analytics, and optional maintenance can all be scoped.", zh: "可以。平台选择与设置、POS 和后厨流程、菜单更新、员工培训、分析及可选维护都可以纳入范围。" },
     "faq.q6": { en: "What happens after delivery?", zh: "交付之后会怎样？" },
     "faq.a6": { en: "The agreed system is reviewed, documented, and handed off. Measurement and ongoing care can be included when useful.", zh: "约定系统会经过复核、记录并完成交付；如有价值，也可以包含衡量与持续维护。" },
     "form.successBody": { en: "I will review it and reply with a practical next step. You can also book the free fit call now.", zh: "我会查看并回复一个实用的下一步。你也可以现在预约免费匹配通话。" },
 
     "gallery.title": { en: "AI Systems Demo Gallery | Kairui Bi", zh: "AI 系统演示作品库 | Kairui Bi" },
-    "gallery.description": { en: "Explore labelled AI consulting, customer-service, and restaurant-systems demos and builder proof by Kairui Bi.", zh: "查看 Kairui Bi 清楚标注的 AI 咨询、客户服务与餐厅系统演示和搭建能力证明。" },
     "gallery.eyebrow": { en: "Demo Gallery", zh: "演示作品库" },
     "gallery.heading": { en: "See what is demonstrated, what is a prototype, and what is builder proof.", zh: "看清哪些是演示、哪些是原型、哪些是搭建能力证明。" },
-    "gallery.intro": { en: "The gallery follows the same three offers as the homepage. Every item is labelled so a concept is never mistaken for a live client deployment.", zh: "作品库与首页的三项服务保持一致。每项内容都明确标注，避免把概念误认为真实客户上线项目。" },
     "gallery.cat1": { en: "Codex & Claude", zh: "Codex 与 Claude" },
     "gallery.cat2": { en: "Chat & Voice", zh: "文字与语音 AI" },
-    "gallery.cat3": { en: "Restaurant systems", zh: "餐厅系统" },
     "gallery.heroMediaTitle": { en: "Appointment workflow demonstration", zh: "预约流程演示" },
     "gallery.heroMediaBody": { en: "A real workflow asset used to explain information movement and handoff.", zh: "用真实流程素材解释信息移动与交接。" },
     "gallery.demoLabel": { en: "Demo · working asset", zh: "演示 · 真实搭建素材" },
@@ -551,31 +510,12 @@
     "gallery.qualify": { en: "Lead qualification", zh: "潜客筛选" },
     "gallery.collect": { en: "Information collection", zh: "信息收集" },
     "gallery.escalate": { en: "Human escalation", zh: "转人工" },
-    "gallery.future": { en: "Future CRM / calendar integration", zh: "未来 CRM / 日历集成" },
     "gallery.voiceTitle": { en: "Voice AI call path", zh: "语音 AI 通话路径" },
     "gallery.voiceBody": { en: "An illustrative call flow for a BC business. It does not represent an active phone agent or client deployment.", zh: "面向卑诗省企业的示意通话流程，不代表正在运行的电话助手或客户上线项目。" },
     "gallery.voice1": { en: "Incoming call", zh: "来电" },
     "gallery.voice2": { en: "Identify intent", zh: "识别意图" },
     "gallery.voice3": { en: "Collect required information", zh: "收集必要信息" },
     "gallery.voice4": { en: "Resolve or escalate", zh: "解决或升级" },
-    "gallery.voice5": { en: "CRM / calendar handoff", zh: "CRM / 日历交接" },
-    "gallery.restaurantEyebrow": { en: "03 · Restaurant systems", zh: "03 · 餐厅系统" },
-    "gallery.restaurantTitle": { en: "Digital ordering that reaches the kitchen and stays manageable.", zh: "真正到达后厨且便于维护的数字点餐。" },
-    "gallery.restaurantIntro": { en: "This fictional workflow shows the operational pieces around online or QR ordering. Square and Menufy are mentioned only as platform-comparison examples; no partnership is claimed.", zh: "此虚构流程展示在线或二维码点餐周边的运营环节。Square 与 Menufy 仅作为平台比较示例，不代表合作关系。" },
-    "gallery.restaurant1": { en: "Website / QR menu", zh: "网站 / 二维码菜单" },
-    "gallery.restaurant2": { en: "Menu and order action", zh: "菜单与下单操作" },
-    "gallery.restaurant3": { en: "Established ordering / POS platform", zh: "成熟点餐 / POS 平台" },
-    "gallery.restaurant4": { en: "Kitchen and status workflow", zh: "后厨与状态流程" },
-    "gallery.restaurant5": { en: "Customer confirmation", zh: "顾客确认" },
-    "gallery.restaurant6": { en: "Owner menu updates", zh: "业主更新菜单" },
-    "gallery.restaurantScopeTitle": { en: "What setup can cover", zh: "设置可涵盖内容" },
-    "gallery.restaurantScope1": { en: "Platform selection and comparison", zh: "平台选择与比较" },
-    "gallery.restaurantScope2": { en: "Ordering, POS workflow, and QR setup", zh: "点餐、POS 流程与二维码设置" },
-    "gallery.restaurantScope3": { en: "Kitchen status and guest confirmation", zh: "后厨状态与顾客确认" },
-    "gallery.restaurantScope4": { en: "Staff training and menu-update workflow", zh: "员工培训与菜单更新流程" },
-    "gallery.restaurantScope5": { en: "Analytics and optional maintenance", zh: "分析与可选维护" },
-    "gallery.comparisonLabel": { en: "Comparison examples only", zh: "仅作比较示例" },
-    "gallery.comparisonBody": { en: "The right choice depends on the current POS, fees, menu, pickup or delivery workflow, and staff operation.", zh: "合适选择取决于现有 POS、费用、菜单、取餐或配送流程以及员工操作。" },
     "gallery.proofTitle": { en: "Technical depth, kept separate from commercial demos.", zh: "技术深度，与商业演示清楚分开。" },
     "gallery.proofIntro": { en: "These completed public builds demonstrate product scoping, interaction design, research depth, and delivery under constraints.", zh: "这些已完成的公开作品展示产品范围界定、交互设计、研究深度与受限条件下的交付能力。" },
     "gallery.stageBody": { en: "Built in six hours at Science World and awarded second place at Vancouver HackerRivals.", zh: "在 Science World 六小时内完成，并获 Vancouver HackerRivals 二等奖。" },
@@ -584,6 +524,109 @@
 
     "footer.tagline": { en: "AI consulting and practical systems for BC businesses.", zh: "为卑诗省企业提供 AI 咨询与实用系统。" },
     "footer.based": { en: "Based in BC · Serving British Columbia", zh: "常驻卑诗省 · 服务卑诗省企业" }
+    ,"home.description": { en: "Two focused offers for BC businesses: Codex, Claude, and n8n AI project consultation and implementation, plus customized website chatbots and AI voice receptionists.", zh: "为卑诗省企业提供两项聚焦服务：Codex、Claude 与 n8n AI 项目咨询和实施，以及网站聊天机器人与 AI 语音接待定制。" }
+    ,"home.heroBody": { en: "I consult on and implement Codex, Claude, and n8n AI projects. I also customize website chatbots and AI voice receptionists around how your business actually works.", zh: "我提供 Codex、Claude 与 n8n AI 项目咨询和实施，也会根据您的实际业务方式定制网站聊天机器人与 AI 语音接待。" }
+    ,"workflow.example": { en: "Two focused offers · illustrative", zh: "两项聚焦服务 · 示意" }
+    ,"workflow.inquiry": { en: "Codex / Claude / n8n AI projects", zh: "Codex / Claude / n8n AI 项目" }
+    ,"workflow.inquiryNote": { en: "Consultation, workflow design, and implementation", zh: "咨询、流程设计与实施" }
+    ,"workflow.captured": { en: "Website chatbot & AI voice receptionist", zh: "网站聊天机器人与 AI 语音接待" }
+    ,"workflow.capturedNote": { en: "Customized answers, intake, routing, and human handoff", zh: "定制回答、信息收集、分派与人工交接" }
+    ,"services.eyebrow": { en: "Two focused offers", zh: "两项聚焦服务" }
+    ,"services.title": { en: "Two ways I can build with your business.", zh: "两种与您的企业共同搭建的方式。" }
+    ,"services.body": { en: "Choose a Codex, Claude, or n8n project—or customize an AI customer-service system for your business.", zh: "选择 Codex、Claude 或 n8n 项目，或为您的企业定制 AI 客户服务系统。" }
+    ,"services.offer1": { en: "Codex / Claude / n8n AI Project Consultation & Implementation", zh: "Codex / Claude / n8n AI 项目咨询与实施" }
+    ,"services.offer1Problem": { en: "You have an AI project or repetitive workflow but need a clear technical plan and someone to implement it.", zh: "您已有 AI 项目想法或重复流程，但需要清晰的技术方案与实施者。" }
+    ,"services.deliver": { en: "What I can build", zh: "我可以搭建什么" }
+    ,"services.offer1Deliver": { en: "Workflow diagnosis, Codex and Claude implementation, n8n automations, integrations, testing, documentation, and handoff.", zh: "流程诊断、Codex 与 Claude 实施、n8n 自动化、集成、测试、文档与交接。" }
+    ,"services.offer1Custom": { en: "When the project must follow your business rules, data sources, approvals, and existing tools.", zh: "当项目必须遵循您的业务规则、数据来源、审批与现有工具时。" }
+    ,"services.offer2": { en: "Website Chatbot & AI Voice Receptionist Customization", zh: "网站聊天机器人与 AI 语音接待定制" }
+    ,"services.offer2Problem": { en: "Website visitors or callers wait for answers, repeat the same questions, or fail to reach the right person.", zh: "网站访客或来电者等待回答、反复提问，或无法联系到正确负责人。" }
+    ,"services.offer2Deliver": { en: "Approved answers, information collection, lead qualification, chat or call routing, booking handoff, and human escalation.", zh: "经批准的回答、信息收集、潜客筛选、聊天或来电分派、预约交接与人工升级。" }
+    ,"examples.body": { en: "The gallery separates working demonstrations, prototypes, and builder proof so you can see exactly what each item represents.", zh: "演示库清楚区分可运行演示、原型与搭建能力证明。" }
+    ,"examples.previewBody": { en: "See Codex, Claude, and n8n workflow examples plus website-chatbot and AI voice-receptionist prototypes.", zh: "查看 Codex、Claude 与 n8n 流程示例，以及网站聊天机器人和 AI 语音接待原型。" }
+    ,"examples.preview1": { en: "Codex / Claude / n8n", zh: "Codex / Claude / n8n" }
+    ,"examples.preview1Body": { en: "Appointment, assisted-step, integration, and before/after workflow examples.", zh: "预约、AI 辅助步骤、集成与流程前后对比示例。" }
+    ,"examples.preview2": { en: "Chatbot & Voice Receptionist", zh: "聊天机器人与语音接待" }
+    ,"examples.preview2Body": { en: "Clearly labelled prototypes with information collection, routing, and human escalation.", zh: "清楚标注的信息收集、分派与人工升级原型。" }
+    ,"faq.q5": { en: "What does chatbot or voice-receptionist customization include?", zh: "聊天机器人或语音接待定制包括什么？" }
+    ,"faq.a5": { en: "Approved answers, business hours, intake questions, booking or call routing, and human escalation are defined around your operation.", zh: "根据您的运营方式定义经批准的回答、营业时间、信息收集问题、预约或来电分派与人工升级。" }
+    ,"about.body": { en: "I’m Kairui Bi, a BC-based AI consultant and systems builder focused on Codex, Claude, and n8n projects plus customized AI customer-service systems.", zh: "我是 Kairui Bi，一名常驻卑诗省的 AI 顾问与系统搭建者，专注 Codex、Claude、n8n 项目和定制 AI 客户服务系统。" }
+
+    ,"booking.description": { en: "Book a free fit call for a Codex, Claude, or n8n AI project, website chatbot, or customized AI voice receptionist.", zh: "为 Codex、Claude、n8n AI 项目、网站聊天机器人或定制 AI 语音接待预约免费匹配通话。" }
+    ,"booking.eyebrow": { en: "Free 15-minute fit call", zh: "免费 15 分钟匹配通话" }
+    ,"booking.heading": { en: "Choose the project. Define the result. Then build.", zh: "选择项目，定义结果，然后搭建。" }
+    ,"booking.body": { en: "Bring one Codex, Claude, or n8n AI project—or a website chatbot or AI voice receptionist you want customized for your business. We use the call to check fit and choose the clearest next step.", zh: "带来一个 Codex、Claude 或 n8n AI 项目，或您希望为企业定制的网站聊天机器人或 AI 语音接待。我们通过通话判断匹配度并确定下一步。" }
+    ,"booking.expect2": { en: "Written scope and acceptance criteria", zh: "书面范围与验收标准" }
+    ,"booking.offersEyebrow": { en: "Exactly what I offer", zh: "我提供的两项服务" }
+    ,"booking.offersTitle": { en: "Two focused ways to work together.", zh: "两种聚焦的合作方式。" }
+    ,"booking.offer1": { en: "Codex / Claude / n8n AI Project Consultation & Implementation", zh: "Codex / Claude / n8n AI 项目咨询与实施" }
+    ,"booking.offer1Body": { en: "I diagnose the workflow, design the project, and implement the approved AI solution around your business rules and existing tools.", zh: "我会诊断流程、设计项目，并围绕您的业务规则与现有工具实施获批的 AI 方案。" }
+    ,"booking.offer1Item1": { en: "Project and workflow diagnosis", zh: "项目与流程诊断" }
+    ,"booking.offer1Item2": { en: "Codex or Claude implementation", zh: "Codex 或 Claude 实施" }
+    ,"booking.offer1Item3": { en: "n8n automation and integrations", zh: "n8n 自动化与集成" }
+    ,"booking.offer1Item4": { en: "Testing, documentation, and handoff", zh: "测试、文档与交接" }
+    ,"booking.offer2": { en: "Website Chatbot & AI Voice Receptionist Customization", zh: "网站聊天机器人与 AI 语音接待定制" }
+    ,"booking.offer2Body": { en: "I customize the assistant around your services, approved answers, business hours, intake questions, routing, and human escalation.", zh: "我会围绕您的服务、经批准的回答、营业时间、信息收集问题、分派与人工升级定制助理。" }
+    ,"booking.offer2Item1": { en: "Website chatbot conversation flow", zh: "网站聊天机器人对话流程" }
+    ,"booking.offer2Item2": { en: "AI voice receptionist call flow", zh: "AI 语音接待通话流程" }
+    ,"booking.offer2Item3": { en: "Information collection and qualification", zh: "信息收集与筛选" }
+    ,"booking.offer2Item4": { en: "Booking, routing, and human handoff", zh: "预约、分派与人工交接" }
+    ,"booking.paymentEyebrow": { en: "Simple scope and payment", zh: "清晰的范围与付款" }
+    ,"booking.paymentTitle": { en: "25% to start. The remaining 75% after you accept the agreed result.", zh: "支付 25% 开始；接受约定结果后支付剩余 75%。" }
+    ,"booking.paymentBody": { en: "Before work starts, the proposal states what I will deliver and the written criteria used to review it.", zh: "工作开始前，提案会写明交付内容以及用于验收的书面标准。" }
+    ,"booking.pay1": { en: "Free fit call", zh: "免费匹配通话" }
+    ,"booking.pay1Body": { en: "Discuss the project and decide whether we fit.", zh: "讨论项目并判断是否适合合作。" }
+    ,"booking.pay2": { en: "Written proposal", zh: "书面提案" }
+    ,"booking.pay2Body": { en: "Agree on scope, price, timing, and acceptance criteria.", zh: "约定范围、价格、时间与验收标准。" }
+    ,"booking.pay3": { en: "25% kickoff", zh: "25% 启动款" }
+    ,"booking.pay3Body": { en: "Pay the kickoff amount, then consulting or implementation begins.", zh: "支付启动款后，咨询或实施开始。" }
+    ,"booking.pay4": { en: "Accept + pay 75%", zh: "接受并支付 75%" }
+    ,"booking.pay4Body": { en: "Review the agreed result; the balance is due after acceptance.", zh: "审核约定结果；接受后支付余款。" }
+    ,"booking.commitmentEyebrow": { en: "Remaining-fee commitment", zh: "剩余费用承诺" }
+    ,"booking.commitmentTitle": { en: "If the written acceptance criteria are still unmet after a fair correction opportunity, the remaining 75% is waived.", zh: "若在给予合理修正机会后仍未满足书面验收标准，剩余 75% 将被免除。" }
+    ,"booking.commitmentBody": { en: "In simple terms: you pay 25% to start and the remaining 75% after you accept the agreed work. The signed proposal controls the details. The kickoff amount, approved third-party costs, accepted milestones, and out-of-scope work remain payable.", zh: "简单来说：支付 25% 开始，在接受约定工作后支付剩余 75%。具体细节以签署的提案为准；启动款、获批第三方费用、已接受里程碑和范围外工作仍需支付。" }
+    ,"booking.commitmentNote": { en: "Acceptance uses results we can verify, such as a working workflow, correctly handled chat or call paths, completed integrations, or another written project measure. Profit and revenue depend on your market and operation and are not guaranteed.", zh: "验收采用可验证结果，例如可运行流程、正确处理的聊天或来电路径、完成的集成或其他书面项目指标。利润与营收受市场和运营影响，不作保证。" }
+    ,"booking.scheduleEyebrow": { en: "Choose a time", zh: "选择时间" }
+    ,"booking.scheduleTitle": { en: "Book your free 15-minute fit call.", zh: "预约免费 15 分钟匹配通话。" }
+    ,"booking.scheduleBody": { en: "The scheduler works on phone and laptop. If the embedded calendar is inconvenient, open it in a new tab.", zh: "预约器适配手机与电脑；如嵌入日历使用不便，可在新标签页打开。" }
+    ,"booking.processEyebrow": { en: "From call to handoff", zh: "从通话到交接" }
+    ,"booking.processTitle": { en: "Fit call → diagnose → propose → implement → review.", zh: "匹配通话 → 诊断 → 提案 → 实施 → 验收。" }
+    ,"booking.processBody": { en: "Consultation and implementation can be scoped separately. You may stop after receiving the diagnosis and recommendation.", zh: "咨询与实施可分别确定范围；您可在收到诊断与建议后停止。" }
+
+    ,"gallery.title": { en: "AI Project & Customer-Service Demo Gallery | Kairui Bi", zh: "AI 项目与客户服务演示库 | Kairui Bi" }
+    ,"gallery.description": { en: "Explore labelled Codex, Claude, and n8n project demos plus website-chatbot and AI voice-receptionist prototypes by Kairui Bi.", zh: "查看 Kairui Bi 清楚标注的 Codex、Claude、n8n 项目演示，以及网站聊天机器人与 AI 语音接待原型。" }
+    ,"gallery.heading": { en: "See how the two offers can work.", zh: "查看两项服务如何运作。" }
+    ,"gallery.cat1": { en: "Codex / Claude / n8n", zh: "Codex / Claude / n8n" }
+    ,"gallery.cat2": { en: "Chatbot & Voice Receptionist", zh: "聊天机器人与语音接待" }
+    ,"gallery.heroMediaBody": { en: "A real n8n workflow asset used to explain information movement and handoff.", zh: "使用真实 n8n 流程素材解释信息流动与交接。" }
+    ,"gallery.codexEyebrow": { en: "01 · Codex / Claude / n8n", zh: "01 · Codex / Claude / n8n" }
+    ,"gallery.codexTitle": { en: "From business process to implemented AI project.", zh: "从业务流程到已实施的 AI 项目。" }
+    ,"gallery.codexIntro": { en: "This example shows information entering once, being structured and reviewed, then reaching the right team action through an n8n workflow and an approved AI-assisted step.", zh: "此示例展示信息一次进入、被结构化与复核，再通过 n8n 流程和获批 AI 辅助步骤到达正确团队行动。" }
+    ,"gallery.appointmentBody": { en: "A booking event is normalized once and routed into an action-ready record. The same pattern can support preparation, reminders, or an approved Codex or Claude step.", zh: "预约事件经一次标准化后被分派为可执行记录；同一模式可支持准备、提醒或获批的 Codex / Claude 步骤。" }
+    ,"gallery.record": { en: "n8n workflow", zh: "n8n 流程" }
+    ,"gallery.action": { en: "Reviewed action", zh: "经复核的行动" }
+    ,"gallery.internalTitle": { en: "Codex / Claude / n8n project architecture", zh: "Codex / Claude / n8n 项目架构" }
+    ,"gallery.internal1": { en: "Approved business input", zh: "获批业务输入" }
+    ,"gallery.internal2": { en: "n8n routing and validation", zh: "n8n 分派与验证" }
+    ,"gallery.internal3": { en: "Codex or Claude assisted step", zh: "Codex 或 Claude 辅助步骤" }
+    ,"gallery.internal4": { en: "Human review and final action", zh: "人工复核与最终行动" }
+    ,"gallery.internalNote": { en: "Architecture example only; access, data, business rules, and approvals are scoped for each project.", zh: "仅为架构示例；访问权限、数据、业务规则与审批会针对每个项目确定。" }
+    ,"gallery.chatEyebrow": { en: "02 · Website Chatbot & AI Voice Receptionist", zh: "02 · 网站聊天机器人与 AI 语音接待" }
+    ,"gallery.chatTitle": { en: "Customized customer-service flows with a visible human handoff.", zh: "带有明确人工交接的定制客户服务流程。" }
+    ,"gallery.chatIntro": { en: "These interfaces illustrate approved answers, information collection, qualification, routing, and escalation. They are prototypes, not active client deployments.", zh: "这些界面展示经批准的回答、信息收集、筛选、分派与升级。它们是原型，并非活跃客户部署。" }
+    ,"gallery.assistantTitle": { en: "Website chatbot interface", zh: "网站聊天机器人界面" }
+    ,"gallery.assistantBody": { en: "A guided interface customized for approved answers, missing-detail collection, lead qualification, and transfer to the right person.", zh: "围绕经批准回答、缺失信息收集、潜客筛选与转交正确负责人的定制引导界面。" }
+    ,"gallery.voiceTitle": { en: "AI voice receptionist call path", zh: "AI 语音接待通话路径" }
+    ,"gallery.voiceBody": { en: "An illustrative call flow customized around business hours, approved answers, required questions, routing, and human escalation.", zh: "围绕营业时间、经批准回答、必问信息、分派与人工升级定制的示意通话流程。" }
+    ,"gallery.voice4": { en: "Answer or escalate", zh: "回答或升级" }
+    ,"gallery.ctaTitle": { en: "Which of the two offers fits what you want to build?", zh: "两项服务中，哪一项符合您想搭建的内容？" }
+    ,"footer.tagline": { en: "Codex, Claude, and n8n projects plus customized AI customer service for BC businesses.", zh: "为卑诗省企业提供 Codex、Claude、n8n 项目与定制 AI 客户服务。" }
+    ,"services.offer2Custom": { en: "When the assistant must match your services, hours, policies, tone, and escalation rules.", zh: "当助理必须符合您的服务、营业时间、政策、语气与升级规则时。" }
+    ,"faq.q3": { en: "Do you already operate a live chatbot or Voice AI service?", zh: "你现在已经运营在线聊天机器人或语音 AI 服务了吗？" }
+    ,"examples.previewTitle": { en: "Two focused demonstration tracks.", zh: "两条聚焦的演示路线。" }
+    ,"gallery.intro": { en: "The gallery follows the same two offers as the homepage. Every item is labelled so a prototype is never mistaken for a live client deployment.", zh: "演示库与首页的两项服务一致。每一项均清楚标注，避免把原型误认为已上线客户项目。" }
+    ,"gallery.future": { en: "Booking or team handoff", zh: "预约或团队交接" }
+    ,"gallery.voice5": { en: "Booking or team handoff", zh: "预约或团队交接" }
   };
 
   function readStorage(key) {
