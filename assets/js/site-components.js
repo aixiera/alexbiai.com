@@ -14,51 +14,49 @@
 
   const TEXT = {
     "nav.services": { en: "Services", zh: "服务" },
-    "nav.industries": { en: "My Niche", zh: "我的细分领域" },
     "nav.examples": { en: "Demos", zh: "演示" },
     "nav.precall": { en: "Pre-Call", zh: "通话准备" },
-    "nav.projects": { en: "Projects", zh: "项目" },
     "nav.process": { en: "Process", zh: "流程" },
     "nav.about": { en: "About", zh: "关于" },
-    "nav.book": { en: "Book a Checkup", zh: "预约系统检查" },
+    "nav.book": { en: "Book a Fit Call", zh: "预约匹配通话" },
     "nav.menu": { en: "Menu", zh: "菜单" },
     "nav.close": { en: "Close", zh: "关闭" },
 
-    "home.title": { en: "Kairui Bi | Websites & Automation for Canadian Local Businesses", zh: "Kairui Bi | 加拿大本地企业网站与自动化" },
-    "home.description": { en: "Websites, lead capture, and practical automation for Canadian local businesses. Based in BC and built by Kairui Bi.", zh: "为加拿大本地企业提供网站、潜客收集与实用自动化。Kairui Bi 常驻卑诗省。" },
-    "home.heroEyebrow": { en: "BC-based · Serving businesses across Canada", zh: "常驻卑诗省 · 服务加拿大各地企业" },
-    "home.heroTitle": { en: "Websites and automations that help Canadian local businesses win more work and waste less time.", zh: "帮助加拿大本地企业赢得更多业务、减少时间浪费的网站与自动化。" },
-    "home.heroBody": { en: "I design local-business websites, connect the tools you already use, and automate repetitive lead and admin workflows. Built and handed off by Kairui Bi.", zh: "我为本地企业设计网站、连接现有工具，并自动化重复的潜客与行政流程。由 Kairui Bi 亲自搭建和交付。" },
-    "cta.checkup15": { en: "Book a Free 15-Min Systems Checkup", zh: "预约免费 15 分钟系统检查" },
-    "cta.checkup": { en: "Book a free Systems Checkup", zh: "预约免费系统检查" },
+    "home.title": { en: "Kairui Bi | AI Consulting & Systems Building for BC Businesses", zh: "Kairui Bi | 卑诗省企业 AI 咨询与系统搭建" },
+    "home.description": { en: "AI consulting and systems building for BC businesses: Codex and Claude implementation, customer-service systems, and restaurant digital operations.", zh: "为卑诗省企业提供 AI 咨询与系统搭建，包括 Codex 与 Claude 实施、客户服务系统和餐厅数字化运营。" },
+    "home.heroEyebrow": { en: "Kairui Bi · BC, Canada", zh: "Kairui Bi · 加拿大卑诗省" },
+    "home.heroTitle": { en: "AI Consulting & Systems Building for BC Businesses.", zh: "面向卑诗省企业的 AI 咨询与系统搭建。" },
+    "home.heroBody": { en: "I help businesses choose the right AI tools, build practical customer-service systems, and set up digital operations that actually fit how the business works.", zh: "我帮助企业选择合适的 AI 工具、搭建实用的客户服务系统，并建立真正符合业务运作方式的数字化流程。" },
+    "cta.checkup15": { en: "Book a Free 15-Min Fit Call", zh: "预约免费 15 分钟匹配通话" },
+    "cta.checkup": { en: "Book a Free Fit Call", zh: "预约免费匹配通话" },
     "cta.workflow": { en: "See working demos", zh: "查看可用演示" },
     "cta.linkedin": { en: "View LinkedIn", zh: "查看 LinkedIn" },
     "trust.one": { en: "One-person builder", zh: "一人全程负责" },
     "trust.human": { en: "Human-reviewed automation", zh: "人工复核自动化" },
     "trust.handoff": { en: "Clean handoff", zh: "清晰交付" },
-    "workflow.example": { en: "Illustrative lead desk · sample data", zh: "潜客工作台示意 · 示例数据" },
-    "workflow.leadJob": { en: "Today’s follow-up", zh: "今日跟进" },
-    "workflow.inquiry": { en: "HVAC call · missed while on-site", zh: "暖通空调来电 · 施工时未接" },
-    "workflow.inquiryNote": { en: "Callback queued with service area and urgency", zh: "按服务区域和紧急程度排入回电" },
-    "workflow.captured": { en: "Local phone lead · logged by hand", zh: "本地电话潜客 · 手动记录" },
-    "workflow.capturedNote": { en: "Details can be lost between the call, notes, and follow-up", zh: "信息可能在通话、笔记与跟进之间丢失" },
-    "workflow.alerted": { en: "Restaurant order · mobile path too slow", zh: "餐厅点餐 · 手机流程太慢" },
-    "workflow.alertedNote": { en: "Guest needs a fast menu and ordering path", zh: "顾客需要快捷的菜单与点餐流程" },
+    "workflow.example": { en: "Three focused offers · illustrative", zh: "三项聚焦服务 · 示意" },
+    "workflow.leadJob": { en: "Fit before build", zh: "先匹配再搭建" },
+    "workflow.inquiry": { en: "Codex & Claude consulting", zh: "Codex 与 Claude 咨询" },
+    "workflow.inquiryNote": { en: "Choose, configure, connect, or build the right system", zh: "选择、配置、连接或搭建合适系统" },
+    "workflow.captured": { en: "AI chat & voice service", zh: "AI 文字与语音客户服务" },
+    "workflow.capturedNote": { en: "Answer, qualify, collect, route, and escalate", zh: "回答、筛选、收集、分派与人工升级" },
+    "workflow.alerted": { en: "Restaurant digital operations", zh: "餐厅数字化运营" },
+    "workflow.alertedNote": { en: "Ordering, POS workflow, menu updates, and staff handoff", zh: "点餐、POS 流程、菜单更新与员工交接" },
     "workflow.followup": { en: "Front-desk lead · waiting for an answer", zh: "前台潜客 · 等待回复" },
     "workflow.followupNote": { en: "Common questions need a quick live response", zh: "常见问题需要快速实时回复" },
     "workflow.trustGap": { en: "Website visitor · trust gap", zh: "网站访客 · 信任缺口" },
     "workflow.trustGapNote": { en: "Proof, contact, and booking actions need to be obvious", zh: "证明、联系与预约操作需要一目了然" },
     "workflow.note": { en: "Every row shows the pain, owner, age, and next action.", zh: "每一行都显示问题、负责人、等待时间和下一步。" },
-    "workflow.visualLabel": { en: "Lead desk · sample data", zh: "潜客工作台 · 示例数据" },
+    "workflow.visualLabel": { en: "Fit-to-build path", zh: "从匹配到搭建" },
     "workflow.capture": { en: "Triage", zh: "分级" },
     "workflow.route": { en: "Assign", zh: "分配" },
     "workflow.followShort": { en: "Recover", zh: "挽回" },
-    "workflow.describe": { en: "Describe your business", zh: "描述你的业务" },
-    "workflow.proposal": { en: "I give a proposal", zh: "我提供方案" },
-    "workflow.result": { en: "I deliver real results", zh: "我交付实际成果" },
-    "workflow.websiteCall": { en: "Missed call", zh: "未接来电" },
-    "workflow.ownerAlert": { en: "Unassigned quote", zh: "未分配报价" },
-    "workflow.estimateReminder": { en: "Estimate due", zh: "报价待跟进" },
+    "workflow.describe": { en: "Fit Call", zh: "匹配通话" },
+    "workflow.proposal": { en: "Diagnose", zh: "诊断" },
+    "workflow.result": { en: "Build", zh: "搭建" },
+    "workflow.websiteCall": { en: "Keep", zh: "保留" },
+    "workflow.ownerAlert": { en: "Connect", zh: "连接" },
+    "workflow.estimateReminder": { en: "Build", zh: "搭建" },
     "workflow.readout1": { en: "Priority lead", zh: "优先潜客" },
     "workflow.readout2": { en: "Owner action", zh: "负责人操作" },
     "workflow.readout3": { en: "Due today", zh: "今日到期" },
@@ -66,49 +64,50 @@
     "workflow.sequence2": { en: "Quote request needs a postal code before assignment.", zh: "报价请求需要补充邮编后再分配。" },
     "workflow.sequence3": { en: "HVAC estimate is ready for a follow-up call.", zh: "暖通报价已进入今日回访。" },
 
-    "services.eyebrow": { en: "Services", zh: "服务" },
-    "services.title": { en: "Diagnose first. Build what helps.", zh: "先诊断，再搭建真正有用的系统。" },
-    "services.body": { en: "One clear operational problem becomes a focused plan, build, and measurable handoff.", zh: "把一个明确的运营问题转化为聚焦的计划、搭建和可衡量交付。" },
-    "services.diagnose": { en: "Digital Systems Checkup", zh: "数字系统检查" },
-    "services.diagnoseBody": { en: "Map one real workflow, find the bottleneck, review the tools you already pay for, and recommend the simplest path forward.", zh: "梳理一条真实流程，找出瓶颈，检查你已经付费的工具，并推荐最简单的改进路径。" },
-    "services.diagnoseList": { en: "Configure existing tools · Choose a ready-made option · Scope a focused custom fix", zh: "配置现有工具 · 选择成熟方案 · 规划小范围定制方案" },
-    "services.build": { en: "Website & Lead Capture", zh: "网站与潜客收集" },
-    "services.buildBody": { en: "Mobile-first websites built around calls, quote requests, booking, trust, speed, basic analytics, and practical local-search foundations.", zh: "以电话、报价请求、预约、信任、速度、基础分析和实用本地搜索基础为核心的移动优先网站。" },
-    "services.buildList": { en: "Clear mobile actions · Useful forms · Fast, maintainable handoff", zh: "清晰的移动端操作 · 实用表单 · 快速且易维护的交付" },
-    "services.automate": { en: "Workflow Automation & AI", zh: "流程自动化与 AI" },
-    "services.automateBody": { en: "Connect forms, CRM, email, documents, notifications, reporting, and lightweight apps. Predictable work uses rules; AI is reserved for interpretation or generation.", zh: "连接表单、CRM、邮件、文档、通知、报表和轻量应用。可预测任务使用规则，只有解释或生成内容时才使用 AI。" },
-    "services.automateList": { en: "Lead routing · Follow-up reminders · Intake, documents, and reporting", zh: "潜客分配 · 跟进提醒 · 客户信息、文档与报表" },
-    "services.scope": { en: "Projects are scoped after the Systems Checkup.", zh: "项目范围将在系统检查后确定。" },
+    "services.eyebrow": { en: "Three focused offers", zh: "三项聚焦服务" },
+    "services.title": { en: "Choose the business problem. Then choose the right system.", zh: "先明确业务问题，再选择合适系统。" },
+    "services.body": { en: "Each offer starts with diagnosis and can continue into a separately scoped implementation.", zh: "每项服务都从诊断开始，并可在另行确定范围后进入实施。" },
+    "services.problem": { en: "Problem", zh: "业务问题" },
+    "services.deliver": { en: "Possible deliverables", zh: "可能交付" },
+    "services.custom": { en: "When custom work fits", zh: "适合定制的情况" },
+    "services.offer1": { en: "Codex & Claude AI Consulting / Implementation", zh: "Codex 与 Claude AI 咨询 / 实施" },
+    "services.offer1Problem": { en: "Your team sees useful AI tools but needs a controlled plan for applying them to real work.", zh: "团队看到了有用的 AI 工具，但需要一套可控方案把它们用于真实工作。" },
+    "services.offer1Deliver": { en: "Workflow diagnosis, Codex or Claude working methods, automation, internal tools, API connections, custom AI websites or web apps, and whole-business AI tool training.", zh: "流程诊断、Codex 或 Claude 工作方法、自动化、内部工具、API 连接、定制 AI 网站或 Web App，以及全企业 AI 工具培训。" },
+    "services.offer1Custom": { en: "Custom implementation makes sense when a mature product cannot support the required workflow, controls, or handoff.", zh: "当成熟产品无法支持所需流程、控制或交接时，定制实施才有意义。" },
+    "services.offer2": { en: "AI Chat & Voice Customer Service Systems", zh: "AI 文字与语音客户服务系统" },
+    "services.offer2Problem": { en: "Customers wait for answers, calls are missed, and useful inquiry details do not reach the right person.", zh: "客户等待回复、来电未接，有用的咨询信息也没有到达正确负责人。" },
+    "services.offer2Deliver": { en: "Website assistants, FAQ and knowledge flows, lead qualification, information collection, appointment inquiries, Voice AI reception, routing, and human escalation.", zh: "网站助手、FAQ 与知识流程、潜客筛选、信息收集、预约咨询、Voice AI 接待、分派与人工升级。" },
+    "services.offer2Custom": { en: "Production systems need business-specific CRM, calendar, routing, privacy, escalation, and testing requirements.", zh: "生产系统需要符合企业自身的 CRM、日历、分派、隐私、升级和测试要求。" },
+    "services.offer3": { en: "Restaurant Digital Ordering & Systems Setup", zh: "餐厅数字点餐与系统设置" },
+    "services.offer3Problem": { en: "Ordering, menus, POS, kitchen routing, status updates, and staff handoffs are fragmented or difficult to maintain.", zh: "点餐、菜单、POS、后厨分派、状态更新和员工交接彼此分散或难以维护。" },
+    "services.offer3Deliver": { en: "Platform comparison, online-ordering setup, website Order Online integration, POS workflow guidance, QR menus, staff training, analytics, and optional maintenance.", zh: "平台比较、在线点餐设置、网站点餐入口、POS 流程指导、二维码菜单、员工培训、分析和可选维护。" },
+    "services.offer3Custom": { en: "Established platforms come first; custom work fills a genuine integration or customer-experience gap.", zh: "优先采用成熟平台，定制工作只用于填补真实的集成或客户体验缺口。" },
+    "services.scope": { en: "Consulting and implementation are separate. You may take the diagnosis and recommendation without hiring me for the build.", zh: "咨询与实施彼此独立。你可以只获取诊断与建议，无需继续委托我搭建。" },
 
-    "industries.eyebrow": { en: "My niche · Industries", zh: "我的细分领域 · 行业" },
-    "industries.title": { en: "Focused on businesses with repeated inquiries and handoffs.", zh: "专注于有重复咨询与交接流程的企业。" },
-    "industries.body": { en: "Home services are the primary focus today, with room for other Canadian local businesses that share similar lead and admin workflows.", zh: "目前主要服务家居服务行业，也欢迎有类似潜客与行政流程的加拿大本地企业。" },
-    "industries.estimateLabel": { en: "Rough planning estimate · measured against your baseline", zh: "粗略规划估算 · 以你的当前基准衡量" },
-    "industries.estimateStat": { en: "Up to 75% less manual lead handling", zh: "手动处理潜客的工作量最高可减少 75%" },
-    "industries.estimateBody": { en: "A planning target for suitable workflows. The Systems Checkup measures your current steps, volume, and response time before any percentage enters a proposal. Results depend on the starting process, data, team adoption, and integrations.", zh: "这是适用于合适流程的规划目标。系统检查会先衡量当前步骤、业务量和响应时间，再决定是否在方案中使用任何百分比。结果取决于现有流程、数据、团队采用情况和系统集成。" },
-    "industries.painEyebrow": { en: "Where local businesses lose time and leads", zh: "本地企业流失时间与潜客的地方" },
-    "industries.painTitle": { en: "Does any of this sound familiar?", zh: "这些情况你熟悉吗？" },
-    "industries.pain1": { en: "HVAC calls ring while everyone is out on a job.", zh: "暖通空调来电响起时，所有人都在外出施工。" },
-    "industries.pain2": { en: "Phone leads are copied by hand and follow-up depends on memory.", zh: "电话潜客靠手动抄录，后续跟进依赖记忆。" },
-    "industries.pain3": { en: "Restaurant guests wait for a menu, ordering, or staff response.", zh: "餐厅顾客需要等待菜单、点餐或员工回复。" },
-    "industries.pain4": { en: "Front-desk inquiries sit without a quick, useful answer.", zh: "前台咨询无法快速获得有用回复。" },
-    "industries.pain5": { en: "Your website makes the business difficult to trust, contact, or book.", zh: "你的网站未能让客户轻松建立信任、联系或预约。" },
-    "industries.journeyLabel": { en: "Three-stage working process", zh: "三阶段合作流程" },
-    "industries.stage1": { en: "Describe your business", zh: "描述你的业务" },
-    "industries.stage2": { en: "I give a clear proposal", zh: "我提供清晰方案" },
-    "industries.stage3": { en: "I deliver the agreed result", zh: "我交付约定成果" },
-    "industries.promise": { en: "I’m here to solve these bottlenecks, strengthen how your business operates, and deliver the strongest practical result I can—quickly and with clear accountability.", zh: "我会解决这些瓶颈、强化你的业务运作方式，并以清晰的责任和高效的执行，尽我所能交付最实用的成果。" },
-    "industries.home": { en: "Home Services", zh: "家居服务" },
-    "industries.homeBody": { en: "Websites and lead workflows for HVAC, plumbing, electrical, roofing, restoration, landscaping, and renovation businesses.", zh: "为暖通、管道、电气、屋顶、修复、园林和装修企业提供网站与潜客流程。" },
-    "industries.restaurant": { en: "Restaurants", zh: "餐饮" },
-    "industries.restaurantBody": { en: "Better menu and contact experiences, reservations, customer inquiries, review requests, basic reporting, and repetitive admin.", zh: "改善菜单与联系体验、预约、顾客咨询、评价请求、基础报表和重复行政工作。" },
-    "industries.other": { en: "Other Local Services", zh: "其他本地服务" },
-    "industries.otherBody": { en: "If your business handles recurring inquiries, bookings, estimates, follow-up, or administrative handoffs, it may be a fit.", zh: "如果你的企业经常处理咨询、预约、报价、跟进或行政交接，也可能适合。" },
-    "industries.contractors": { en: "See service and booking details", zh: "查看服务与预约详情" },
+    "diagnose.eyebrow": { en: "Diagnose before building", zh: "先诊断，再搭建" },
+    "diagnose.title": { en: "Keep, configure, connect, replace, or build.", zh: "保留、配置、连接、替换或搭建。" },
+    "diagnose.body": { en: "The recommendation starts from your current operation, constraints, risks, and staff workflow.", zh: "建议从你当前的运营、限制、风险和员工流程出发。" },
+    "diagnose.keep": { en: "Keep what already works", zh: "保留已有成效" },
+    "diagnose.configure": { en: "Configure a mature platform", zh: "配置成熟平台" },
+    "diagnose.connect": { en: "Connect the missing handoff", zh: "连接缺失交接" },
+    "diagnose.replace": { en: "Replace the weak link", zh: "替换薄弱环节" },
+    "diagnose.build": { en: "Build only for a real gap", zh: "只为真实缺口搭建" },
 
-    "examples.eyebrow": { en: "Results / Examples", zh: "成果 / 示例" },
-    "examples.title": { en: "Real builder proof, clearly separated from demos.", zh: "真实能力证明，与演示场景明确区分。" },
-    "examples.body": { en: "Local-business case studies will be added only when there is real client permission and measurable evidence.", zh: "只有获得真实客户许可并有可衡量证据后，才会加入本地企业案例。" },
+    "examples.eyebrow": { en: "Demo Gallery", zh: "演示作品库" },
+    "examples.title": { en: "See what I have already built.", zh: "查看我已经搭建的作品。" },
+    "examples.body": { en: "The full Demo Gallery shows actual workflow screens, delivered outputs, public products, and technical builds—so you can inspect how I structure inputs, decisions, and handoffs.", zh: "完整演示作品库展示真实流程界面、交付输出、公开产品和技术搭建，让你了解我如何组织输入、决策与交接。" },
+    "examples.previewCaption": { en: "Actual workflow screen · n8n automation", zh: "真实流程界面 · n8n 自动化" },
+    "examples.previewLabel": { en: "Inside the Demo Gallery", zh: "演示作品库内容" },
+    "examples.previewTitle": { en: "From n8n workflow canvases to usable public products.", zh: "从 n8n 流程画布到可用的公开产品。" },
+    "examples.previewBody": { en: "Review the process, interface, and usable output behind each finished screen.", zh: "查看每个最终界面背后的流程、界面设计和可用输出。" },
+    "examples.preview1": { en: "Workflow automation", zh: "流程自动化" },
+    "examples.preview1Body": { en: "n8n canvases, delivered emails, and appointment records.", zh: "n8n 画布、已交付邮件和预约记录。" },
+    "examples.preview2": { en: "Customer interfaces", zh: "客户界面" },
+    "examples.preview2Body": { en: "Guided intake, AI-assisted answers, and clear human handoffs.", zh: "引导式信息收集、AI 辅助回答和清晰人工交接。" },
+    "examples.preview3": { en: "Public products", zh: "公开产品" },
+    "examples.preview3Body": { en: "StagePulse Map, GenPromptly, and the phosphene vision simulator.", zh: "StagePulse Map、GenPromptly 和光幻视视觉模拟器。" },
+    "examples.openGallery": { en: "Open the Demo Gallery", zh: "打开演示作品库" },
+    "examples.openWorkflows": { en: "See n8n workflow builds", zh: "查看 n8n 流程搭建" },
     "examples.demoLabel": { en: "Demo · No client results claimed", zh: "演示 · 不代表真实客户成果" },
     "examples.plumbing": { en: "Plumbing Lead Follow-up", zh: "管道服务潜客跟进" },
     "examples.plumbingBody": { en: "A quote request is captured, routed by service area, acknowledged, assigned, and kept visible until the estimate is followed up.", zh: "报价请求被收集后按服务区域分配、自动确认、指派负责人，并持续显示直到完成报价跟进。" },
@@ -177,8 +176,8 @@
     "about.proof": { en: "My technical background includes published computer-vision research and a 2nd-place HackerRivals build. These projects demonstrate delivery speed, technical depth, and comfort with complex systems.", zh: "我的技术背景包括已发表的计算机视觉研究和 HackerRivals 二等奖作品。这些项目体现了交付速度、技术深度和处理复杂系统的能力。" },
     "about.final": { en: "Show me one workflow that wastes your time.", zh: "告诉我一个正在浪费你时间的流程。" },
 
-    "booking.title": { en: "Book a Free Systems Checkup | Kairui Bi", zh: "预约免费系统检查 | Kairui Bi" },
-    "booking.description": { en: "Book a free 15-minute Systems Checkup with Kairui Bi for a Canadian local-business website or workflow.", zh: "预约与 Kairui Bi 的免费 15 分钟系统检查，讨论加拿大本地企业的网站或工作流程。" },
+    "booking.title": { en: "Book a Free 15-Minute Fit Call | Kairui Bi", zh: "预约免费 15 分钟匹配通话 | Kairui Bi" },
+    "booking.description": { en: "Book a free 15-minute Fit Call with Kairui Bi to discuss an AI consulting or systems opportunity for a BC business.", zh: "预约与 Kairui Bi 的免费 15 分钟匹配通话，讨论卑诗省企业的 AI 咨询或系统机会。" },
     "booking.eyebrow": { en: "Free 15-minute fit check", zh: "免费 15 分钟匹配检查" },
     "booking.heading": { en: "Start with the workflow and business outcome.", zh: "从工作流程和业务成果开始。" },
     "booking.body": { en: "Bring one process that feels slow, manual, or easy to lose track of. The free call focuses on fit and direction. When we fit, the next step is a separately quoted business diagnosis or a separately scoped implementation project.", zh: "带来一个缓慢、手工或容易失去跟踪的流程。免费通话聚焦合作匹配与方向。适合合作时，下一步是单独报价的业务诊断，或另行确定范围的实施项目。" },
@@ -193,10 +192,10 @@
     "booking.nextTitle": { en: "Booked your call?", zh: "已经预约通话？" },
     "booking.nextBody": { en: "Complete the Pre-Call Guide so I can prepare around your actual workflow.", zh: "填写通话准备指南，让我可以围绕你的真实流程做好准备。" },
 
-    "precall.title": { en: "Pre-Call Guide | Kairui Bi Systems Checkup", zh: "通话准备指南 | Kairui Bi 系统检查" },
-    "precall.description": { en: "Prepare for a focused 15-minute Systems Checkup with Kairui Bi using the pre-call video, required briefing form, and practical checklist.", zh: "通过通话前视频、必填简报表和实用清单，为与 Kairui Bi 的 15 分钟系统检查做好准备。" },
+    "precall.title": { en: "Pre-Call Guide | Kairui Bi Fit Call", zh: "通话准备指南 | Kairui Bi 匹配通话" },
+    "precall.description": { en: "Prepare for a focused 15-minute Fit Call with Kairui Bi using the pre-call video space, required briefing form, and practical checklist.", zh: "通过通话前视频位置、必填简报表和实用清单，为与 Kairui Bi 的 15 分钟匹配通话做好准备。" },
     "precall.eyebrow": { en: "Before the call", zh: "通话之前" },
-    "precall.heading": { en: "Prepare for a focused 15-minute Systems Checkup.", zh: "为一次聚焦的 15 分钟系统检查做好准备。" },
+    "precall.heading": { en: "Prepare for a focused 15-minute Fit Call.", zh: "为一次聚焦的 15 分钟匹配通话做好准备。" },
     "precall.body": { en: "This page helps me understand your operation before we meet, so the call can focus on the bottleneck, desired outcome, and strongest next step.", zh: "本页帮助我在会面前了解你的运营情况，让通话聚焦于瓶颈、期望结果和最有力的下一步。" },
     "precall.complete": { en: "Complete the required briefing", zh: "填写必填通话简报" },
     "precall.schedule": { en: "Book or reschedule", zh: "预约或改期" },
@@ -448,9 +447,143 @@
     "footer.explore": { en: "Explore", zh: "浏览" },
     "footer.contact": { en: "Contact", zh: "联系" },
     "footer.precall": { en: "Pre-call guide", zh: "通话准备指南" },
-    "footer.projects": { en: "Builder proof", zh: "搭建能力证明" },
     "footer.privacy": { en: "Privacy Policy", zh: "隐私政策" },
-    "footer.terms": { en: "Terms of Service", zh: "服务条款" }
+    "footer.terms": { en: "Terms of Service", zh: "服务条款" },
+
+    "workflow.note": { en: "Start with the business. Then choose the system.", zh: "先理解业务，再选择系统。" },
+    "services.problem": { en: "Business problem", zh: "业务问题" },
+    "examples.title": { en: "Inspect the workflow, interface, and handoff.", zh: "查看流程、界面与交接方式。" },
+    "examples.body": { en: "The gallery separates working demonstrations, fictional examples, prototypes, and builder proof so you can see exactly what each item represents.", zh: "作品库清楚区分可运行演示、虚构示例、原型和搭建能力证明，让你准确了解每项内容代表什么。" },
+    "examples.previewCaption": { en: "Demo · n8n appointment workflow", zh: "演示 · n8n 预约流程" },
+    "examples.previewTitle": { en: "Three business-focused demonstration tracks.", zh: "三条围绕业务的演示路线。" },
+    "examples.previewBody": { en: "See an appointment workflow, customer-service prototypes, a fictional restaurant ordering flow, and lower-page builder proof.", zh: "查看预约流程、客户服务原型、虚构餐厅点餐流程，以及页面下方的搭建能力证明。" },
+    "examples.preview1": { en: "Codex & Claude", zh: "Codex 与 Claude" },
+    "examples.preview1Body": { en: "Appointment, internal-tool, API, and before/after workflow examples.", zh: "预约、内部工具、API 与流程前后对比示例。" },
+    "examples.preview2": { en: "Chat & Voice", zh: "文字与语音 AI" },
+    "examples.preview2Body": { en: "Clearly labelled prototypes with information collection and human escalation.", zh: "清楚标注的原型，涵盖信息收集与转人工。" },
+    "examples.preview3": { en: "Restaurant systems", zh: "餐厅系统" },
+    "examples.preview3Body": { en: "A fictional ordering, POS, kitchen, confirmation, and menu-update workflow.", zh: "虚构的点餐、POS、后厨、确认与菜单更新流程。" },
+    "examples.openWorkflows": { en: "See the workflow demo", zh: "查看流程演示" },
+
+    "process.eyebrow": { en: "Process", zh: "流程" },
+    "process.title": { en: "From fit call to a measured handoff.", zh: "从匹配通话到可衡量的交付。" },
+    "process.body": { en: "The first call checks fit. Diagnosis and implementation are separately scoped, and you may stop after receiving the recommendation.", zh: "首次通话用于判断是否适合合作。诊断与实施分别确定范围，你也可以在获得建议后结束合作。" },
+    "process.step1": { en: "Fit Call", zh: "匹配通话" },
+    "process.step1Body": { en: "Discuss one real business problem and decide whether to continue.", zh: "讨论一个真实业务问题，并决定是否继续。" },
+    "process.step2": { en: "Diagnose", zh: "诊断" },
+    "process.step2Body": { en: "Map customers, staff, information, tools, bottlenecks, and constraints.", zh: "梳理客户、员工、信息、工具、瓶颈与限制。" },
+    "process.step3": { en: "Prescribe", zh: "提出方案" },
+    "process.step3Body": { en: "Receive a practical recommendation with choices and reasoning.", zh: "获得包含选项与理由的实用建议。" },
+    "process.step4": { en: "Implement", zh: "实施" },
+    "process.step4Body": { en: "Configure, connect, or build the separately approved solution.", zh: "配置、连接或搭建另行批准的方案。" },
+    "process.step5": { en: "Measure & Maintain", zh: "衡量与维护" },
+    "process.step5Body": { en: "Review agreed measures, hand off clearly, and add optional care where useful.", zh: "复核约定指标、清楚交付，并在有价值时提供可选维护。" },
+
+    "tutorials.eyebrow": { en: "Builds & Tutorials", zh: "搭建与教程" },
+    "tutorials.title": { en: "See how a workflow is built.", zh: "了解一个流程如何被搭建。" },
+    "tutorials.body": { en: "A future Kairui Bi video will break down a practical build, the decisions behind it, and how it can be handed off.", zh: "之后的 Kairui Bi 视频会拆解一个实用搭建、背后的决策以及交付方式。" },
+    "tutorials.pending": { en: "Video coming soon", zh: "视频即将上线" },
+    "tutorials.noRequest": { en: "No YouTube content loads until a video is configured and you choose to play it.", zh: "在配置视频并由你选择播放前，不会加载任何 YouTube 内容。" },
+    "tutorials.category": { en: "Build walkthrough", zh: "搭建讲解" },
+    "tutorials.videoTitle": { en: "Builds & Tutorials with Kairui Bi", zh: "Kairui Bi 搭建与教程" },
+    "tutorials.videoBody": { en: "A concise walkthrough of the business problem, system design, implementation, and handoff.", zh: "简洁讲解业务问题、系统设计、实施与交付。" },
+    "tutorials.channel": { en: "Visit the YouTube channel", zh: "访问 YouTube 频道" },
+    "tutorials.playVideo": { en: "Play featured video", zh: "播放精选视频" },
+
+    "about.eyebrow": { en: "Builder Proof / About", zh: "搭建能力证明 / 关于" },
+    "about.body": { en: "I’m Kairui Bi, a BC-based AI consultant and systems builder. I diagnose the operation, explain the options, and build focused systems with clear review points and handoff.", zh: "我是 Kairui Bi，一名常驻卑诗省的 AI 顾问与系统搭建者。我诊断运营流程、解释可选方案，并以清楚的复核节点和交付方式搭建聚焦系统。" },
+    "about.proof": { en: "My technical background includes published computer-vision research and a second-place HackerRivals build. The Demo Gallery keeps those technical projects clearly separated from commercial prototypes.", zh: "我的技术背景包括已发表的计算机视觉研究和 HackerRivals 二等奖作品。演示作品库会把这些技术项目与商业原型清楚区分。" },
+    "about.final": { en: "Bring one workflow that needs a clearer next step.", zh: "带来一个需要更清晰下一步的流程。" },
+    "faq.title": { en: "Before you book a fit call.", zh: "预约匹配通话之前。" },
+    "faq.q1": { en: "What happens in the free 15-minute fit call?", zh: "免费 15 分钟匹配通话会做什么？" },
+    "faq.a1": { en: "We discuss one business problem, decide whether there is a fit, and identify whether diagnosis or implementation is the sensible next step.", zh: "我们讨论一个业务问题，判断是否适合合作，并确定诊断或实施哪一个是合理的下一步。" },
+    "faq.q2": { en: "Is consulting separate from implementation?", zh: "咨询与实施是分开的吗？" },
+    "faq.a2": { en: "Yes. Diagnosis and recommendations can be delivered as a separate consulting engagement. Implementation receives its own scope and quote.", zh: "是。诊断与建议可以作为独立咨询服务交付；实施会另行确定范围与报价。" },
+    "faq.q3": { en: "Do you already operate a live chatbot or Voice AI service?", zh: "你现在已经运营在线聊天机器人或语音 AI 服务了吗？" },
+    "faq.a3": { en: "The gallery currently shows clearly labelled prototypes and illustrative workflows. A live deployment is scoped, tested, and approved for each business.", zh: "作品库目前展示的是清楚标注的原型和示意流程。正式上线会针对每家企业单独确定范围、测试并批准。" },
+    "faq.q4": { en: "Can you work with our current tools?", zh: "你能与我们现有的工具配合吗？" },
+    "faq.a4": { en: "Yes. Diagnosis identifies what should stay, what should connect, and where a platform change or custom build is justified.", zh: "可以。诊断会明确哪些应保留、哪些应连接，以及何时更换平台或定制搭建是合理的。" },
+    "faq.q5": { en: "Can you set up restaurant ordering rather than build it from scratch?", zh: "你可以配置餐厅点餐平台，而不是从头开发吗？" },
+    "faq.a5": { en: "Yes. Platform selection, setup, POS and kitchen workflow, menu updates, staff training, analytics, and optional maintenance can all be scoped.", zh: "可以。平台选择与设置、POS 和后厨流程、菜单更新、员工培训、分析及可选维护都可以纳入范围。" },
+    "faq.q6": { en: "What happens after delivery?", zh: "交付之后会怎样？" },
+    "faq.a6": { en: "The agreed system is reviewed, documented, and handed off. Measurement and ongoing care can be included when useful.", zh: "约定系统会经过复核、记录并完成交付；如有价值，也可以包含衡量与持续维护。" },
+    "form.successBody": { en: "I will review it and reply with a practical next step. You can also book the free fit call now.", zh: "我会查看并回复一个实用的下一步。你也可以现在预约免费匹配通话。" },
+
+    "gallery.title": { en: "AI Systems Demo Gallery | Kairui Bi", zh: "AI 系统演示作品库 | Kairui Bi" },
+    "gallery.description": { en: "Explore labelled AI consulting, customer-service, and restaurant-systems demos and builder proof by Kairui Bi.", zh: "查看 Kairui Bi 清楚标注的 AI 咨询、客户服务与餐厅系统演示和搭建能力证明。" },
+    "gallery.eyebrow": { en: "Demo Gallery", zh: "演示作品库" },
+    "gallery.heading": { en: "See what is demonstrated, what is a prototype, and what is builder proof.", zh: "看清哪些是演示、哪些是原型、哪些是搭建能力证明。" },
+    "gallery.intro": { en: "The gallery follows the same three offers as the homepage. Every item is labelled so a concept is never mistaken for a live client deployment.", zh: "作品库与首页的三项服务保持一致。每项内容都明确标注，避免把概念误认为真实客户上线项目。" },
+    "gallery.cat1": { en: "Codex & Claude", zh: "Codex 与 Claude" },
+    "gallery.cat2": { en: "Chat & Voice", zh: "文字与语音 AI" },
+    "gallery.cat3": { en: "Restaurant systems", zh: "餐厅系统" },
+    "gallery.heroMediaTitle": { en: "Appointment workflow demonstration", zh: "预约流程演示" },
+    "gallery.heroMediaBody": { en: "A real workflow asset used to explain information movement and handoff.", zh: "用真实流程素材解释信息移动与交接。" },
+    "gallery.demoLabel": { en: "Demo · working asset", zh: "演示 · 真实搭建素材" },
+    "gallery.prototypeLabel": { en: "Prototype · no live deployment claimed", zh: "原型 · 不代表已上线项目" },
+    "gallery.fictionalLabel": { en: "Demo · fictional BC business", zh: "演示 · 虚构卑诗省企业" },
+    "gallery.proofLabel": { en: "Builder Proof", zh: "搭建能力证明" },
+    "gallery.codexEyebrow": { en: "01 · Codex & Claude", zh: "01 · Codex 与 Claude" },
+    "gallery.codexTitle": { en: "From appointment information to an organized team action.", zh: "从预约信息到有组织的团队行动。" },
+    "gallery.codexIntro": { en: "This demonstration shows how an event can become structured information for a spreadsheet, preparation step, confirmation, or internal follow-up.", zh: "此演示展示一个事件如何转化为结构化信息，用于表格、准备步骤、确认或内部跟进。" },
+    "gallery.appointmentTitle": { en: "Appointment information workflow", zh: "预约信息流程" },
+    "gallery.appointmentBody": { en: "A booking event is normalized once and routed into an action-ready record. The same pattern can support preparation, reminders, or an approved internal assistant.", zh: "预约事件经过一次标准化后，被分派为可执行记录。同一模式可支持准备、提醒或经批准的内部助手。" },
+    "gallery.calendar": { en: "Calendar event", zh: "日历事件" },
+    "gallery.record": { en: "Structured record", zh: "结构化记录" },
+    "gallery.action": { en: "Team action", zh: "团队行动" },
+    "gallery.internalTitle": { en: "Internal tool + API architecture", zh: "内部工具 + API 架构" },
+    "gallery.internal1": { en: "Approved staff input", zh: "经批准的员工输入" },
+    "gallery.internal2": { en: "Codex or Claude assisted step", zh: "Codex 或 Claude 辅助步骤" },
+    "gallery.internal3": { en: "Business rules and review", zh: "业务规则与复核" },
+    "gallery.internal4": { en: "API-connected record or action", zh: "API 连接的记录或行动" },
+    "gallery.internalNote": { en: "Architecture example only; access, data, and approvals are scoped for each business.", zh: "仅为架构示例；访问权限、数据与审批会针对每家企业确定。" },
+    "gallery.beforeAfterTitle": { en: "Before / after business process", zh: "业务流程前后对比" },
+    "gallery.before": { en: "Before", zh: "之前" },
+    "gallery.beforeBody": { en: "Copy details between messages, calendars, notes, and spreadsheets; remember the next action.", zh: "在消息、日历、笔记与表格之间复制信息，并靠记忆安排下一步。" },
+    "gallery.after": { en: "After", zh: "之后" },
+    "gallery.afterBody": { en: "Capture once, validate the required fields, route the record, and leave exceptions for human review.", zh: "一次收集、验证必填字段、分派记录，并把例外留给人工复核。" },
+    "gallery.chatEyebrow": { en: "02 · AI Chat & Voice", zh: "02 · AI 文字与语音" },
+    "gallery.chatTitle": { en: "Customer-service flows with a visible human handoff.", zh: "带有明确人工交接的客户服务流程。" },
+    "gallery.chatIntro": { en: "These interfaces and diagrams illustrate how approved answers, qualification, information collection, and escalation could work. They are not a live chatbot or Voice AI deployment.", zh: "这些界面与图示说明经批准答案、筛选、信息收集与升级可以如何运作。它们不是已上线的聊天机器人或语音 AI 项目。" },
+    "gallery.assistantTitle": { en: "Website assistant interface", zh: "网站助手界面" },
+    "gallery.assistantBody": { en: "A guided interface for approved answers, missing-detail collection, lead qualification, and a clear transfer to a person.", zh: "用于经批准答案、缺失信息收集、潜客筛选与清楚转人工的引导式界面。" },
+    "gallery.approved": { en: "Approved answers", zh: "经批准答案" },
+    "gallery.qualify": { en: "Lead qualification", zh: "潜客筛选" },
+    "gallery.collect": { en: "Information collection", zh: "信息收集" },
+    "gallery.escalate": { en: "Human escalation", zh: "转人工" },
+    "gallery.future": { en: "Future CRM / calendar integration", zh: "未来 CRM / 日历集成" },
+    "gallery.voiceTitle": { en: "Voice AI call path", zh: "语音 AI 通话路径" },
+    "gallery.voiceBody": { en: "An illustrative call flow for a BC business. It does not represent an active phone agent or client deployment.", zh: "面向卑诗省企业的示意通话流程，不代表正在运行的电话助手或客户上线项目。" },
+    "gallery.voice1": { en: "Incoming call", zh: "来电" },
+    "gallery.voice2": { en: "Identify intent", zh: "识别意图" },
+    "gallery.voice3": { en: "Collect required information", zh: "收集必要信息" },
+    "gallery.voice4": { en: "Resolve or escalate", zh: "解决或升级" },
+    "gallery.voice5": { en: "CRM / calendar handoff", zh: "CRM / 日历交接" },
+    "gallery.restaurantEyebrow": { en: "03 · Restaurant systems", zh: "03 · 餐厅系统" },
+    "gallery.restaurantTitle": { en: "Digital ordering that reaches the kitchen and stays manageable.", zh: "真正到达后厨且便于维护的数字点餐。" },
+    "gallery.restaurantIntro": { en: "This fictional workflow shows the operational pieces around online or QR ordering. Square and Menufy are mentioned only as platform-comparison examples; no partnership is claimed.", zh: "此虚构流程展示在线或二维码点餐周边的运营环节。Square 与 Menufy 仅作为平台比较示例，不代表合作关系。" },
+    "gallery.restaurant1": { en: "Website / QR menu", zh: "网站 / 二维码菜单" },
+    "gallery.restaurant2": { en: "Menu and order action", zh: "菜单与下单操作" },
+    "gallery.restaurant3": { en: "Established ordering / POS platform", zh: "成熟点餐 / POS 平台" },
+    "gallery.restaurant4": { en: "Kitchen and status workflow", zh: "后厨与状态流程" },
+    "gallery.restaurant5": { en: "Customer confirmation", zh: "顾客确认" },
+    "gallery.restaurant6": { en: "Owner menu updates", zh: "业主更新菜单" },
+    "gallery.restaurantScopeTitle": { en: "What setup can cover", zh: "设置可涵盖内容" },
+    "gallery.restaurantScope1": { en: "Platform selection and comparison", zh: "平台选择与比较" },
+    "gallery.restaurantScope2": { en: "Ordering, POS workflow, and QR setup", zh: "点餐、POS 流程与二维码设置" },
+    "gallery.restaurantScope3": { en: "Kitchen status and guest confirmation", zh: "后厨状态与顾客确认" },
+    "gallery.restaurantScope4": { en: "Staff training and menu-update workflow", zh: "员工培训与菜单更新流程" },
+    "gallery.restaurantScope5": { en: "Analytics and optional maintenance", zh: "分析与可选维护" },
+    "gallery.comparisonLabel": { en: "Comparison examples only", zh: "仅作比较示例" },
+    "gallery.comparisonBody": { en: "The right choice depends on the current POS, fees, menu, pickup or delivery workflow, and staff operation.", zh: "合适选择取决于现有 POS、费用、菜单、取餐或配送流程以及员工操作。" },
+    "gallery.proofTitle": { en: "Technical depth, kept separate from commercial demos.", zh: "技术深度，与商业演示清楚分开。" },
+    "gallery.proofIntro": { en: "These completed public builds demonstrate product scoping, interaction design, research depth, and delivery under constraints.", zh: "这些已完成的公开作品展示产品范围界定、交互设计、研究深度与受限条件下的交付能力。" },
+    "gallery.stageBody": { en: "Built in six hours at Science World and awarded second place at Vancouver HackerRivals.", zh: "在 Science World 六小时内完成，并获 Vancouver HackerRivals 二等奖。" },
+    "gallery.phospheneBody": { en: "A browser interface connected to published technical work, with image upload and three comparable simulation outputs.", zh: "与已发表技术工作相关的浏览器界面，支持图像上传与三种可比较模拟输出。" },
+    "gallery.ctaTitle": { en: "Which part of your business needs a clearer system?", zh: "你业务的哪个部分需要更清晰的系统？" },
+
+    "footer.tagline": { en: "AI consulting and practical systems for BC businesses.", zh: "为卑诗省企业提供 AI 咨询与实用系统。" },
+    "footer.based": { en: "Based in BC · Serving British Columbia", zh: "常驻卑诗省 · 服务卑诗省企业" }
   };
 
   function readStorage(key) {
@@ -560,7 +693,7 @@
               <p data-i18n="footer.tagline">${escapeHtml(getText("footer.tagline"))}</p>
               <p class="footer-location" data-i18n="footer.based">${escapeHtml(getText("footer.based"))}</p>
             </div>
-            <div><strong data-i18n="footer.explore">${escapeHtml(getText("footer.explore"))}</strong><a href="${escapeHtml(resolvePath("index.html#services"))}" data-i18n="nav.services">${escapeHtml(getText("nav.services"))}</a><a href="${escapeHtml(resolvePath("index.html#industries"))}" data-i18n="nav.industries">${escapeHtml(getText("nav.industries"))}</a><a href="${escapeHtml(resolvePath(config.routes.precall))}" data-i18n="footer.precall">${escapeHtml(getText("footer.precall"))}</a><a href="${escapeHtml(resolvePath(config.routes.projects))}" data-i18n="footer.projects">${escapeHtml(getText("footer.projects"))}</a></div>
+            <div><strong data-i18n="footer.explore">${escapeHtml(getText("footer.explore"))}</strong><a href="${escapeHtml(resolvePath("index.html#services"))}" data-i18n="nav.services">${escapeHtml(getText("nav.services"))}</a><a href="${escapeHtml(resolvePath("demo_gallery.html"))}" data-i18n="nav.examples">${escapeHtml(getText("nav.examples"))}</a><a href="${escapeHtml(resolvePath("index.html#process"))}" data-i18n="nav.process">${escapeHtml(getText("nav.process"))}</a><a href="${escapeHtml(resolvePath(config.routes.precall))}" data-i18n="footer.precall">${escapeHtml(getText("footer.precall"))}</a></div>
             <div><strong data-i18n="footer.contact">${escapeHtml(getText("footer.contact"))}</strong><a href="mailto:${escapeHtml(config.contactEmail)}">${escapeHtml(config.contactEmail)}</a><a href="${escapeHtml(config.linkedinUrl)}" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="${escapeHtml(resolvePath(config.routes.booking))}" data-i18n="nav.book">${escapeHtml(getText("nav.book"))}</a></div>
             <div><strong>Legal</strong><a href="${escapeHtml(resolvePath(config.routes.privacy))}" data-i18n="footer.privacy">${escapeHtml(getText("footer.privacy"))}</a><a href="${escapeHtml(resolvePath(config.routes.terms))}" data-i18n="footer.terms">${escapeHtml(getText("footer.terms"))}</a><button class="footer-link-button" type="button" data-open-privacy data-i18n="privacy.settings">${escapeHtml(getText("privacy.settings"))}</button></div>
           </div>
@@ -600,6 +733,7 @@
     writeStorage(LANGUAGE_KEY, language);
     document.querySelectorAll("site-navbar, site-footer").forEach((component) => component.render?.());
     applyTranslations();
+    applySiteTokens();
     refreshFormConfiguration();
     refreshConsentCopy();
     document.dispatchEvent(new CustomEvent("site:refresh"));
@@ -641,6 +775,15 @@
     document.querySelectorAll("[data-contact-link]").forEach((link) => { link.href = `mailto:${config.contactEmail}`; link.textContent = config.contactEmail; });
     document.querySelectorAll("[data-linkedin]").forEach((link) => { link.href = config.linkedinUrl; });
     document.querySelectorAll("[data-location]").forEach((element) => { element.textContent = config.location; });
+    document.querySelectorAll("[data-youtube-channel]").forEach((link) => {
+      const url = config.youtube?.channelUrl || "";
+      link.hidden = !url;
+      if (url) { link.href = url; link.target = "_blank"; link.rel = "noopener noreferrer"; }
+    });
+    document.querySelectorAll("[data-youtube-title]").forEach((element) => {
+      if (language === "en" && config.youtube?.featuredVideoTitle) element.textContent = config.youtube.featuredVideoTitle;
+      else element.textContent = getText("tutorials.videoTitle", element.textContent);
+    });
   }
 
   function getYouTubeId(url) {
@@ -671,6 +814,25 @@
       iframe.referrerPolicy = "strict-origin-when-cross-origin";
       iframe.allowFullscreen = true;
       slot.replaceChildren(iframe);
+    });
+  }
+
+  function setupTutorialVideos() {
+    const videoId = getYouTubeId(config.youtube?.featuredVideoUrl || "");
+    if (!videoId) return;
+    document.querySelectorAll("[data-tutorial-video]").forEach((slot) => {
+      slot.classList.add("is-configured");
+      if (config.youtube?.thumbnailUrl) slot.style.backgroundImage = `linear-gradient(rgba(28, 24, 16, .3), rgba(28, 24, 16, .62)), url("${config.youtube.thumbnailUrl.replaceAll('"', '%22')}")`;
+      slot.innerHTML = `<button class="precall-video-play" type="button"><span class="video-play-mark" aria-hidden="true">&#9654;</span><span>${escapeHtml(getText("tutorials.playVideo"))}</span></button>`;
+      slot.querySelector("button")?.addEventListener("click", () => {
+        const iframe = document.createElement("iframe");
+        iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?autoplay=1&rel=0`;
+        iframe.title = config.youtube?.featuredVideoTitle || getText("tutorials.videoTitle");
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+        iframe.referrerPolicy = "strict-origin-when-cross-origin";
+        iframe.allowFullscreen = true;
+        slot.replaceChildren(iframe);
+      });
     });
   }
 
@@ -764,7 +926,7 @@
     for (const [key, value] of data.entries()) {
       if (!key.startsWith("_") && value) lines.push(`${key}: ${value}`);
     }
-    const subject = encodeURIComponent(`Systems Checkup inquiry — ${data.get("business_name") || data.get("name") || "website lead"}`);
+    const subject = encodeURIComponent(`Fit Call inquiry — ${data.get("business_name") || data.get("name") || "website lead"}`);
     return `mailto:${config.contactEmail}?subject=${subject}&body=${encodeURIComponent(lines.join("\n"))}`;
   }
 
@@ -869,6 +1031,7 @@
     applyTranslations();
     applySiteTokens();
     setupPrecallVideo();
+    setupTutorialVideos();
     setupForms();
     setupTracking();
     setupReveal();

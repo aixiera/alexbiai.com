@@ -1,9 +1,9 @@
 window.siteConfig = {
   ownerName: "Kairui Bi",
-  roleLabel: "Canadian local business systems builder",
-  roleTagline: "Websites, lead capture, and practical automation for local businesses across Canada.",
+  roleLabel: "BC AI consultant & systems builder",
+  roleTagline: "AI consulting and practical systems for businesses across British Columbia.",
   location: "BC, Canada",
-  serviceArea: "Serving local businesses across Canada",
+  serviceArea: "Serving businesses across British Columbia",
   contactEmail: "bia446635@gmail.com",
   linkedinUrl: "https://www.linkedin.com/in/kairui-bi-9913ab377/",
 
@@ -11,23 +11,27 @@ window.siteConfig = {
     home: "index.html",
     precall: "precall.html",
     booking: "booking.html",
-    projects: "projects.html",
     privacy: "legal/privacy.html",
     terms: "legal/terms.html"
   },
 
   navigation: [
     { key: "services", label: "Services", href: "index.html#services" },
-    { key: "industries", label: "My Niche", href: "index.html#industries" },
     { key: "examples", label: "Demos", href: "demo_gallery.html" },
-    { key: "precall", label: "Pre-Call", href: "precall.html" },
-    { key: "projects", label: "Projects", href: "projects.html" },
+    { key: "process", label: "Process", href: "index.html#process" },
     { key: "about", label: "About", href: "index.html#about" }
   ],
 
   precall: {
     youtubeUrl: "",
-    videoTitle: "What to expect from your Systems Checkup"
+    videoTitle: "What to expect from your Fit Call"
+  },
+
+  youtube: {
+    channelUrl: "",
+    featuredVideoUrl: "",
+    featuredVideoTitle: "Builds & Tutorials with Kairui Bi",
+    thumbnailUrl: ""
   },
 
   booking: {
@@ -35,13 +39,13 @@ window.siteConfig = {
       "https://calendar.google.com/calendar/appointments/schedules/AcZssZ0czzh-VaKOKuwnCJw2I0bd0k3KESTbmkJfyQgNnnSI85QNXp9t2lGTQ0showPV_tvt9Vn9-N47",
     embedUrl:
       "https://calendar.google.com/calendar/appointments/schedules/AcZssZ0czzh-VaKOKuwnCJw2I0bd0k3KESTbmkJfyQgNnnSI85QNXp9t2lGTQ0showPV_tvt9Vn9-N47?gv=true",
-    ctaLabel: "Book a Free 15-Min Systems Checkup"
+    ctaLabel: "Book a Free 15-Min Fit Call"
   },
 
   leadForm: {
     provider: "formsubmit",
     endpoint: "https://formsubmit.co/ajax/bia446635@gmail.com",
-    subject: "New Systems Checkup inquiry from {{ name }}"
+    subject: "New Fit Call inquiry from {{ name }}"
   },
 
   analytics: {
