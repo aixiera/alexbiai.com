@@ -4162,6 +4162,24 @@ body.has-reveal .reveal.is-visible {
 .booking-schedule-section .appointment-shell { margin-top: 1rem; }
 .booking-final-path { margin-bottom: 1rem; }
 
+.sr-only { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important; }
+.booking-page-compact { width: min(1280px, calc(100% - 2rem)); }
+.booking-intro-centered { max-width: 50rem; margin: 0 auto 1rem; padding: .75rem 0 0; text-align: center; }
+.booking-intro-centered::after { display: none; }
+.booking-intro-centered h1 { max-width: none; margin: .3rem 0 .35rem; font-family: "Cormorant Garamond", Georgia, serif; font-size: clamp(2.7rem, 5vw, 4.8rem); line-height: .95; color: var(--sales-gold-deep); }
+.booking-intro-centered p { max-width: 42rem; margin: 0 auto; color: var(--sales-muted); }
+.booking-schedule-top { margin: 0 auto; }
+.appointment-shell-centered { width: min(1100px, 100%); margin: 0 auto; }
+.appointment-shell-centered .booking-fallback { justify-content: center; padding: 0 .75rem .85rem; }
+.booking-summary,
+.booking-faq { width: min(1100px, 100%); margin: clamp(2.8rem, 6vw, 5rem) auto 0; padding-top: clamp(1.8rem, 4vw, 3rem); border-top: 1px solid var(--line); }
+.booking-offer-grid-compact .booking-offer-card { min-height: 14rem; }
+.booking-offer-grid-compact .booking-offer-card h3 { margin-bottom: .65rem; }
+.booking-commitment-compact { padding: clamp(1.25rem, 3vw, 2rem); }
+.booking-commitment-compact h3 { max-width: 30ch; font-size: clamp(2rem, 3.5vw, 3.2rem); }
+.booking-commitment-compact p { max-width: 72rem; margin-bottom: 0; }
+.booking-faq .faq-list { margin-top: 1rem; }
+
 @media (max-width: 900px) {
   .booking-payment-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .appointment-embed,
@@ -4182,6 +4200,12 @@ body.has-reveal .reveal.is-visible {
   .appointment-embed iframe { min-width: 320px; min-height: 760px; height: 760px; }
   .booking-fallback { display: grid; grid-template-columns: 1fr; }
   .booking-fallback .btn { width: 100%; justify-content: center; text-align: center; }
+  .booking-page-compact { width: calc(100% - .5rem); }
+  .booking-intro-centered { padding-top: .4rem; }
+  .booking-intro-centered h1 { font-size: clamp(2.5rem, 14vw, 3.5rem); }
+  .booking-offer-grid-compact .booking-offer-card { min-height: 0; }
+  .booking-summary,
+  .booking-faq { margin-top: 2.4rem; }
 }
 
 .precall-page { padding-top: 1.2rem; }

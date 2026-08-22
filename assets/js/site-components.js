@@ -170,8 +170,8 @@
     "booking.expect3": { en: "Custom quote before any paid work", zh: "任何付费工作前先提供定制报价" },
     "booking.open": { en: "Open scheduler in a new tab", zh: "在新标签页打开预约" },
     "booking.email": { en: "Email instead", zh: "改用电子邮件" },
-    "booking.preCallTitle": { en: "Already booked? Prepare before we meet.", zh: "已经预约？请在会面前做好准备。" },
-    "booking.preCallBody": { en: "Watch the founder briefing, complete the required form, and bring one recent workflow breakdown.", zh: "观看创始人简报、填写必填表单，并准备一个近期流程断点的例子。" },
+    "booking.preCallTitle": { en: "Already booked?", zh: "已经预约？" },
+    "booking.preCallBody": { en: "Complete the short Pre-Call Guide before we meet.", zh: "会面前请填写简短的通话准备指南。" },
     "booking.preCallButton": { en: "Open the Pre-Call Guide", zh: "打开通话准备指南" },
     "booking.nextTitle": { en: "Booked your call?", zh: "已经预约通话？" },
     "booking.nextBody": { en: "Complete the Pre-Call Guide so I can prepare around your actual workflow.", zh: "填写通话准备指南，让我可以围绕你的真实流程做好准备。" },
@@ -554,19 +554,19 @@
 
     ,"booking.description": { en: "Book a free fit call for a Codex, Claude, or n8n AI project, website chatbot, or customized AI voice receptionist.", zh: "为 Codex、Claude、n8n AI 项目、网站聊天机器人或定制 AI 语音接待预约免费匹配通话。" }
     ,"booking.eyebrow": { en: "Free 15-minute fit call", zh: "免费 15 分钟匹配通话" }
-    ,"booking.heading": { en: "Choose the project. Define the result. Then build.", zh: "选择项目，定义结果，然后搭建。" }
-    ,"booking.body": { en: "Bring one Codex, Claude, or n8n AI project—or a website chatbot or AI voice receptionist you want customized for your business. We use the call to check fit and choose the clearest next step.", zh: "带来一个 Codex、Claude 或 n8n AI 项目，或您希望为企业定制的网站聊天机器人或 AI 语音接待。我们通过通话判断匹配度并确定下一步。" }
+    ,"booking.heading": { en: "Book your fit call.", zh: "预约匹配通话。" }
+    ,"booking.body": { en: "Choose a time below. We will discuss your project and decide whether we fit.", zh: "在下方选择时间。我们会讨论您的项目并判断是否适合合作。" }
     ,"booking.expect2": { en: "Written scope and acceptance criteria", zh: "书面范围与验收标准" }
-    ,"booking.offersEyebrow": { en: "Exactly what I offer", zh: "我提供的两项服务" }
-    ,"booking.offersTitle": { en: "Two focused ways to work together.", zh: "两种聚焦的合作方式。" }
+    ,"booking.offersEyebrow": { en: "What I offer", zh: "我的服务" }
+    ,"booking.offersTitle": { en: "Two focused services.", zh: "两项聚焦服务。" }
     ,"booking.offer1": { en: "Codex / Claude / n8n AI Project Consultation & Implementation", zh: "Codex / Claude / n8n AI 项目咨询与实施" }
-    ,"booking.offer1Body": { en: "I diagnose the workflow, design the project, and implement the approved AI solution around your business rules and existing tools.", zh: "我会诊断流程、设计项目，并围绕您的业务规则与现有工具实施获批的 AI 方案。" }
+    ,"booking.offer1Body": { en: "Plan and build a focused AI project around your workflow.", zh: "围绕您的流程规划并搭建聚焦的 AI 项目。" }
     ,"booking.offer1Item1": { en: "Project and workflow diagnosis", zh: "项目与流程诊断" }
     ,"booking.offer1Item2": { en: "Codex or Claude implementation", zh: "Codex 或 Claude 实施" }
     ,"booking.offer1Item3": { en: "n8n automation and integrations", zh: "n8n 自动化与集成" }
     ,"booking.offer1Item4": { en: "Testing, documentation, and handoff", zh: "测试、文档与交接" }
     ,"booking.offer2": { en: "Website Chatbot & AI Voice Receptionist Customization", zh: "网站聊天机器人与 AI 语音接待定制" }
-    ,"booking.offer2Body": { en: "I customize the assistant around your services, approved answers, business hours, intake questions, routing, and human escalation.", zh: "我会围绕您的服务、经批准的回答、营业时间、信息收集问题、分派与人工升级定制助理。" }
+    ,"booking.offer2Body": { en: "Customize answers, intake, routing, booking, and human handoff.", zh: "定制回答、信息收集、分派、预约与人工交接。" }
     ,"booking.offer2Item1": { en: "Website chatbot conversation flow", zh: "网站聊天机器人对话流程" }
     ,"booking.offer2Item2": { en: "AI voice receptionist call flow", zh: "AI 语音接待通话流程" }
     ,"booking.offer2Item3": { en: "Information collection and qualification", zh: "信息收集与筛选" }
@@ -582,9 +582,19 @@
     ,"booking.pay3Body": { en: "Pay the kickoff amount, then consulting or implementation begins.", zh: "支付启动款后，咨询或实施开始。" }
     ,"booking.pay4": { en: "Accept + pay 75%", zh: "接受并支付 75%" }
     ,"booking.pay4Body": { en: "Review the agreed result; the balance is due after acceptance.", zh: "审核约定结果；接受后支付余款。" }
-    ,"booking.commitmentEyebrow": { en: "Remaining-fee commitment", zh: "剩余费用承诺" }
-    ,"booking.commitmentTitle": { en: "If the written acceptance criteria are still unmet after a fair correction opportunity, the remaining 75% is waived.", zh: "若在给予合理修正机会后仍未满足书面验收标准，剩余 75% 将被免除。" }
-    ,"booking.commitmentBody": { en: "In simple terms: you pay 25% to start and the remaining 75% after you accept the agreed work. The signed proposal controls the details. The kickoff amount, approved third-party costs, accepted milestones, and out-of-scope work remain payable.", zh: "简单来说：支付 25% 开始，在接受约定工作后支付剩余 75%。具体细节以签署的提案为准；启动款、获批第三方费用、已接受里程碑和范围外工作仍需支付。" }
+    ,"booking.commitmentEyebrow": { en: "Payment commitment", zh: "付款承诺" }
+    ,"booking.commitmentTitle": { en: "25% to start. 75% after you accept the agreed result.", zh: "支付 25% 开始；接受约定结果后支付 75%。" }
+    ,"booking.commitmentBody": { en: "If written acceptance criteria remain unmet after a fair correction opportunity, the remaining 75% is waived. The signed proposal controls the details.", zh: "若在合理修正机会后仍未满足书面验收标准，剩余 75% 将被免除。具体细节以签署的提案为准。" }
+    ,"booking.faqEyebrow": { en: "FAQ", zh: "常见问题" }
+    ,"booking.faqTitle": { en: "Before we meet.", zh: "会面之前。" }
+    ,"booking.faq1": { en: "What happens in the free call?", zh: "免费通话会做什么？" }
+    ,"booking.faq1Body": { en: "We discuss the project, clarify the outcome, and decide whether to continue.", zh: "我们讨论项目、明确成果并决定是否继续。" }
+    ,"booking.faq2": { en: "What can I hire you for?", zh: "我可以委托你做什么？" }
+    ,"booking.faq2Body": { en: "Codex, Claude, or n8n AI project consultation and implementation; or website-chatbot and AI voice-receptionist customization.", zh: "Codex、Claude 或 n8n AI 项目咨询与实施；或网站聊天机器人和 AI 语音接待定制。" }
+    ,"booking.faq3": { en: "How does payment work?", zh: "如何付款？" }
+    ,"booking.faq3Body": { en: "The proposal defines scope and acceptance. You pay 25% to start and 75% after acceptance.", zh: "提案会定义范围与验收标准。支付 25% 开始，验收后支付 75%。" }
+    ,"booking.faq4": { en: "What if the agreed result is not accepted?", zh: "如果约定结果未被接受怎么办？" }
+    ,"booking.faq4Body": { en: "I receive a fair opportunity to correct it. If the written criteria remain unmet, the remaining 75% is waived under the signed proposal.", zh: "我会获得合理修正机会；若书面标准仍未满足，则根据签署的提案免除剩余 75%。" }
     ,"booking.commitmentNote": { en: "Acceptance uses results we can verify, such as a working workflow, correctly handled chat or call paths, completed integrations, or another written project measure. Profit and revenue depend on your market and operation and are not guaranteed.", zh: "验收采用可验证结果，例如可运行流程、正确处理的聊天或来电路径、完成的集成或其他书面项目指标。利润与营收受市场和运营影响，不作保证。" }
     ,"booking.scheduleEyebrow": { en: "Choose a time", zh: "选择时间" }
     ,"booking.scheduleTitle": { en: "Book your free 15-minute fit call.", zh: "预约免费 15 分钟匹配通话。" }
