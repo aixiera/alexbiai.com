@@ -1085,6 +1085,69 @@
     items.forEach((item) => observer.observe(item));
   }
 
+  function setupChatbot() {
+    const settings = config.chatbot;
+    if (!settings?.enabled || !settings.widgetUrl || document.querySelector("[data-kb-chatbot]")) return;
+
+    let widgetUrl;
+    try {
+      widgetUrl = new URL(settings.widgetUrl);
+      if (widgetUrl.protocol !== "https:") return;
+    } catch {
+      return;
+    }
+
+    const root = document.createElement("div");
+    root.className = "kb-chatbot";
+    root.dataset.kbChatbot = "";
+
+    const launcher = document.createElement("button");
+    launcher.type = "button";
+    launcher.className = "kb-chatbot-launcher";
+    launcher.setAttribute("aria-label", "Open Kairui AI guide");
+    launcher.setAttribute("aria-expanded", "false");
+    launcher.innerHTML = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="M8 9h8M8 13h5M7 19l-4 2 1.3-4.1A8 8 0 1 1 7 19Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span></span>';
+    launcher.querySelector("span").textContent = language === "zh" ? "询问 Kairui" : "Ask Kairui";
+
+    const panel = document.createElement("div");
+    panel.className = "kb-chatbot-panel";
+    panel.hidden = true;
+
+    const openChat = () => {
+      if (!panel.querySelector("iframe")) {
+        const iframe = document.createElement("iframe");
+        iframe.src = widgetUrl.href;
+        iframe.title = "Kairuibi AI guide";
+        iframe.allow = "microphone";
+        iframe.referrerPolicy = "strict-origin-when-cross-origin";
+        iframe.setAttribute("sandbox", "allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox");
+        panel.appendChild(iframe);
+      }
+      panel.hidden = false;
+      launcher.hidden = true;
+      launcher.setAttribute("aria-expanded", "true");
+      trackEvent("chatbot_open", { page_path: window.location.pathname });
+    };
+
+    const closeChat = () => {
+      panel.hidden = true;
+      launcher.hidden = false;
+      launcher.setAttribute("aria-expanded", "false");
+      launcher.focus();
+    };
+
+    launcher.addEventListener("click", openChat);
+    window.addEventListener("message", (event) => {
+      if (event.origin === widgetUrl.origin && event.data?.type === "kairuibi-chat-close") closeChat();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !panel.hidden) closeChat();
+    });
+
+    root.append(launcher, panel);
+    document.body.appendChild(root);
+  }
+
   function init() {
     applyTranslations();
     applySiteTokens();
@@ -1093,6 +1156,7 @@
     setupForms();
     setupTracking();
     setupReveal();
+    setupChatbot();
     buildConsentDialog();
     activateTrackers();
     openConsent(false);

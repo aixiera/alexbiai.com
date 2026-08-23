@@ -48,6 +48,11 @@ window.siteConfig = {
     subject: "New Fit Call inquiry from {{ name }}"
   },
 
+  chatbot: {
+    enabled: true,
+    widgetUrl: "https://kairuibi-ai-guide.vercel.app/widget"
+  },
+
   analytics: {
     gaMeasurementId: "",
     metaPixelId: ""
